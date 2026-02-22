@@ -1,0 +1,585 @@
+\documentclass[11pt,a4paper]{report}
+
+% ─── Packages ───
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[margin=1in, top=1.2in, bottom=1.2in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{titletoc}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{cleveref}
+\usepackage{tikz}
+\usepackage{setspace}
+\usepackage{parskip}
+\usepackage{caption}
+\usepackage{etoolbox}
+\usepackage{array}
+\usepackage{multirow}
+
+\usetikzlibrary{arrows.meta, positioning, shapes.geometric, calc, decorations.pathmorphing, fit, backgrounds, chains, patterns}
+\tcbuselibrary{skins,breakable,theorems}
+
+% ─── Colors ───
+\definecolor{darknavy}{HTML}{0d1b2a}
+\definecolor{accentwhite}{HTML}{e0e1dd}
+\definecolor{deepslate}{HTML}{1b263b}
+\definecolor{softgold}{HTML}{c8a951}
+\definecolor{darkbg}{HTML}{080f1a}
+\definecolor{sectionblue}{HTML}{415a77}
+\definecolor{subsecblue}{HTML}{778da9}
+\definecolor{defcolor}{HTML}{1565c0}
+\definecolor{defbg}{HTML}{e3f2fd}
+\definecolor{principlecolor}{HTML}{2e7d32}
+\definecolor{principlebg}{HTML}{e8f5e9}
+\definecolor{mechcolor}{HTML}{00695c}
+\definecolor{mechbg}{HTML}{e0f2f1}
+\definecolor{mathbg}{HTML}{f8f5ee}
+\definecolor{notepurple}{HTML}{6a1b9a}
+\definecolor{notebg}{HTML}{f3e5f5}
+\definecolor{lightgray}{HTML}{f0f0f0}
+\definecolor{darkgray}{HTML}{333333}
+\definecolor{histcolor}{HTML}{4e342e}
+\definecolor{histbg}{HTML}{efebe9}
+\definecolor{conceptcolor}{HTML}{283593}
+\definecolor{conceptbg}{HTML}{e8eaf6}
+\definecolor{guidecolor}{HTML}{bf360c}
+\definecolor{guidebg}{HTML}{fbe9e7}
+\definecolor{seriescolor}{HTML}{0d47a1}
+\definecolor{seriesbg}{HTML}{e3f2fd}
+\definecolor{predcolor}{HTML}{e65100}
+\definecolor{objcolor}{HTML}{b71c1c}
+
+% ─── Hyperref Setup ───
+\hypersetup{
+    colorlinks=true,
+    linkcolor=deepslate,
+    citecolor=deepslate,
+    urlcolor=sectionblue,
+    bookmarks=true,
+    bookmarksnumbered=true,
+    pdfauthor={Comprehensive Guide Series},
+    pdftitle={Introduction to Consciousness Studies},
+    pdfsubject={Consciousness, Philosophy of Mind, Neuroscience, The Hard Problem},
+}
+
+% ─── Header/Footer ───
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\color{gray} Introduction to Consciousness Studies}
+\fancyhead[R]{\small\color{gray} Comprehensive Reading Material}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancypagestyle{plain}{\fancyhf{}\fancyfoot[C]{\thepage}\renewcommand{\headrulewidth}{0pt}}
+
+% ─── Chapter/Section Formatting ───
+\titleformat{\chapter}[display]
+  {\normalfont\huge\bfseries\color{deepslate}}
+  {\chaptertitlename\ \thechapter}{20pt}{\Huge}
+\titlespacing*{\chapter}{0pt}{-20pt}{30pt}
+\titleformat{\section}{\normalfont\Large\bfseries\color{sectionblue}}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalfont\large\bfseries\color{subsecblue}}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}{\normalfont\normalsize\bfseries\color{darkgray}}{\thesubsubsection}{1em}{}
+
+% ─── Tcolorbox environments ───
+\newtcolorbox{principlebox}[1][]{enhanced, breakable, colback=principlebg, colframe=principlecolor, coltitle=white, fonttitle=\bfseries, title=#1, left=8pt, right=8pt, top=6pt, bottom=6pt, boxrule=0.5pt, arc=3pt, borderline west={3pt}{0pt}{principlecolor}, before skip=10pt, after skip=10pt}
+\newtcolorbox{mechbox}[1][]{enhanced, breakable, colback=mechbg, colframe=mechcolor, coltitle=white, fonttitle=\bfseries, title=#1, left=8pt, right=8pt, top=6pt, bottom=6pt, boxrule=0.5pt, arc=3pt, borderline west={3pt}{0pt}{mechcolor}, before skip=10pt, after skip=10pt}
+\newtcolorbox{definitionbox}[1][]{enhanced, breakable, colback=defbg, colframe=defcolor, coltitle=white, fonttitle=\bfseries, title=#1, left=8pt, right=8pt, top=6pt, bottom=6pt, boxrule=0.5pt, arc=3pt, borderline west={3pt}{0pt}{defcolor}, before skip=10pt, after skip=10pt}
+\newtcolorbox{mathbox}{enhanced, colback=mathbg, colframe=mathbg!70!black, left=8pt, right=8pt, top=6pt, bottom=6pt, boxrule=0.3pt, arc=2pt, before skip=8pt, after skip=8pt}
+\newtcolorbox{notebox}[1][Note]{enhanced, breakable, colback=notebg, colframe=notepurple, coltitle=white, fonttitle=\bfseries, title=#1, left=8pt, right=8pt, top=6pt, bottom=6pt, boxrule=0.5pt, arc=3pt, borderline west={3pt}{0pt}{notepurple}, before skip=10pt, after skip=10pt}
+\newtcolorbox{histbox}[1][]{enhanced, breakable, colback=histbg, colframe=histcolor, coltitle=white, fonttitle=\bfseries, title=#1, left=8pt, right=8pt, top=6pt, bottom=6pt, boxrule=0.5pt, arc=3pt, borderline west={3pt}{0pt}{histcolor}, before skip=10pt, after skip=10pt}
+\newtcolorbox{conceptbox}[1][]{enhanced, breakable, colback=conceptbg, colframe=conceptcolor, coltitle=white, fonttitle=\bfseries, title=#1, left=8pt, right=8pt, top=6pt, bottom=6pt, boxrule=0.5pt, arc=3pt, borderline west={3pt}{0pt}{conceptcolor}, before skip=10pt, after skip=10pt}
+\newtcolorbox{guidebox}[1][]{enhanced, breakable, colback=guidebg, colframe=guidecolor, coltitle=white, fonttitle=\bfseries, title=#1, left=8pt, right=8pt, top=6pt, bottom=6pt, boxrule=0.5pt, arc=3pt, borderline west={3pt}{0pt}{guidecolor}, before skip=10pt, after skip=10pt}
+\newtcolorbox{seriesbox}[1][]{enhanced, breakable, colback=seriesbg, colframe=seriescolor, coltitle=white, fonttitle=\bfseries, title=#1, left=8pt, right=8pt, top=6pt, bottom=6pt, boxrule=0.5pt, arc=3pt, borderline west={3pt}{0pt}{seriescolor}, before skip=10pt, after skip=10pt}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+
+% ══════════════════════════════════════════════════════════════
+\begin{document}
+
+% ─── COVER PAGE ───
+\begin{titlepage}
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[darkbg] (current page.south west) rectangle (current page.north east);
+  \fill[softgold] ([yshift=-11cm]current page.north west) rectangle ([yshift=-10.85cm]current page.north east);
+  \foreach \a/\r/\op in {0/2.0/0.04, 30/2.3/0.03, 60/1.8/0.05, 90/2.5/0.03, 120/2.1/0.04, 150/1.9/0.04, 180/2.4/0.03, 210/2.0/0.04, 240/2.2/0.03, 270/1.7/0.05, 300/2.3/0.04, 330/2.0/0.03} {
+    \draw[accentwhite, opacity=\op, line width=0.4pt] (6, -14.5) -- ({6+\r*cos(\a)}, {-14.5+\r*sin(\a)});
+    \fill[accentwhite, opacity=0.06] ({6+\r*cos(\a)}, {-14.5+\r*sin(\a)}) circle (0.08);
+  }
+  \draw[accentwhite, opacity=0.06, line width=0.5pt] (6, -14.5) circle (1.2);
+  \draw[accentwhite, opacity=0.04, line width=0.5pt] (6, -14.5) circle (2.0);
+  \draw[accentwhite, opacity=0.03, line width=0.5pt] (6, -14.5) circle (2.8);
+  \fill[softgold, opacity=0.08] (6, -14.5) circle (0.2);
+\end{tikzpicture}
+
+\vspace*{4cm}
+\begin{center}
+  {\fontsize{36}{44}\selectfont\bfseries\color{white} Introduction to\\[8pt] Consciousness Studies}\\[24pt]
+  {\Large\color{gray!70} Foundations, Problems, and the Landscape of Theories}\\[20pt]
+  {\color{softgold}\rule{6cm}{1pt}}\\[20pt]
+  {\large\color{gray!60} A Comprehensive Guide to the Science and Philosophy\\[4pt] of Subjective Experience}\\[40pt]
+  {\color{softgold}\large Volume 0 of the Consciousness Theory Series}\\[8pt]
+  {\color{gray!50}\normalsize The Hard Problem $\bullet$ Neural Correlates $\bullet$ Qualia $\bullet$ Methodology}\\[60pt]
+  {\color{gray!40}\small Comprehensive Study Material \quad$\vert$\quad February 2026}
+\end{center}
+\end{titlepage}
+
+% ─── TABLE OF CONTENTS ───
+\tableofcontents
+\thispagestyle{plain}
+\newpage
+
+
+% ══════════════════════════════════════════════════════════════
+\chapter{What is Consciousness?}
+% ══════════════════════════════════════════════════════════════
+
+\section{The Phenomenon}
+
+You are reading this sentence. You see marks on a page or screen. You understand the words. You are aware of understanding them. There is \emph{something it is like} to be you right now---a felt quality to your experience, a subjective perspective on the world. This is \textbf{consciousness}.
+
+Consciousness is at once the most familiar thing in the universe---it is the only thing any of us knows directly---and the most puzzling. We know what it is from the inside but struggle to explain it from the outside. As Thomas Nagel (1974) framed it: a being is conscious if and only if \textbf{there is something it is like to be that being}.
+
+\begin{definitionbox}[Working Definitions]
+\textbf{Consciousness} (phenomenal consciousness): The subjective, qualitative character of experience. The ``what it is like-ness'' of mental states. When you see red, feel pain, or taste coffee, there is a phenomenal quality---a \emph{quale} (plural: \emph{qualia})---that constitutes your experience.
+
+\textbf{Access consciousness} (Block, 1995): A mental state is access-conscious if its content is available for verbal report, reasoning, and the rational control of behavior. Access consciousness concerns the \emph{functional} role of a mental state, not its subjective quality.
+
+\textbf{Self-consciousness:} Awareness of oneself as a subject of experience. A higher-order capacity that involves modeling one's own mental states.
+
+The central mystery concerns \textbf{phenomenal consciousness}: why and how do physical processes in the brain give rise to subjective experience?
+\end{definitionbox}
+
+\section{Why Consciousness is Hard to Study}
+
+\begin{conceptbox}[The Unique Challenges of Consciousness]
+\begin{enumerate}[leftmargin=1.5em]
+  \item \textbf{First-person vs.\ third-person:} All other scientific phenomena are observable from the outside (third-person). Consciousness is known directly only from the inside (first-person). There is no ``consciousness-meter''; we can only measure neural activity and infer consciousness.
+  \item \textbf{The explanatory gap:} Even a complete physical description of the brain seems to leave out something---the \emph{felt quality} of experience.
+  \item \textbf{Privacy:} Your consciousness is directly accessible only to you. I can observe your behavior and brain activity but can never directly access your experience.
+  \item \textbf{Ambiguity of terms:} ``Consciousness'' is used to mean many different things---wakefulness, awareness, attention, self-reflection, sentience---creating confusion across disciplines.
+\end{enumerate}
+\end{conceptbox}
+
+
+% ══════════════════════════════════════════════════════════════
+\chapter{The Problems of Consciousness}
+% ══════════════════════════════════════════════════════════════
+
+\section{The Hard Problem}
+
+\begin{definitionbox}[The Hard Problem of Consciousness (Chalmers, 1995)]
+\textbf{The Hard Problem:} Why is there subjective experience at all? Why don't all the physical processes in the brain go on ``in the dark,'' without any accompanying inner experience? Even if we explain every functional aspect of consciousness, there would remain a further question: \emph{why is there something it is like} to undergo these processes?
+
+Contrast with the \textbf{Easy Problems} (``easy'' only relative to the Hard Problem):
+\begin{itemize}[leftmargin=1.5em]
+  \item How does the brain integrate information from different senses?
+  \item How does attention select certain inputs for processing?
+  \item How can we report on our mental states?
+  \item What distinguishes wakefulness from sleep?
+\end{itemize}
+These ask how the brain \emph{does} things. The Hard Problem asks why doing those things \emph{feels like} anything.
+\end{definitionbox}
+
+\subsection{The Zombie Argument}
+
+\begin{conceptbox}[The Zombie Argument]
+A \textbf{philosophical zombie} is a being physically identical to a conscious human---same neurons, same connections, same firing patterns---but with \emph{no subjective experience}. It behaves identically but ``the lights are off inside.''
+
+\begin{enumerate}[leftmargin=1.5em]
+  \item Zombies are \emph{conceivable}: we can coherently imagine a physical duplicate without consciousness.
+  \item If zombies are conceivable, consciousness is not logically entailed by physical properties.
+  \item Therefore, consciousness is something \emph{over and above} the physical.
+\end{enumerate}
+This argument is controversial---many physicalists deny that zombies are genuinely conceivable---but it sharpens the challenge.
+\end{conceptbox}
+
+\section{The Explanatory Gap}
+
+The \textbf{explanatory gap} (Levine, 1983) is the observation that even a complete neuroscientific account of the brain leaves a gap between the physical story and phenomenal reality. We can explain \emph{why} water is H$_2$O. But we cannot explain \emph{why} certain neural activity is accompanied by the experience of red rather than green---or by any experience at all.
+
+\section{The Binding Problem}
+
+\begin{definitionbox}[The Binding Problem]
+Conscious experience is \textbf{unified}: you see a single visual scene with shape, color, motion, and depth all bound together. But the brain processes these features in anatomically separate regions. How are they combined?
+
+Sub-problems: feature binding (red + round + moving for a single object), object binding (separating objects in a scene), cross-modal binding (sight + sound + touch), and temporal binding (continuity over time).
+\end{definitionbox}
+
+\section{The Neural Correlates of Consciousness (NCC)}
+
+\begin{definitionbox}[Neural Correlates of Consciousness]
+The \textbf{NCC} is the minimal set of neuronal events and mechanisms jointly sufficient for a specific conscious experience (Koch et al., 2016).
+\begin{itemize}[leftmargin=1.5em]
+  \item \textbf{Content NCC:} The neural basis of a \emph{specific} experience (seeing red, hearing a tone).
+  \item \textbf{Full NCC:} The neural basis of consciousness itself (what distinguishes conscious from unconscious states).
+\end{itemize}
+Finding NCCs is the central empirical project of consciousness science. But NCCs alone do not solve the Hard Problem: they tell us \emph{which} neural events correlate with consciousness, not \emph{why}.
+\end{definitionbox}
+
+
+% ══════════════════════════════════════════════════════════════
+\chapter{Key Concepts and Distinctions}
+% ══════════════════════════════════════════════════════════════
+
+\section{Levels and Contents of Consciousness}
+
+\begin{principlebox}[Two Dimensions of Consciousness]
+\textbf{Level} (arousal, wakefulness): A graded dimension from deep coma through sleep, sedation, drowsiness, to full alert wakefulness. Measured clinically by the Glasgow Coma Scale, and experimentally by the perturbational complexity index (PCI).
+
+\textbf{Content} (what you are experiencing): The specific qualitative character of experience at a given moment. Content varies independently of level: you can be fully awake with sparse content (sensory deprivation) or have rich content at reduced levels (dreaming).
+\end{principlebox}
+
+\section{Access vs.\ Phenomenal Consciousness}
+
+This distinction (Block, 1995) is central to debates between theories:
+
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{>{\raggedright}p{3.5cm} >{\raggedright}p{5cm} >{\raggedright\arraybackslash}p{5cm}}
+  \toprule
+  & \textbf{Phenomenal Consciousness} & \textbf{Access Consciousness} \\
+  \midrule
+  Definition & Subjective, qualitative character & Availability for report, reasoning, action \\
+  Key question & What is it \emph{like}? & What can you \emph{do} with it? \\
+  Measurable? & Indirectly (through report) & Directly (through behavior) \\
+  Can dissociate? & Possibly (phenomenal overflow?) & Possibly (blindsight?) \\
+  Key theories & RPT, IIT (phenomenal is primary) & GWT, HOT (access \emph{is} consciousness) \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+Whether phenomenal consciousness can exist without access consciousness is one of the most contested questions. If it can (``phenomenal overflow''), this favors RPT and IIT. If not, this favors GWT and HOT.
+
+\section{Qualia}
+
+\begin{definitionbox}[Qualia]
+\textbf{Qualia} (singular: \emph{quale}) are the subjective, qualitative properties of experience: the redness of red, the painfulness of pain. Key features:
+\begin{itemize}[leftmargin=1.5em]
+  \item \textbf{Intrinsic:} A quale is a property of the experience itself.
+  \item \textbf{Private:} Only the subject can know their own qualia directly.
+  \item \textbf{Ineffable:} Qualia cannot be fully communicated to someone who hasn't experienced them.
+  \item \textbf{Directly apprehended:} You know your qualia simply by having them.
+\end{itemize}
+Whether qualia exist as described is itself debated. Dennett (1988) argued against qualia; others (Chalmers, Block) consider them central.
+\end{definitionbox}
+
+\section{Key Thought Experiments}
+
+\begin{histbox}[Foundational Thought Experiments]
+\textbf{Nagel's Bat (1974):} We cannot know what it is like to be a bat, no matter how much we know about bat neuroscience. This illustrates the irreducibility of subjective experience.
+
+\textbf{Jackson's Mary (1982):} Mary knows everything physical about color vision but has lived in a black-and-white room. When she sees red for the first time, does she learn something new? If yes, physical knowledge is incomplete.
+
+\textbf{Chalmers' Zombies (1996):} A being physically identical to you but without consciousness. If conceivable, consciousness is not logically entailed by physics.
+
+\textbf{Searle's Chinese Room (1980):} A person follows rules to manipulate Chinese symbols without understanding Chinese. Challenges computational theories: syntax doesn't produce semantics.
+
+\textbf{Block's China Brain (1978):} If the entire population of China simulated a brain, would the system be conscious? Tests intuitions about substrate-independence.
+\end{histbox}
+
+
+% ══════════════════════════════════════════════════════════════
+\chapter{The Philosophical Landscape}
+% ══════════════════════════════════════════════════════════════
+
+\section{Major Positions}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{>{\raggedright}p{3.5cm} >{\raggedright}p{4cm} >{\raggedright\arraybackslash}p{6cm}}
+  \toprule
+  \textbf{Position} & \textbf{Core Claim} & \textbf{Key Proponents} \\
+  \midrule
+  Physicalism & Consciousness is entirely physical & Dennett, Churchland, Crick, Koch \\
+  Property dualism & Non-physical property of physical systems & Chalmers \\
+  Substance dualism & Mind and matter are distinct substances & Descartes \\
+  Functionalism & Consciousness defined by functional role & Putnam, Fodor \\
+  Illusionism & Phenomenal consciousness is an illusion & Dennett, Frankish \\
+  Panpsychism & Consciousness is fundamental to all matter & Goff, Strawson \\
+  Idealism & Consciousness is the only fundamental reality & Kastrup, Hoffman \\
+  Neutral monism & Mind and matter are aspects of neutral stuff & James, Russell \\
+  Mysterianism & Humans cannot solve the problem & McGinn \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\section{Physicalism and Its Varieties}
+
+\begin{itemize}[leftmargin=1.5em]
+  \item \textbf{Reductive physicalism (identity theory):} Conscious states \emph{are} brain states. Pain just \emph{is} C-fiber firing.
+  \item \textbf{Functionalism:} Conscious states are defined by functional roles, not substrate. Allows multiple realizability: consciousness in silicon, aliens, etc.
+  \item \textbf{Eliminativism:} Folk-psychological concepts of consciousness are mistaken and will be eliminated by mature neuroscience.
+  \item \textbf{Illusionism:} Phenomenal consciousness doesn't exist as such; we merely have functional states that represent themselves as having qualitative character.
+\end{itemize}
+
+\section{Dualism}
+
+\begin{itemize}[leftmargin=1.5em]
+  \item \textbf{Substance dualism} (Descartes): Mind and body are different substances. Faces the interaction problem.
+  \item \textbf{Property dualism} (Chalmers): One substance (physical), two kinds of properties (physical and phenomenal). Phenomenal properties supervene on but are not reducible to physical ones.
+  \item \textbf{Epiphenomenalism:} Consciousness exists but has no causal power. Physical events cause conscious events, not vice versa.
+\end{itemize}
+
+
+% ══════════════════════════════════════════════════════════════
+\chapter{Experimental Methods}
+% ══════════════════════════════════════════════════════════════
+
+\section{Contrastive Methods}
+
+The primary experimental strategy is \textbf{contrastive analysis}: compare brain activity when a stimulus is consciously perceived vs.\ when it is not.
+
+\begin{mechbox}[Key Experimental Paradigms]
+\begin{enumerate}[leftmargin=1.5em]
+  \item \textbf{Binocular rivalry:} Different images to each eye; perception alternates.
+  \item \textbf{Visual masking:} A target is rendered invisible by a subsequent mask.
+  \item \textbf{Inattentional blindness:} Subjects fail to notice unexpected stimuli.
+  \item \textbf{Change blindness:} Subjects fail to detect large changes across interruptions.
+  \item \textbf{Attentional blink:} The second of two rapid targets is often missed.
+  \item \textbf{Global-local paradigms:} Stimuli near the threshold of consciousness.
+  \item \textbf{Sleep/anesthesia/coma:} Comparing activity across consciousness levels.
+  \item \textbf{Perturbational approaches:} TMS to probe connectivity and complexity (PCI).
+\end{enumerate}
+\end{mechbox}
+
+\section{Neural Measures}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{>{\raggedright}p{2.5cm} >{\raggedright}p{3cm} >{\raggedright}p{3cm} >{\raggedright\arraybackslash}p{4cm}}
+  \toprule
+  \textbf{Method} & \textbf{Spatial Res.} & \textbf{Temporal Res.} & \textbf{What it Measures} \\
+  \midrule
+  EEG & $\sim$1 cm & $\sim$1 ms & Scalp electric field \\
+  MEG & $\sim$5 mm & $\sim$1 ms & Magnetic field \\
+  fMRI & $\sim$1 mm & $\sim$1 s & Blood oxygenation (BOLD) \\
+  ECoG & $\sim$1 mm & $\sim$1 ms & Cortical surface field \\
+  Single-unit & $\sim$10 $\mu$m & $\sim$0.1 ms & Individual neuron firing \\
+  TMS & Variable & $\sim$1 ms & Causal perturbation \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\section{The Adversarial Collaboration Framework}
+
+\begin{principlebox}[Adversarial Collaborations in Consciousness Science]
+The Templeton World Charity Foundation funded large-scale adversarial collaborations testing predictions of major theories (initially IIT vs.\ GWT, later expanded). Key features:
+\begin{itemize}[leftmargin=1.5em]
+  \item Pre-registered predictions from each theory's proponents
+  \item Agreed-upon experimental protocols
+  \item Large sample sizes and multi-site replication
+  \item Independent data analysis
+  \item Results published regardless of outcome
+\end{itemize}
+Initial results (2023) found mixed evidence: neither IIT nor GWT was fully supported. The sustained posterior negativity predicted by IIT was partially confirmed; the prefrontal ignition predicted by GWT received weaker support. These results have reshaped the field, showing that the truth may involve elements of multiple theories.
+\end{principlebox}
+
+
+% ══════════════════════════════════════════════════════════════
+\chapter{A Brief History of Consciousness Science}
+% ══════════════════════════════════════════════════════════════
+
+\section{Ancient and Early Modern}
+
+Consciousness has been a central concern of philosophy since antiquity. Plato distinguished the soul from the body; Aristotle explored perception and thought; Descartes (1641) made consciousness the foundation of certainty (``\emph{Cogito, ergo sum}'') and established the mind-body problem in its modern form.
+
+\section{The 19th Century}
+
+William James' \textit{The Principles of Psychology} (1890) provided the first systematic treatment of consciousness from a scientific perspective, introducing the ``stream of consciousness'' and exploring attention, perception, and selfhood. Wilhelm Wundt founded the first experimental psychology laboratory (1879).
+
+\section{The Behaviorist Exile (1920s--1960s)}
+
+Behaviorism (Watson, Skinner) banished consciousness from scientific psychology. Only observable behavior was considered scientific. This lasted roughly four decades.
+
+\section{The Cognitive Revolution (1950s--1970s)}
+
+The cognitive revolution (Chomsky, Miller, Newell, Simon) restored internal mental states to scientific respectability, but focused on \emph{information processing}---not subjective experience.
+
+\section{The Modern Era (1990s--Present)}
+
+The scientific study of consciousness became respectable in the 1990s, driven by:
+\begin{itemize}[leftmargin=1.5em]
+  \item \textbf{Crick \& Koch (1990):} Proposed that consciousness could be studied by finding its neural correlates.
+  \item \textbf{Chalmers (1995):} Formulated the Hard Problem.
+  \item \textbf{Baars (1988):} Proposed Global Workspace Theory.
+  \item \textbf{Tononi (2004):} Proposed Integrated Information Theory.
+  \item \textbf{Advances in neuroimaging:} fMRI, EEG/MEG advances, optogenetics.
+  \item \textbf{Adversarial Collaborations (2019--):} Systematic tests of competing theories.
+\end{itemize}
+
+
+% ══════════════════════════════════════════════════════════════
+\chapter{The Landscape of Theories}
+% ══════════════════════════════════════════════════════════════
+
+\section{Taxonomy}
+
+\begin{principlebox}[Organizing Dimensions]
+\textbf{By level of explanation:}
+\begin{itemize}[leftmargin=1.5em]
+  \item \textbf{Neuroscientific:} GWT, RPT, CEMI
+  \item \textbf{Mathematical/formal:} IIT, PP
+  \item \textbf{Cognitive/representational:} HOT, AST
+  \item \textbf{Physical:} Orch OR, CEMI
+  \item \textbf{Metaphysical:} Panpsychism
+\end{itemize}
+
+\textbf{By stance on the Hard Problem:}
+\begin{itemize}[leftmargin=1.5em]
+  \item \textbf{Dissolve it:} AST, HOT
+  \item \textbf{Address it:} IIT, Panpsychism, Orch OR
+  \item \textbf{Set it aside:} GWT, RPT, PP, CEMI
+\end{itemize}
+
+\textbf{By substrate commitment:}
+\begin{itemize}[leftmargin=1.5em]
+  \item \textbf{Substrate-independent:} GWT, HOT, AST, PP
+  \item \textbf{Substrate-dependent:} Orch OR, CEMI, IIT
+  \item \textbf{Universal:} Panpsychism
+\end{itemize}
+\end{principlebox}
+
+\section{The Series}
+
+\begin{seriesbox}[The Consciousness Theory Series]
+This introduction is the first of 11 volumes. Each provides a comprehensive, self-contained guide to a specific theory. The series:
+
+\begin{center}
+\renewcommand{\arraystretch}{1.35}
+\begin{tabular}{>{\raggedright}p{0.5cm} >{\raggedright}p{5.5cm} >{\raggedright\arraybackslash}p{7cm}}
+  \toprule
+  & \textbf{Document} & \textbf{Key Focus} \\
+  \midrule
+  0 & \textbf{Introduction} (this document) & Foundations, problems, methods, landscape \\
+  1 & \textbf{IIT} --- Integrated Information Theory & $\Phi$, axioms, qualia space, mathematical formalism \\
+  2 & \textbf{GWT} --- Global Workspace Theory & Ignition, broadcast, thalamocortical dynamics \\
+  3 & \textbf{RPT} --- Recurrent Processing Theory & Recurrence, laminar circuits, phenomenal overflow \\
+  4 & \textbf{HOT} --- Higher-Order Theories & Meta-representation, signal detection, PFC \\
+  5 & \textbf{AST} --- Attention Schema Theory & Attention modeling, schema, TPJ, social cognition \\
+  6 & \textbf{PP} --- Predictive Processing & Free energy, prediction error, generative models \\
+  7 & \textbf{Orch OR} --- Objective Reduction & Quantum gravity, microtubules, non-computability \\
+  8 & \textbf{Panpsychism \& Cosmopsychism} & Fundamental mentality, combination problem \\
+  9 & \textbf{CEMI} --- EM Field Theories & Maxwell's equations, ephaptic coupling \\
+  10 & \textbf{Master Comparison \& Synthesis} & Cross-theory tables, open frontiers \\
+  \bottomrule
+\end{tabular}
+\end{center}
+\end{seriesbox}
+
+\section{Brief Previews}
+
+\subsection{Integrated Information Theory (IIT)}
+IIT (Tononi) starts from phenomenological axioms and derives a mathematical framework. Consciousness \emph{is} integrated information ($\Phi$). Has panpsychist implications.
+
+\subsection{Global Workspace Theory (GWT)}
+GWT (Baars; Dehaene \& Changeux) proposes that consciousness arises when information is ``broadcast'' to a global workspace, making it available to multiple cognitive processes simultaneously.
+
+\subsection{Recurrent Processing Theory (RPT)}
+RPT (Lamme) identifies consciousness with \textbf{recurrent} (feedback) processing in sensory cortex. Predicts phenomenal overflow and locates the NCC in sensory cortex, not prefrontal regions.
+
+\subsection{Higher-Order Theories (HOT)}
+HOT (Rosenthal; Brown, Lau, LeDoux) proposes that a mental state is conscious when it is the object of a \textbf{higher-order representation}. Locates NCC in prefrontal cortex.
+
+\subsection{Attention Schema Theory (AST)}
+AST (Graziano) proposes consciousness is the brain's internal model of its own attention---an ``attention schema'' analogous to the body schema.
+
+\subsection{Predictive Processing (PP)}
+PP (Clark; Friston; Seth) models the brain as a hierarchical prediction machine. Consciousness is a ``controlled hallucination.'' The Free Energy Principle provides a unifying framework.
+
+\subsection{Orchestrated Objective Reduction (Orch OR)}
+Orch OR (Penrose \& Hameroff) proposes quantum computations in microtubules terminated by gravitational state reduction. Consciousness is non-computable.
+
+\subsection{Panpsychism \& Cosmopsychism}
+Panpsychism (Goff, Strawson, Chalmers) holds that consciousness is fundamental to all matter. A metaphysical framework addressing the Hard Problem. Faces the combination problem.
+
+\subsection{CEMI / EM Field Theories}
+CEMI (McFadden) proposes consciousness is the brain's electromagnetic field, which integrates information through superposition and influences neurons through ephaptic coupling.
+
+
+% ══════════════════════════════════════════════════════════════
+\chapter{How to Read This Series}
+% ══════════════════════════════════════════════════════════════
+
+\section{Prerequisites}
+
+The guides assume basic neuroscience (neurons, synapses, brain anatomy), undergraduate-level mathematics (calculus, linear algebra, probability, information theory), and basic philosophy of mind (mind-body problem, physicalism, dualism, functionalism---this introduction provides the grounding). Advanced mathematics is introduced within each guide as needed.
+
+\section{Reading Order}
+
+The volumes are self-contained and can be read in any order. Recommended paths:
+
+\begin{guidebox}[Recommended Reading Paths]
+\textbf{Neuroscience first:} Introduction $\to$ GWT $\to$ RPT $\to$ IIT $\to$ CEMI $\to$ HOT $\to$ AST $\to$ PP $\to$ Orch OR $\to$ Panpsychism $\to$ Synthesis
+
+\textbf{Philosophy first:} Introduction $\to$ Panpsychism $\to$ IIT $\to$ HOT $\to$ AST $\to$ GWT $\to$ RPT $\to$ PP $\to$ CEMI $\to$ Orch OR $\to$ Synthesis
+
+\textbf{Adversarial collaborations:} Introduction $\to$ IIT $\to$ GWT $\to$ RPT $\to$ HOT $\to$ Synthesis (core four) $\to$ remaining volumes
+
+\textbf{Overview then deep-dive:} Introduction $\to$ Synthesis $\to$ whichever individual volumes interest you most
+\end{guidebox}
+
+\section{Conventions}
+
+Each theory guide follows a consistent structure: Introduction $\to$ Prerequisites $\to$ Core Theory $\to$ Neural Implementation $\to$ Experimental Evidence $\to$ Predictions $\to$ Comparisons $\to$ Criticisms $\to$ References.
+
+Visual conventions: \textcolor{defcolor}{blue boxes} for definitions, \textcolor{principlecolor}{green boxes} for key principles, \textcolor{mechcolor}{teal boxes} for mechanisms, \textcolor{notepurple}{purple boxes} for important notes, \textcolor{predcolor}{orange boxes} for predictions/evidence, and \textcolor{objcolor}{red boxes} for objections. Mathematical content appears in tan-shaded boxes.
+
+
+% ══════════════════════════════════════════════════════════════
+\chapter{Further Reading}
+% ══════════════════════════════════════════════════════════════
+
+\section*{Essential Introductory Texts}
+\begin{enumerate}[label={[\arabic*]}, leftmargin=2.5em]
+  \item Seth, A.\ K.\ (2021). \textit{Being You: A New Science of Consciousness}. Faber \& Faber.
+  \item Koch, C.\ (2019). \textit{The Feeling of Life Itself}. MIT Press.
+  \item Goff, P.\ (2019). \textit{Galileo's Error}. Pantheon.
+  \item Dehaene, S.\ (2014). \textit{Consciousness and the Brain}. Viking.
+  \item Chalmers, D.\ J.\ (1996). \textit{The Conscious Mind}. Oxford University Press.
+\end{enumerate}
+
+\section*{Key Review Articles}
+\begin{enumerate}[label={[\arabic*]}, leftmargin=2.5em, start=6]
+  \item Seth, A.\ K.\ \& Bayne, T.\ (2022). Theories of consciousness. \textit{Nature Reviews Neuroscience}, 23, 439--452.
+  \item Melloni, L., et al.\ (2021). Making the hard problem of consciousness easier. \textit{Science}, 372(6545), 911--912.
+  \item Koch, C., et al.\ (2016). Neural correlates of consciousness: progress and problems. \textit{Nature Reviews Neuroscience}, 17, 307--321.
+  \item Mashour, G.\ A., et al.\ (2020). Conscious processing and the global neuronal workspace hypothesis. \textit{Neuron}, 105(5), 776--798.
+  \item Block, N.\ (2005). Two neural correlates of consciousness. \textit{Trends in Cognitive Sciences}, 9(2), 46--52.
+\end{enumerate}
+
+\section*{Foundational Philosophical Works}
+\begin{enumerate}[label={[\arabic*]}, leftmargin=2.5em, start=11]
+  \item Nagel, T.\ (1974). What is it like to be a bat? \textit{Philosophical Review}, 83(4), 435--450.
+  \item Jackson, F.\ (1982). Epiphenomenal qualia. \textit{Philosophical Quarterly}, 32(127), 127--136.
+  \item Chalmers, D.\ J.\ (1995). Facing up to the problem of consciousness. \textit{Journal of Consciousness Studies}, 2(3), 200--219.
+  \item Levine, J.\ (1983). Materialism and qualia: the explanatory gap. \textit{Pacific Philosophical Quarterly}, 64(4), 354--361.
+  \item Block, N.\ (1995). On a confusion about a function of consciousness. \textit{Behavioral and Brain Sciences}, 18(2), 227--247.
+  \item Dennett, D.\ C.\ (1991). \textit{Consciousness Explained}. Little, Brown.
+  \item Searle, J.\ (1980). Minds, brains, and programs. \textit{Behavioral and Brain Sciences}, 3(3), 417--424.
+\end{enumerate}
+
+\section*{Empirical Foundations}
+\begin{enumerate}[label={[\arabic*]}, leftmargin=2.5em, start=18]
+  \item Crick, F.\ \& Koch, C.\ (1990). Towards a neurobiological theory of consciousness. \textit{Seminars in the Neurosciences}, 2, 263--275.
+  \item Dehaene, S.\ \& Changeux, J.-P.\ (2011). Experimental and theoretical approaches to conscious processing. \textit{Neuron}, 70(2), 200--227.
+  \item Lamme, V.\ A.\ F.\ (2006). Towards a true neural stance on consciousness. \textit{Trends in Cognitive Sciences}, 10(11), 494--501.
+  \item Casali, A.\ G., et al.\ (2013). A theoretically based index of consciousness. \textit{Science Translational Medicine}, 5(198), 198ra105.
+  \item Tononi, G.\ \& Koch, C.\ (2015). Consciousness: here, there and everywhere? \textit{Phil.\ Trans.\ Roy.\ Soc.\ B}, 370(1668), 20140167.
+\end{enumerate}
+
+\vfill
+\begin{center}
+  {\color{gray}\rule{0.4\textwidth}{0.5pt}}\\[8pt]
+  {\small\color{gray}\itshape End of Introduction --- Continue to the individual theory guides}
+\end{center}
+
+\end{document}

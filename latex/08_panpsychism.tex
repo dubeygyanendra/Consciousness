@@ -1,0 +1,835 @@
+\documentclass[11pt,a4paper]{report}
+
+% ─── Packages ───
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[margin=1in, top=1.2in, bottom=1.2in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{titletoc}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{cleveref}
+\usepackage{tikz}
+\usepackage{setspace}
+\usepackage{parskip}
+\usepackage{caption}
+\usepackage{etoolbox}
+\usepackage{array}
+\usepackage{multirow}
+
+\usetikzlibrary{arrows.meta, positioning, shapes.geometric, calc, decorations.pathmorphing, fit, backgrounds, chains, patterns}
+\tcbuselibrary{skins,breakable,theorems}
+
+% ─── Colors ───
+\definecolor{darkearth}{HTML}{3e2723}
+\definecolor{accentamber}{HTML}{ffab00}
+\definecolor{deepbrown}{HTML}{4e342e}
+\definecolor{softgold}{HTML}{c8a951}
+\definecolor{darkbg}{HTML}{1a0e0a}
+\definecolor{sectionblue}{HTML}{37474f}
+\definecolor{subsecblue}{HTML}{546e7a}
+\definecolor{defcolor}{HTML}{1565c0}
+\definecolor{defbg}{HTML}{e3f2fd}
+\definecolor{principlecolor}{HTML}{6a1b9a}
+\definecolor{principlebg}{HTML}{f3e5f5}
+\definecolor{mechcolor}{HTML}{00695c}
+\definecolor{mechbg}{HTML}{e0f2f1}
+\definecolor{mathbg}{HTML}{f8f5ee}
+\definecolor{notepurple}{HTML}{ad1457}
+\definecolor{notebg}{HTML}{fce4ec}
+\definecolor{lightgray}{HTML}{f0f0f0}
+\definecolor{darkgray}{HTML}{333333}
+\definecolor{predcolor}{HTML}{e65100}
+\definecolor{predbg}{HTML}{fff3e0}
+\definecolor{compcolor}{HTML}{1b5e20}
+\definecolor{compbg}{HTML}{e8f5e9}
+\definecolor{varcolor}{HTML}{0d47a1}
+\definecolor{varbg}{HTML}{e3f2fd}
+\definecolor{objcolor}{HTML}{b71c1c}
+\definecolor{objbg}{HTML}{ffebee}
+\definecolor{argcolor}{HTML}{4a148c}
+\definecolor{argbg}{HTML}{ede7f6}
+\definecolor{histcolor}{HTML}{33691e}
+\definecolor{histbg}{HTML}{f1f8e9}
+
+% ─── Hyperref Setup ───
+\hypersetup{
+    colorlinks=true,
+    linkcolor=darkearth,
+    citecolor=darkearth,
+    urlcolor=deepbrown,
+    bookmarks=true,
+    bookmarksnumbered=true,
+    pdfauthor={Comprehensive Guide},
+    pdftitle={Panpsychism and Cosmopsychism},
+    pdfsubject={Consciousness, Philosophy of Mind, Metaphysics, Combination Problem},
+}
+
+% ─── Header/Footer ───
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\color{gray} Panpsychism \& Cosmopsychism}
+\fancyhead[R]{\small\color{gray} Comprehensive Reading Material}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancypagestyle{plain}{\fancyhf{}\fancyfoot[C]{\thepage}\renewcommand{\headrulewidth}{0pt}}
+
+% ─── Chapter/Section Formatting ───
+\titleformat{\chapter}[display]
+  {\normalfont\huge\bfseries\color{darkearth}}
+  {\chaptertitlename\ \thechapter}{20pt}{\Huge}
+\titlespacing*{\chapter}{0pt}{-20pt}{30pt}
+\titleformat{\section}{\normalfont\Large\bfseries\color{sectionblue}}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalfont\large\bfseries\color{subsecblue}}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}{\normalfont\normalsize\bfseries\color{darkgray}}{\thesubsubsection}{1em}{}
+
+% ─── Tcolorbox environments ───
+\newtcolorbox{principlebox}[1][]{enhanced, breakable, colback=principlebg, colframe=principlecolor, coltitle=white, fonttitle=\bfseries, title=#1, left=8pt, right=8pt, top=6pt, bottom=6pt, boxrule=0.5pt, arc=3pt, borderline west={3pt}{0pt}{principlecolor}, before skip=10pt, after skip=10pt}
+\newtcolorbox{mechbox}[1][]{enhanced, breakable, colback=mechbg, colframe=mechcolor, coltitle=white, fonttitle=\bfseries, title=#1, left=8pt, right=8pt, top=6pt, bottom=6pt, boxrule=0.5pt, arc=3pt, borderline west={3pt}{0pt}{mechcolor}, before skip=10pt, after skip=10pt}
+\newtcolorbox{definitionbox}[1][]{enhanced, breakable, colback=defbg, colframe=defcolor, coltitle=white, fonttitle=\bfseries, title=#1, left=8pt, right=8pt, top=6pt, bottom=6pt, boxrule=0.5pt, arc=3pt, borderline west={3pt}{0pt}{defcolor}, before skip=10pt, after skip=10pt}
+\newtcolorbox{mathbox}{enhanced, colback=mathbg, colframe=mathbg!70!black, left=8pt, right=8pt, top=6pt, bottom=6pt, boxrule=0.3pt, arc=2pt, before skip=8pt, after skip=8pt}
+\newtcolorbox{notebox}[1][Note]{enhanced, breakable, colback=notebg, colframe=notepurple, coltitle=white, fonttitle=\bfseries, title=#1, left=8pt, right=8pt, top=6pt, bottom=6pt, boxrule=0.5pt, arc=3pt, borderline west={3pt}{0pt}{notepurple}, before skip=10pt, after skip=10pt}
+\newtcolorbox{predbox}[1][]{enhanced, breakable, colback=predbg, colframe=predcolor, coltitle=white, fonttitle=\bfseries, title=#1, left=8pt, right=8pt, top=6pt, bottom=6pt, boxrule=0.5pt, arc=3pt, borderline west={3pt}{0pt}{predcolor}, before skip=10pt, after skip=10pt}
+\newtcolorbox{compbox}[1][]{enhanced, breakable, colback=compbg, colframe=compcolor, coltitle=white, fonttitle=\bfseries, title=#1, left=8pt, right=8pt, top=6pt, bottom=6pt, boxrule=0.5pt, arc=3pt, borderline west={3pt}{0pt}{compcolor}, before skip=10pt, after skip=10pt}
+\newtcolorbox{varbox}[1][]{enhanced, breakable, colback=varbg, colframe=varcolor, coltitle=white, fonttitle=\bfseries, title=#1, left=8pt, right=8pt, top=6pt, bottom=6pt, boxrule=0.5pt, arc=3pt, borderline west={3pt}{0pt}{varcolor}, before skip=10pt, after skip=10pt}
+\newtcolorbox{objbox}[1][]{enhanced, breakable, colback=objbg, colframe=objcolor, coltitle=white, fonttitle=\bfseries, title=#1, left=8pt, right=8pt, top=6pt, bottom=6pt, boxrule=0.5pt, arc=3pt, borderline west={3pt}{0pt}{objcolor}, before skip=10pt, after skip=10pt}
+\newtcolorbox{argbox}[1][]{enhanced, breakable, colback=argbg, colframe=argcolor, coltitle=white, fonttitle=\bfseries, title=#1, left=8pt, right=8pt, top=6pt, bottom=6pt, boxrule=0.5pt, arc=3pt, borderline west={3pt}{0pt}{argcolor}, before skip=10pt, after skip=10pt}
+\newtcolorbox{histbox}[1][]{enhanced, breakable, colback=histbg, colframe=histcolor, coltitle=white, fonttitle=\bfseries, title=#1, left=8pt, right=8pt, top=6pt, bottom=6pt, boxrule=0.5pt, arc=3pt, borderline west={3pt}{0pt}{histcolor}, before skip=10pt, after skip=10pt}
+\newtcolorbox{examplebox}[1][Example]{enhanced, breakable, colback=lightgray, colframe=darkearth!60, coltitle=white, fonttitle=\bfseries, title=#1, left=8pt, right=8pt, top=6pt, bottom=6pt, boxrule=0.5pt, arc=3pt, before skip=10pt, after skip=10pt}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+
+% ══════════════════════════════════════════════════════════════
+\begin{document}
+
+% ─── COVER PAGE ───
+\begin{titlepage}
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[darkbg] (current page.south west) rectangle (current page.north east);
+  \fill[accentamber] ([yshift=-11cm]current page.north west) rectangle ([yshift=-10.85cm]current page.north east);
+  % Decorative: nested circles representing levels of consciousness
+  \foreach \r/\op in {3.5/0.03, 2.8/0.04, 2.1/0.05, 1.4/0.06, 0.7/0.08} {
+    \draw[accentamber, opacity=\op, line width=0.5pt] (6, -14.5) circle (\r);
+  }
+  \fill[accentamber, opacity=0.12] (6, -14.5) circle (0.15);
+  % Small dots representing micro-subjects
+  \foreach \a in {0,30,...,330} {
+    \fill[accentamber, opacity=0.04] ({6+2.8*cos(\a)}, {-14.5+2.8*sin(\a)}) circle (0.06);
+  }
+  \node[text=accentamber, opacity=0.04, scale=14] at ([yshift=-3.5cm, xshift=5cm]current page.center) {$\psi$};
+\end{tikzpicture}
+
+\vspace*{4cm}
+\begin{center}
+  {\fontsize{36}{44}\selectfont\bfseries\color{white} Panpsychism \&\\[8pt] Cosmopsychism}\\[24pt]
+  {\Large\color{gray!70} A Comprehensive Philosophical \& Formal Guide}\\[20pt]
+  {\color{accentamber}\rule{6cm}{1pt}}\\[20pt]
+  {\large\color{gray!60} Consciousness as a Fundamental Feature of Reality:\\[4pt] From Micro-Experience to Cosmic Mind}\\[40pt]
+  {\color{softgold}\large Chalmers $\bullet$ Goff $\bullet$ Strawson $\bullet$ Nagel $\bullet$ Whitehead $\bullet$ James}\\[8pt]
+  {\color{gray!50}\normalsize History $\bullet$ Varieties $\bullet$ Arguments $\bullet$ The Combination Problem $\bullet$ Formal Frameworks}\\[60pt]
+  {\color{gray!40}\small Comprehensive Study Material \quad$\vert$\quad February 2026}
+\end{center}
+\end{titlepage}
+
+% ─── TABLE OF CONTENTS ───
+\tableofcontents
+\thispagestyle{plain}
+\newpage
+
+
+% ══════════════════════════════════════════════════════════════
+\chapter{Introduction: What is Panpsychism?}
+% ══════════════════════════════════════════════════════════════
+
+\section{The Core Idea}
+
+\begin{definitionbox}[Panpsychism]
+\textbf{Panpsychism} is the view that \textbf{mentality}---some form of experience, consciousness, or proto-consciousness---is a \textbf{fundamental and ubiquitous feature of the physical world}. It is not limited to brains or biological organisms but is present, in some form, in all physical entities, down to the most basic constituents of matter.
+
+This does \emph{not} mean that electrons ``think'' or that rocks are ``aware'' in anything like the human sense. Rather, it means that the basic physical constituents of reality have \emph{some} form of experiential or proto-experiential quality---a ``what it is like'' that is vastly simpler than human consciousness but is nonetheless real.
+\end{definitionbox}
+
+Panpsychism occupies a distinctive position in the landscape of consciousness theories. It is not a neuroscientific theory (like GWT or RPT) that explains which brain processes generate consciousness. Instead, it is a \textbf{metaphysical framework} that answers a different question: what is the fundamental \emph{nature} of consciousness, and how does it relate to the fundamental nature of physical reality?
+
+\section{Why Take Panpsychism Seriously?}
+
+Panpsychism has experienced a remarkable revival in contemporary philosophy of mind. Once dismissed as a fringe position, it is now defended by leading philosophers and increasingly discussed by neuroscientists. Several factors drive this:
+
+\begin{enumerate}[leftmargin=2em]
+  \item \textbf{The Hard Problem of consciousness} (Chalmers, 1995): No physical/functional theory has explained \emph{why} physical processes give rise to subjective experience. Panpsychism offers a radical solution: consciousness doesn't ``arise from'' matter---it is an intrinsic feature of matter.
+  \item \textbf{The failure of emergence:} If consciousness is not present at the fundamental level, it must \emph{emerge} from non-conscious constituents. But ``strong emergence'' of consciousness from non-conscious matter seems mysterious---how can you get experience from no experience? Panpsychism avoids this by denying that consciousness ever emerges from the non-conscious.
+  \item \textbf{The structural-dispositional gap:} Physics describes the \emph{structure} and \emph{dynamics} of matter (mass, charge, spin) but says nothing about its \emph{intrinsic nature}---what matter is ``in itself.'' Panpsychism proposes that the intrinsic nature of matter is experiential.
+  \item \textbf{IIT's implications:} Integrated Information Theory ($\Phi > 0$ for simple systems) has panpsychist implications, bringing panpsychism into contact with empirical neuroscience.
+\end{enumerate}
+
+\section{Clarifying the Scope}
+
+Panpsychism comes in many varieties. Some clarifications:
+
+\begin{itemize}[leftmargin=1.5em]
+  \item Panpsychism is \emph{not} animism (the belief that everything has a soul or spirit).
+  \item Panpsychism is \emph{not} pantheism (the belief that God is everything) or hylozoism (the belief that all matter is alive).
+  \item Panpsychism does not claim that every object (e.g., a table) is conscious. It claims that the \emph{fundamental constituents} of the table (quarks, electrons) have proto-experiential properties. Whether the table as a whole has any unified experience depends on the specific version of panpsychism.
+  \item The term ``consciousness'' in panpsychism is often replaced by ``mentality,'' ``experience,'' ``phenomenality,'' or ``proto-consciousness'' to avoid implying that electrons have human-like awareness.
+\end{itemize}
+
+
+% ══════════════════════════════════════════════════════════════
+\chapter{Historical Development}
+% ══════════════════════════════════════════════════════════════
+
+\section{Ancient and Pre-Modern Panpsychism}
+
+Panpsychist ideas are among the oldest in philosophy:
+
+\begin{histbox}[Ancient Panpsychism]
+\begin{itemize}[leftmargin=1.5em]
+  \item \textbf{Thales of Miletus} ($\sim$624--546 BCE): ``All things are full of gods.'' Often cited as the earliest Western panpsychist.
+  \item \textbf{Anaxagoras} ($\sim$500--428 BCE): Proposed \emph{nous} (mind) as a universal principle pervading all things.
+  \item \textbf{Plato's Timaeus}: The World Soul (\emph{anima mundi}) animates the entire cosmos. An early form of cosmopsychism.
+  \item \textbf{Stoics}: \emph{Pneuma} (breath/spirit) pervades all matter, giving it cohesion and, in living beings, consciousness.
+  \item \textbf{Indian philosophy}: Advaita Vedanta holds that \emph{Brahman} (universal consciousness) is the fundamental reality; all individual consciousness is Brahman. Jainism attributes a soul (\emph{jiva}) to all living beings, including plants and microorganisms.
+  \item \textbf{Buddhist philosophy}: While Buddhism rejects a permanent self, some traditions (e.g., Yogacara/Cittamatra) hold that consciousness or mind-nature is fundamental.
+\end{itemize}
+\end{histbox}
+
+\section{Early Modern Period}
+
+\begin{histbox}[Early Modern Panpsychism]
+\begin{itemize}[leftmargin=1.5em]
+  \item \textbf{Baruch Spinoza} (1632--1677): Dual-aspect monism---mind and matter are two attributes of one substance (God/Nature). Every physical thing has a mental aspect. A founding text of modern panpsychism.
+  \item \textbf{G.\ W.\ Leibniz} (1646--1716): Proposed \textbf{monads}---simple, indivisible substances that are the building blocks of reality and each possess \emph{perception} (representation of the whole in the part) and \emph{appetition} (striving). The entire universe consists of these proto-conscious monads.
+  \item \textbf{Arthur Schopenhauer} (1788--1860): The inner nature of all things is \emph{Will}---a blind, striving force that manifests as consciousness in beings with nervous systems but is present in attenuated form in all matter.
+\end{itemize}
+\end{histbox}
+
+\section{Late 19th and Early 20th Century}
+
+\begin{histbox}[The Golden Age of Panpsychism]
+\begin{itemize}[leftmargin=1.5em]
+  \item \textbf{Gustav Fechner} (1801--1887): Physicist and psychologist who argued for a ``day view'' in which consciousness pervades nature, versus the ``night view'' of materialism.
+  \item \textbf{William James} (1842--1910): In \textit{The Principles of Psychology} (1890), James explored panpsychism seriously, though he raised the ``combination problem'' as a challenge. His later \textbf{radical empiricism} proposed ``pure experience'' as the fundamental stuff of reality.
+  \item \textbf{Alfred North Whitehead} (1861--1947): Developed \textbf{process philosophy}, the most systematic panpsychist metaphysics. Reality consists of ``actual occasions'' (momentary events of experience) rather than enduring substances. Each actual occasion has a subjective, experiential aspect. This is the most influential philosophical framework for contemporary panpsychism.
+  \item \textbf{Bertrand Russell} (1872--1970): Proposed what is now called \textbf{Russellian monism}---physics describes the structural/relational properties of matter, but the \emph{intrinsic} nature of matter (what ``fills in'' the structure) may be experiential. This is a foundational argument for contemporary panpsychism.
+  \item \textbf{A.\ N.\ Whitehead \& Charles Hartshorne}: Developed ``panexperientialism''---the view that all actual entities have experience, though not all have consciousness (a distinction between experience and consciousness that avoids attributing full awareness to electrons).
+\end{itemize}
+\end{histbox}
+
+\section{The Contemporary Revival (1990s--Present)}
+
+After decades of neglect during the dominance of behaviorism and functionalism, panpsychism has returned to mainstream philosophy:
+
+\begin{itemize}[leftmargin=1.5em]
+  \item \textbf{Thomas Nagel} (1979): ``What Is It Like to Be a Bat?'' raised the irreducibility of subjective experience. His later book \textit{Mind and Cosmos} (2012) argued that panpsychism deserves serious consideration.
+  \item \textbf{David Chalmers} (1996): \textit{The Conscious Mind} formulated the Hard Problem and argued that panpsychism is the most promising response, though he treated it cautiously.
+  \item \textbf{Galen Strawson} (2006): ``Realistic Monism: Why Physicalism Entails Panpsychism''---a provocative argument that any consistent physicalist must be a panpsychist.
+  \item \textbf{Philip Goff} (2017, 2019): \textit{Consciousness and Fundamental Reality} and \textit{Galileo's Error} provide the most developed contemporary defense of panpsychism.
+  \item \textbf{Giulio Tononi} (IIT): The mathematical framework of IIT implies panpsychism ($\Phi > 0$ for simple systems), bringing panpsychism into contact with neuroscience.
+\end{itemize}
+
+
+% ══════════════════════════════════════════════════════════════
+\chapter{The Philosophical Foundations}
+% ══════════════════════════════════════════════════════════════
+
+\section{The Hard Problem and the Explanatory Gap}
+
+\begin{argbox}[The Hard Problem (Chalmers, 1995)]
+Even a complete account of the physical processes in the brain---every neuron, every synapse, every computational operation---would not explain \emph{why} these processes are accompanied by subjective experience. We could, in principle, know everything about the physical brain and still not know what it is \emph{like} to see red. This is the \textbf{Hard Problem} of consciousness.
+
+The ``explanatory gap'' (Levine, 1983) between physical descriptions and phenomenal experience suggests that something fundamental is missing from the physicalist picture.
+\end{argbox}
+
+Panpsychism offers a distinctive response: the gap exists because we are trying to derive consciousness from a physical description that \emph{leaves out} the experiential properties of matter. If those properties are included from the start (as fundamental features of reality), the gap closes---or at least narrows significantly.
+
+\section{The Structural-Dispositional Gap}
+
+\begin{argbox}[Russell's Insight: Physics Describes Structure, Not Intrinsic Nature]
+Physics describes the \textbf{relational} and \textbf{structural} properties of matter---mass, charge, spin are defined by their causal roles and mathematical relationships. But physics says nothing about the \textbf{intrinsic nature} of the entities that bear these properties.
+
+Consider: an electron has mass $m_e = 9.109 \times 10^{-31}$ kg and charge $e = 1.602 \times 10^{-19}$ C. But \emph{what is} the electron, intrinsically? What is the ``stuff'' that has these properties? Physics is silent on this.
+
+\textbf{Russell's proposal:} The intrinsic nature of physical entities---the ``categorical base'' that grounds their dispositional properties---may be \textbf{experiential}. Consciousness is not generated by physical processes; it \emph{is} the intrinsic nature of the physical.
+\end{argbox}
+
+This argument can be formalized:
+
+\begin{mathbox}
+\vspace{-6pt}
+\textbf{The Structure--Intrinsic Nature Distinction:}
+
+Let $\mathcal{S}$ be the set of all structural/relational properties described by physics (mass, charge, spatial relations, causal powers). Let $\mathcal{I}$ be the set of intrinsic properties that ``realize'' or ``ground'' $\mathcal{S}$.
+
+Physics provides a complete description of $\mathcal{S}$ but is silent on $\mathcal{I}$. The question is: what is $\mathcal{I}$?
+
+Three options:
+\begin{enumerate}[leftmargin=1.5em]
+  \item $\mathcal{I}$ is physical but non-experiential $\to$ But this just pushes the question back: what \emph{are} these non-experiential intrinsic properties?
+  \item $\mathcal{I}$ is experiential (proto-conscious) $\to$ \textbf{Panpsychism}
+  \item $\mathcal{I}$ doesn't exist; structure is all there is $\to$ \textbf{Structural realism} (but then what grounds the structure?)
+\end{enumerate}
+\vspace{-4pt}
+\end{mathbox}
+
+\section{Strawson's Argument: Physicalism Entails Panpsychism}
+
+\begin{argbox}[Strawson's Argument (2006)]
+\begin{enumerate}[leftmargin=1.5em]
+  \item \textbf{Experiential reality is real.} Consciousness exists; denying it is incoherent.
+  \item \textbf{Physicalism is true.} Everything that exists is physical (broadly construed).
+  \item \textbf{From (1) and (2):} Experiential reality is physical. Consciousness is a physical phenomenon.
+  \item \textbf{Strong emergence is impossible.} You cannot get something experiential from something entirely non-experiential. ``Brute emergence'' of experience from non-experience is as mysterious as getting something from nothing.
+  \item \textbf{Therefore:} The fundamental constituents of physical reality must already have experiential properties. \textbf{Physicalism entails panpsychism.}
+\end{enumerate}
+\end{argbox}
+
+The critical and controversial premise is (4): the rejection of strong emergence. Strawson argues that while we accept many forms of emergence (e.g., liquidity emerging from molecular interactions), these are all cases of \emph{structural} emergence---the emergent property is fully explicable in terms of the lower-level properties. But consciousness is different: there is no structural explanation of why physical processes give rise to experience. Therefore, emergence of consciousness must be ``brute'' (unexplained), which Strawson considers unacceptable.
+
+\section{Chalmers' Taxonomy of Positions}
+
+\begin{definitionbox}[The Landscape of Mind-Body Positions]
+Chalmers (2015) maps the space of positions on consciousness:
+
+\textbf{Type-A physicalism:} Consciousness is fully explicable in functional/physical terms. The Hard Problem is illusory. (Dennett, Frankish)
+
+\textbf{Type-B physicalism:} Consciousness is identical to physical states, but this identity is explanatorily primitive---we can't explain \emph{why} these physical states are conscious. (Smart, Block)
+
+\textbf{Type-C physicalism:} The explanatory gap will close with future science. Consciousness is physical but we don't yet understand how. (McGinn)
+
+\textbf{Property dualism:} Consciousness is a non-physical property of physical systems. (Chalmers' starting position)
+
+\textbf{Panpsychism:} Consciousness is a fundamental feature of all physical entities. (Goff, Strawson)
+
+\textbf{Panprotopsychism:} Fundamental entities have \emph{proto-conscious} properties that are not themselves experiential but that give rise to consciousness in the right combinations. (Chalmers)
+
+\textbf{Idealism:} Consciousness is the only fundamental reality; the physical is derived from it. (Kastrup, Hoffman)
+
+\textbf{Cosmopsychism:} The universe as a whole is the fundamental conscious entity; individual consciousness is derivative. (Shani, Goff)
+\end{definitionbox}
+
+
+% ══════════════════════════════════════════════════════════════
+\chapter{Varieties of Panpsychism}
+% ══════════════════════════════════════════════════════════════
+
+\section{Constitutive vs.\ Non-Constitutive Panpsychism}
+
+\begin{varbox}[Constitutive Panpsychism]
+The consciousness of macro-level entities (like humans) is \textbf{constituted by} the micro-level experiential properties of their fundamental constituents. Human consciousness is ``built up from'' the proto-experiential properties of the particles that compose the brain, just as liquidity is constituted by the properties of water molecules.
+
+This is the dominant form of panpsychism and faces the \textbf{combination problem}: how do micro-experiences combine to form macro-experiences?
+\end{varbox}
+
+\begin{varbox}[Non-Constitutive Panpsychism]
+Micro-level experiential properties exist but do \textbf{not} constitute macro-level consciousness. Instead, macro-consciousness is a \emph{strongly emergent} property---genuinely novel and not reducible to micro-experiences.
+
+This avoids the combination problem but reintroduces a version of the Hard Problem (how does macro-consciousness emerge from micro-experiences?).
+\end{varbox}
+
+\section{Russellian Monism}
+
+The most philosophically developed framework for panpsychism:
+
+\begin{principlebox}[Russellian Monism]
+\textbf{Russellian monism} holds that:
+\begin{enumerate}[leftmargin=1.5em]
+  \item Physical science describes only the \textbf{structural/dispositional} properties of matter.
+  \item There exist \textbf{intrinsic/categorical} properties that ground these structural properties.
+  \item These intrinsic properties are (wholly or partly) \textbf{experiential} or \textbf{proto-experiential}.
+  \item The experiential intrinsic properties of fundamental entities constitute the consciousness of complex entities like brains.
+\end{enumerate}
+Russellian monism is ``monist'' because it postulates only one type of substance (the physical), but with two aspects: the structural (described by physics) and the intrinsic (experiential). It is the modern heir to Spinoza's dual-aspect monism.
+\end{principlebox}
+
+\subsection{Formal Structure}
+
+\begin{mathbox}
+\vspace{-6pt}
+Let $e$ be a fundamental entity (e.g., an electron). Its complete description includes:
+\begin{align*}
+  \mathcal{D}_{\text{phys}}(e) &= \{m_e,\; q_e,\; s_e,\; \text{spatiotemporal location},\; \text{causal relations}\} \\
+  \mathcal{D}_{\text{intr}}(e) &= \{q_{\text{exp}}(e)\} \quad \text{(intrinsic experiential quality)}
+\end{align*}
+Physics provides $\mathcal{D}_{\text{phys}}(e)$; Russellian monism adds $\mathcal{D}_{\text{intr}}(e)$.
+
+For a composite system $S = \{e_1, e_2, \ldots, e_N\}$:
+\[
+  \text{Consciousness}(S) = \mathcal{C}\!\left(\{q_{\text{exp}}(e_i)\}_{i=1}^{N},\; \text{structure}(S)\right)
+\]
+where $\mathcal{C}$ is the ``combination function'' that maps micro-experiences and structural relations to macro-experience. Specifying $\mathcal{C}$ is the combination problem.
+\vspace{-4pt}
+\end{mathbox}
+
+\subsection{Russellian Panpsychism vs.\ Russellian Panprotopsychism}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{>{\raggedright}p{3.5cm} >{\raggedright}p{5.5cm} >{\raggedright\arraybackslash}p{4.5cm}}
+  \toprule
+  & \textbf{Russellian Panpsychism} & \textbf{Russellian Panprotopsychism} \\
+  \midrule
+  Intrinsic nature & Experiential (micro-experience) & Proto-experiential (not itself experiential) \\
+  Micro-subjects? & Yes (electrons have experience) & No (electrons have proto-experiential properties) \\
+  Combination problem & Must explain how micro-experiences combine & Must explain how proto-experiences generate experience \\
+  Hard Problem & Dissolved (experience is fundamental) & Relocated (why does proto-experience generate experience?) \\
+  Key proponent & Goff, Strawson & Chalmers \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\section{Cosmopsychism}
+
+\begin{varbox}[Cosmopsychism]
+\textbf{Cosmopsychism} inverts the direction of constitution: instead of building up macro-consciousness from micro-experiences (bottom-up), it starts with the \textbf{universe as a whole} as the fundamental conscious entity, and derives individual consciousness top-down.
+
+The cosmos has a single, unified field of experience. Individual conscious subjects (humans, animals) are ``local manifestations'' or ``fragmentations'' of the cosmic consciousness, shaped by the physical structure of their brains and bodies.
+\end{varbox}
+
+Key proponents include Itay Shani, Philip Goff (in his later work), and historically, the British Idealists (Bradley, Bosanquet) and Hindu Advaita Vedanta.
+
+\subsection{Motivations for Cosmopsychism}
+
+\begin{enumerate}[leftmargin=2em]
+  \item \textbf{Avoids the combination problem:} If the fundamental conscious entity is the cosmos (one entity), there is no need to explain how micro-experiences combine. Instead, the challenge is to explain how cosmic consciousness ``decomposes'' into individual subjects---the \textbf{decomposition problem} (which some argue is more tractable).
+  \item \textbf{Quantum holism:} Quantum mechanics suggests the universe is fundamentally entangled. A cosmopsychist can argue that this entanglement reflects an underlying unity of experience.
+  \item \textbf{Simplicity:} One cosmic consciousness is metaphysically simpler than $\sim 10^{80}$ micro-subjects.
+\end{enumerate}
+
+\subsection{The Decomposition Problem}
+
+Cosmopsychism faces its own version of the combination problem, inverted:
+
+\begin{objbox}[The Decomposition Problem]
+If the cosmos is one unified conscious subject, how and why does cosmic consciousness ``break apart'' into the many distinct, bounded conscious subjects we observe? Why do I have \emph{my} experience and you have \emph{yours}, rather than both of us being aspects of one cosmic experience?
+\end{objbox}
+
+Proposed solutions include: physical structure (brain boundaries create ``partitions'' in cosmic consciousness), quantum decoherence (which creates effective separations), and the topology of spacetime.
+
+\section{Other Varieties}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{>{\raggedright}p{3.5cm} >{\raggedright}p{4cm} >{\raggedright\arraybackslash}p{5.5cm}}
+  \toprule
+  \textbf{Variety} & \textbf{Key Claim} & \textbf{Proponents} \\
+  \midrule
+  Micropsychism & Fundamental particles have experience & Strawson, Goff (early) \\
+  Panexperientialism & All entities have ``experience'' (broader than consciousness) & Whitehead, Griffin \\
+  Panprotopsychism & Fundamental entities have proto-experiential properties & Chalmers \\
+  Neutral monism & Mind and matter are aspects of a neutral ``stuff'' & James, Russell \\
+  Dual-aspect monism & One substance, two aspects (mental and physical) & Spinoza, Pauli--Jung \\
+  Cosmopsychism & The universe is the fundamental conscious entity & Shani, Goff (later) \\
+  Priority cosmopsychism & Cosmic consciousness is metaphysically prior; individual consciousness derived & Goff (2020) \\
+  Analytic idealism & Consciousness is fundamental; matter is how consciousness appears & Kastrup \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+
+% ══════════════════════════════════════════════════════════════
+\chapter{The Combination Problem}
+% ══════════════════════════════════════════════════════════════
+
+The \textbf{combination problem} is widely regarded as the most serious challenge to constitutive panpsychism. It was first raised by William James (1890) and has been developed extensively by Chalmers (2016) and others.
+
+\section{Statement of the Problem}
+
+\begin{objbox}[The Combination Problem (Chalmers, 2016)]
+If the fundamental constituents of reality have micro-experiences, how do these micro-experiences \textbf{combine} to form the complex, unified, macro-experiences that we enjoy? Specifically:
+\begin{enumerate}[leftmargin=1.5em]
+  \item \textbf{The subject combination problem:} How do many micro-subjects (each with its own experience) combine to form a single macro-subject?
+  \item \textbf{The quality combination problem:} How do micro-qualities (the specific experiential character of micro-experiences) combine to form macro-qualities (the redness of red, the painfulness of pain)?
+  \item \textbf{The structure combination problem:} How does the structure of micro-experience (spatial, temporal, logical) map onto the structure of macro-experience?
+\end{enumerate}
+\end{objbox}
+
+\section{The Subject Combination Problem}
+
+This is arguably the hardest sub-problem:
+
+\begin{argbox}[James' ``Mind-Dust'' Objection (1890)]
+William James argued that combination of subjects is incoherent: ``Take a hundred of [feelings], shuffle them and pack them as close together as you can (whatever that might mean); still each remains the same old [feeling] it always was\ldots. Where would the hundred-and-first feeling be?''
+
+The objection: feelings are inherently \emph{private} to their subject. Combining subjects seems to require that the experience of subject A somehow ``enters into'' the experience of subject B, which seems impossible by the very nature of subjectivity.
+\end{argbox}
+
+\subsection{Formal Statement}
+
+\begin{mathbox}
+\vspace{-6pt}
+Let $s_1, s_2, \ldots, s_N$ be micro-subjects, each with experience $e_1, e_2, \ldots, e_N$. The question is whether there exists a function:
+\[
+  \mathcal{F}(s_1, s_2, \ldots, s_N;\; R) = S
+\]
+where $R$ is a set of relations between the micro-subjects and $S$ is a macro-subject with experience $E$ such that $E$ is constituted by $\{e_i\}$.
+
+The problem: subjectivity seems to be a \textbf{non-decomposable}, \textbf{non-compositional} property. There is no obvious mathematical operation that combines ``points of view'' into a new point of view.
+\vspace{-4pt}
+\end{mathbox}
+
+\section{Proposed Solutions}
+
+\subsection{Fusion and Proto-Subjects}
+
+Some panpsychists propose that micro-subjects can \textbf{fuse}: when suitably related, many micro-subjects merge into a single macro-subject, losing their individual identities. This is analogous to how many water molecules ``fuse'' into a single body of water---the individual molecules don't separately ``exist as water.''
+
+\textbf{Objection:} What physical relation triggers fusion? And is fusion of subjects even coherent?
+
+\subsection{Integrated Information Theory as a Solution}
+
+IIT offers a potential formal solution: subjects exist wherever $\Phi > 0$, and the \textbf{maximum of $\Phi$} determines the dominant subject:
+
+\begin{mathbox}
+\vspace{-6pt}
+\textbf{IIT's approach to combination:}
+\begin{enumerate}[leftmargin=1.5em]
+  \item Each system has a value of $\Phi$ (integrated information).
+  \item The system is a conscious subject iff it is a \textbf{maximum of $\Phi$} (it has higher $\Phi$ than any of its parts or any system that contains it).
+  \item When subsystems integrate into a larger system, the $\Phi$ of the whole can exceed the $\Phi$ of the parts. The whole becomes the new subject; the parts lose their independent subjectivity.
+\end{enumerate}
+This is the \textbf{exclusion postulate} of IIT: consciousness is associated with the maximum of $\Phi$, not with all systems that have $\Phi > 0$.
+
+Formally: macro-subject $S$ exists iff $\Phi(S) > \Phi(S')$ for all proper subsets $S' \subset S$ and all supersets $S'' \supset S$.
+\vspace{-4pt}
+\end{mathbox}
+
+This provides a principled answer to the combination problem: micro-subjects combine into a macro-subject when the integrated information of the whole exceeds that of the parts. The macro-subject ``screens off'' the micro-subjects.
+
+\subsection{Whiteheadian Process Panpsychism}
+
+Whitehead's solution: fundamental entities are not enduring ``things'' (with permanent micro-experiences) but momentary ``actual occasions'' (events of experience):
+\begin{itemize}[leftmargin=1.5em]
+  \item Each actual occasion ``prehends'' (grasps, integrates) the experiences of prior occasions.
+  \item A complex entity (like a brain) is a structured \textbf{society} of actual occasions, where each occasion inherits and integrates the experiences of its predecessors.
+  \item Macro-consciousness is the experience of the dominant ``presiding occasion'' of the society, which inherits the integrated experience of all subordinate occasions.
+\end{itemize}
+
+\subsection{Cosmopsychist Dissolution}
+
+Cosmopsychism ``dissolves'' the combination problem by denying its premise: there are no micro-subjects that need combining. There is only one subject (the cosmos), and individual consciousness is a \emph{restriction} or \emph{partition} of cosmic consciousness, shaped by physical structure. The problem becomes the decomposition problem instead.
+
+\section{The Quality Combination Problem}
+
+Even if subjects can combine, how do micro-qualities map to macro-qualities?
+
+\begin{examplebox}[The Quality Puzzle]
+Suppose electrons have a micro-quality $q_e$ (some extremely simple experiential character). How do $10^{28}$ instances of $q_e$ (in the neurons of your brain) combine to produce the experience of \emph{redness} or the taste of \emph{coffee}? What is the mapping $\{q_e\}^{10^{28}} \to \text{``red''}$?
+\end{examplebox}
+
+Possible answers:
+\begin{enumerate}[leftmargin=2em]
+  \item \textbf{Structural mapping:} Macro-qualities are determined not by the intrinsic character of micro-qualities alone but by their \emph{structural relations}. The experience of red is determined by the pattern of micro-experiences, not by any individual micro-quality.
+  \item \textbf{Quality space emergence:} Macro-qualities emerge as higher-dimensional structures in a ``quality space'' built from the dimensions of micro-quality. Like how color space emerges from three cone types.
+  \item \textbf{Panprotopsychism:} Avoid the quality problem by denying that micro-entities have genuine qualities. Only macro-entities have actual experiential qualities, which emerge from proto-experiential properties.
+\end{enumerate}
+
+
+% ══════════════════════════════════════════════════════════════
+\chapter{Formal Frameworks and Mathematical Approaches}
+% ══════════════════════════════════════════════════════════════
+
+While panpsychism is primarily a philosophical position, several formal frameworks have been developed.
+
+\section{IIT as Formal Panpsychism}
+
+IIT (Tononi, 2004, 2016) provides the most developed mathematical framework with panpsychist implications:
+
+\begin{mathbox}
+\vspace{-6pt}
+\textbf{IIT's panpsychist structure:}
+\begin{itemize}[leftmargin=1.5em]
+  \item \textbf{Ubiquity:} Any system with $\Phi > 0$ has some form of experience. Since even simple systems (e.g., a photodiode, a logic gate) can have $\Phi > 0$, experience is extremely widespread.
+  \item \textbf{Gradation:} The amount of consciousness is proportional to $\Phi$. An electron has vastly less consciousness than a brain.
+  \item \textbf{Quality:} The specific character of experience is determined by the system's ``constellation'' in qualia space---the integrated cause-effect structure.
+  \item \textbf{Exclusion:} Only the ``maximum'' of $\Phi$ (the system that is not a part of a more integrated system) is conscious. This provides a principled solution to the combination problem.
+\end{itemize}
+Recall: $\Phi = \min_{\text{partition}} D\!\left(C_{\text{whole}},\; C_{\text{partitioned}}\right)$, where $C$ is the cause-effect structure and $D$ is the earth mover's distance.
+\vspace{-4pt}
+\end{mathbox}
+
+\section{Category Theory and Panpsychism}
+
+Some theorists have explored \textbf{category theory} as a framework for formalizing the combination problem:
+
+\begin{mathbox}
+\vspace{-6pt}
+Model conscious entities as objects in a category $\mathbf{Con}$:
+\begin{itemize}[leftmargin=1.5em]
+  \item Objects: conscious subjects $s_1, s_2, \ldots$
+  \item Morphisms: ``experiential relations'' between subjects (e.g., inclusion, integration)
+  \item The combination operation is a \textbf{colimit} in $\mathbf{Con}$: given a diagram of micro-subjects and their relations, the macro-subject is the colimit---the ``universal'' object that integrates all the micro-subjects.
+\end{itemize}
+Formally: if $D : \mathbf{J} \to \mathbf{Con}$ is a diagram of micro-subjects, the macro-subject is:
+\[
+  S = \text{colim}\, D
+\]
+This provides a precise (if abstract) notion of ``combination.'' The challenge is to define the category $\mathbf{Con}$ and the morphisms in a way that is both mathematically coherent and empirically meaningful.
+\vspace{-4pt}
+\end{mathbox}
+
+\section{Information-Theoretic Panpsychism}
+
+Another formal approach uses information theory:
+
+\begin{mathbox}
+\vspace{-6pt}
+\textbf{Hypothesis:} Consciousness is associated with \textbf{intrinsic information}---information that a system has ``about itself'' (as opposed to information that an external observer attributes to it).
+
+For a system $X$ with possible states $\{x_1, \ldots, x_n\}$ and transition probabilities $p(x_{t+1} \mid x_t)$:
+\[
+  I_{\text{intrinsic}}(X) = \text{mutual information between } X_t \text{ and } X_{t+1} \text{ from } X\text{'s own perspective}
+\]
+This connects to IIT's framework (where $\Phi$ measures intrinsic cause-effect information) and provides a natural gradation: systems with more intrinsic information have ``more'' consciousness.
+
+Panpsychism follows because even simple systems (e.g., a single bit that can be 0 or 1) have non-zero intrinsic information.
+\vspace{-4pt}
+\end{mathbox}
+
+\section{Dual-Aspect Information}
+
+Chalmers (1996) and Tononi have both proposed a \textbf{double-aspect theory of information}:
+
+\begin{principlebox}[Double-Aspect Information]
+Information has two aspects:
+\begin{enumerate}[leftmargin=1.5em]
+  \item A \textbf{physical aspect}: the physical state of the system (e.g., the firing rate of a neuron, the position of an electron).
+  \item A \textbf{phenomenal aspect}: the experiential character associated with that information state.
+\end{enumerate}
+Wherever there is information (which is everywhere, since every physical system has states), there is both a physical and an experiential aspect. Consciousness is the phenomenal aspect of information.
+
+This is a form of panpsychism because information is ubiquitous: every physical distinction carries both a physical and an experiential aspect.
+\end{principlebox}
+
+
+% ══════════════════════════════════════════════════════════════
+\chapter{Panpsychism and Scientific Theories of Consciousness}
+% ══════════════════════════════════════════════════════════════
+
+\section{IIT and Panpsychism}
+
+IIT is the scientific theory most directly connected to panpsychism:
+
+\begin{compbox}[IIT's Panpsychist Implications]
+\begin{itemize}[leftmargin=1.5em]
+  \item \textbf{$\Phi > 0$ for simple systems:} A photodiode, a logic gate, or even a simple on/off switch has $\Phi > 0$ and therefore, according to IIT, some minimal form of experience.
+  \item \textbf{Gradation:} The amount of consciousness scales with $\Phi$. The vast difference between a photodiode ($\Phi \approx 0^+$) and a human brain ($\Phi \gg 0$) explains why human consciousness is so much richer.
+  \item \textbf{Exclusion:} IIT's exclusion postulate addresses the combination problem: only maxima of $\Phi$ are conscious, preventing a proliferation of overlapping subjects.
+  \item \textbf{Structure:} The quality of experience is determined by the cause-effect structure, providing a principled account of the quality combination problem.
+\end{itemize}
+Tononi has explicitly acknowledged and embraced the panpsychist implications of IIT.
+\end{compbox}
+
+\section{Orch OR and Proto-Panpsychism}
+
+Penrose and Hameroff's Orch OR has its own panpsychist flavor:
+
+\begin{compbox}[Orch OR's Proto-Panpsychism]
+\begin{itemize}[leftmargin=1.5em]
+  \item OR events involve ``proto-conscious'' information embedded in spacetime geometry at the Planck scale.
+  \item This proto-consciousness is not limited to brains---it is a feature of spacetime itself.
+  \item However, full consciousness requires ``orchestrated'' OR in biological microtubules. Proto-consciousness alone is not conscious experience.
+  \item This makes Orch OR a form of \textbf{panprotopsychism}: the fundamental level has proto-experiential properties that generate consciousness only in the right biological context.
+\end{itemize}
+\end{compbox}
+
+\section{Predictive Processing and Panpsychism}
+
+PP is generally \emph{not} panpsychist (it explains consciousness in terms of computational processes that require sophisticated generative models), but some connections exist:
+
+\begin{itemize}[leftmargin=1.5em]
+  \item \textbf{Markov blankets and selfhood:} Friston's FEP implies that any system with a Markov blanket can be described ``as if'' performing inference. If consciousness is identified with inference, this is suggestive of panpsychism---though Friston has been cautious about this implication.
+  \item \textbf{Active inference at all scales:} If active inference applies to cells, molecules, and even physical systems, does this imply ubiquitous (proto-)mentality?
+\end{itemize}
+
+\section{GWT, HOT, RPT, AST --- All Non-Panpsychist}
+
+The remaining major theories are explicitly non-panpsychist:
+\begin{itemize}[leftmargin=1.5em]
+  \item \textbf{GWT:} Consciousness requires a global workspace architecture. Simple systems lack this.
+  \item \textbf{HOT:} Consciousness requires higher-order representations. Electrons don't have them.
+  \item \textbf{RPT:} Consciousness requires recurrent processing in sensory cortex. Requires complex neural architecture.
+  \item \textbf{AST:} Consciousness requires an attention schema. Requires a model of attention.
+\end{itemize}
+
+All of these identify consciousness with specific \emph{complex} neural/computational structures, implying that simple systems are not conscious. This puts them in tension with panpsychism.
+
+
+% ══════════════════════════════════════════════════════════════
+\chapter{Objections and Responses}
+% ══════════════════════════════════════════════════════════════
+
+\section{The Combination Problem}
+
+Already discussed in Chapter~5. This is the most serious technical objection. Responses include IIT's exclusion postulate, Whiteheadian prehension, and cosmopsychist dissolution.
+
+\section{The ``Incredulous Stare''}
+
+\begin{objbox}[Objection: It's Just Crazy]
+The most common reaction: ``You think \emph{electrons} are conscious? That's absurd!'' The sheer implausibility of attributing experience to fundamental particles.
+\end{objbox}
+
+\textbf{Response:} This is an argument from incredulity, not a philosophical argument. All positions on consciousness are ``crazy'' in some way: materialism claims experience emerges from non-experience (which is mysterious); dualism claims there are non-physical properties (which is ontologically extravagant); idealism claims matter doesn't exist (which contradicts common sense). Panpsychism is no more ``crazy'' than its competitors---it merely distributes the ``craziness'' differently.
+
+Goff: ``Every theory of consciousness is crazy. The question is which craziness we should prefer.''
+
+\section{The Simplicity Objection}
+
+\begin{objbox}[Objection: What Could Electron Experience Be Like?]
+We have no conception of what the ``experience'' of an electron could be. The notion seems empty or meaningless.
+\end{objbox}
+
+\textbf{Response:} The panpsychist does not claim we can imagine or describe micro-experience. Just as we cannot imagine what it is like to be a bat (Nagel, 1974), we cannot imagine electron experience. But this limitation of our imagination does not entail that such experience doesn't exist. The concept is not ``what we can imagine'' but ``what is metaphysically possible.''
+
+\section{The Causal Closure Objection}
+
+\begin{objbox}[Objection: Physics is Causally Closed]
+If physics is causally closed (every physical event has a sufficient physical cause), there is no room for experiential properties to do any causal work. Micro-experiences are epiphenomenal---causally inert.
+\end{objbox}
+
+\textbf{Response:} Russellian monism avoids this by identifying experiential properties with the \emph{intrinsic nature} of physical properties. The experiential is not something ``over and above'' the physical that needs its own causal role; it \emph{is} the physical (seen from the inside). The causal closure of physics is preserved because the experiential properties just \emph{are} the categorical bases of the dispositional properties described by physics.
+
+\section{The Threat of Idealism}
+
+\begin{objbox}[Objection: Panpsychism Collapses into Idealism]
+If the fundamental nature of reality is experiential, then reality is ultimately mental. This is idealism, not panpsychism. And idealism faces serious problems (e.g., explaining the apparent independence of the physical world from any individual mind).
+\end{objbox}
+
+\textbf{Response:} Panpsychism (especially Russellian monism) is distinct from idealism. Russellian monism is a form of \emph{physicalism}: it accepts the physical structure described by physics. It merely adds that the intrinsic nature of this physical structure is experiential. Idealism, by contrast, denies the independent existence of the physical. Some recent work (Kastrup, 2019) does argue for a collapse into idealism, but this is a separate (and more radical) position.
+
+\section{The Empirical Testability Objection}
+
+\begin{objbox}[Objection: Panpsychism is Unfalsifiable]
+What empirical evidence could possibly confirm or refute panpsychism? If micro-experience is, by definition, inaccessible to third-person investigation, the theory is untestable.
+\end{objbox}
+
+\textbf{Response:} Panpsychism per se is a metaphysical framework, not an empirical hypothesis---just as ``physicalism'' is a framework, not a specific prediction. But specific panpsychist theories (like IIT) do make empirical predictions. IIT predicts that consciousness correlates with $\Phi$, which is testable. If IIT's predictions are confirmed, this provides indirect support for the panpsychist metaphysics it implies.
+
+
+% ══════════════════════════════════════════════════════════════
+\chapter{Contemporary Debates and Open Questions}
+% ══════════════════════════════════════════════════════════════
+
+\section{Priority Monism and Priority Cosmopsychism}
+
+\textbf{Jonathan Schaffer} (2010) argues for \textbf{priority monism}: the cosmos as a whole is the fundamental entity, and parts are derivative. Philip Goff (2020) combines this with panpsychism to yield \textbf{priority cosmopsychism}: cosmic consciousness is fundamental; individual consciousness is grounded in it.
+
+This position has gained significant traction because:
+\begin{itemize}[leftmargin=1.5em]
+  \item It avoids the combination problem entirely.
+  \item It is supported by quantum entanglement (the universe is fundamentally non-separable).
+  \item It provides a simpler metaphysics (one subject, not $10^{80}$).
+  \item It has historical precedent in both Western (Plotinus, Hegel, Bradley) and Eastern (Advaita Vedanta) philosophy.
+\end{itemize}
+
+\section{Panpsychism and Artificial Intelligence}
+
+If panpsychism is true, what follows for AI?
+
+\begin{predbox}[Implications for AI Consciousness]
+\begin{enumerate}[leftmargin=1.5em]
+  \item \textbf{If IIT-style panpsychism:} AI systems have $\Phi > 0$ and are therefore conscious to some degree. But the amount of consciousness depends on the \emph{intrinsic causal structure}, not the external behavior. A feedforward neural network might have low $\Phi$ (and thus minimal consciousness) even if it behaves intelligently.
+  \item \textbf{If Russellian panpsychism:} AI systems made of silicon have the experiential properties of silicon (whatever those are), which may differ from the experiential properties of carbon-based neurons. Machine consciousness exists but may be qualitatively different from human consciousness.
+  \item \textbf{If cosmopsychism:} AI systems, being part of the cosmos, partake in cosmic consciousness. But the question is whether they have \emph{individuated} consciousness (a bounded subject), which depends on their physical structure.
+\end{enumerate}
+\end{predbox}
+
+\section{Panpsychism and the Ethics of Consciousness}
+
+If consciousness is ubiquitous, this has profound ethical implications:
+
+\begin{itemize}[leftmargin=1.5em]
+  \item \textbf{Moral status of simple organisms:} If bacteria have micro-experience, do they have moral status? Most panpsychists argue that moral status depends on the \emph{degree} and \emph{kind} of consciousness, not just its presence.
+  \item \textbf{Environmental ethics:} If ecosystems, rivers, or mountains partake in cosmic consciousness, does this ground environmental moral obligations?
+  \item \textbf{AI ethics:} If artificial systems are conscious (even minimally), we may have obligations toward them.
+\end{itemize}
+
+\section{Key Open Questions}
+
+\begin{enumerate}[leftmargin=2em]
+  \item \textbf{Can the combination problem be solved?} This remains the central challenge. IIT's exclusion postulate, Whiteheadian prehension, and cosmopsychist dissolution are all partial answers.
+  \item \textbf{Is panprotopsychism more viable than panpsychism?} If the fundamental level has proto-experiential (rather than experiential) properties, does this avoid the combination problem? Or does it reintroduce a version of the Hard Problem?
+  \item \textbf{Can panpsychism make empirical predictions?} IIT provides one route. Are there others?
+  \item \textbf{How does panpsychism interact with quantum mechanics?} Quantum entanglement, superposition, and non-locality may have implications for how micro-experiences relate.
+  \item \textbf{Is cosmopsychism preferable to micropsychism?} The recent trend favors cosmopsychism, but the decomposition problem is not yet solved.
+  \item \textbf{What is the relationship between panpsychism and idealism?} Is the boundary between them stable, or does panpsychism inevitably collapse into idealism?
+  \item \textbf{Can panpsychism account for the specific structure of human consciousness?} It needs to explain not just \emph{that} we are conscious but \emph{why} our experience has the specific character it does (colors, sounds, emotions, selfhood).
+\end{enumerate}
+
+
+% ══════════════════════════════════════════════════════════════
+\chapter{Further Reading and References}
+% ══════════════════════════════════════════════════════════════
+
+\section*{Core Contemporary Works}
+\begin{enumerate}[label={[\arabic*]}, leftmargin=2.5em]
+  \item Goff, P.\ (2017). \textit{Consciousness and Fundamental Reality}. Oxford University Press.
+  \item Goff, P.\ (2019). \textit{Galileo's Error: Foundations for a New Science of Consciousness}. Pantheon.
+  \item Chalmers, D.\ J.\ (2015). Panpsychism and panprotopsychism. In \textit{Consciousness in the Physical World}, T.\ Alter \& Y.\ Nagasawa (Eds.), 246--276.
+  \item Chalmers, D.\ J.\ (2016). The combination problem for panpsychism. In \textit{Panpsychism: Contemporary Perspectives}, G.\ Br\"untrup \& L.\ Jaskolla (Eds.), 179--214.
+  \item Strawson, G.\ (2006). Realistic monism: why physicalism entails panpsychism. \textit{Journal of Consciousness Studies}, 13(10--11), 3--31.
+\end{enumerate}
+
+\section*{Historical Foundations}
+\begin{enumerate}[label={[\arabic*]}, leftmargin=2.5em, start=6]
+  \item Whitehead, A.\ N.\ (1929). \textit{Process and Reality}. Macmillan.
+  \item James, W.\ (1890). \textit{The Principles of Psychology}, Chapter 6: ``The Mind-Stuff Theory.'' Henry Holt.
+  \item Russell, B.\ (1927). \textit{The Analysis of Matter}. Kegan Paul.
+  \item Leibniz, G.\ W.\ (1714). \textit{The Monadology}. (Various editions.)
+  \item Spinoza, B.\ (1677). \textit{Ethics}. (Various editions.)
+\end{enumerate}
+
+\section*{The Combination Problem}
+\begin{enumerate}[label={[\arabic*]}, leftmargin=2.5em, start=11]
+  \item Coleman, S.\ (2014). The real combination problem: panpsychism, micro-subjects, and emergence. \textit{Erkenntnis}, 79(1), 19--44.
+  \item Morch, H.\ H.\ (2014). \textit{Panpsychism and Causation: A New Argument and a Solution to the Combination Problem}. PhD Dissertation, University of Oslo.
+  \item Roelofs, L.\ (2019). \textit{Combining Minds: How Thinking About What You Ate for Breakfast Reveals Secrets of Consciousness}. Oxford University Press.
+  \item Seager, W.\ (1995). Consciousness, information and panpsychism. \textit{Journal of Consciousness Studies}, 2(3), 272--288.
+\end{enumerate}
+
+\section*{Cosmopsychism and Idealism}
+\begin{enumerate}[label={[\arabic*]}, leftmargin=2.5em, start=15]
+  \item Shani, I.\ (2015). Cosmopsychism: A holistic approach to the metaphysics of experience. \textit{Philosophical Papers}, 44(3), 389--437.
+  \item Goff, P.\ (2020). Cosmopsychism, micropsychism, and the grounding relation. In \textit{The Routledge Handbook of Panpsychism}, W.\ Seager (Ed.), 144--156.
+  \item Kastrup, B.\ (2019). \textit{The Idea of the World: A Multi-Disciplinary Argument for the Mental Nature of Reality}. iff Books.
+  \item Schaffer, J.\ (2010). Monism: the priority of the whole. \textit{Philosophical Review}, 119(1), 31--76.
+\end{enumerate}
+
+\section*{Russellian Monism}
+\begin{enumerate}[label={[\arabic*]}, leftmargin=2.5em, start=19]
+  \item Alter, T.\ \& Nagasawa, Y.\ (Eds.) (2015). \textit{Consciousness in the Physical World: Perspectives on Russellian Monism}. Oxford University Press.
+  \item Pereboom, D.\ (2011). \textit{Consciousness and the Prospects of Physicalism}, Chapters 5--6. Oxford University Press.
+\end{enumerate}
+
+\section*{Connections to Neuroscience}
+\begin{enumerate}[label={[\arabic*]}, leftmargin=2.5em, start=21]
+  \item Tononi, G.\ (2008). Consciousness as integrated information: a provisional manifesto. \textit{Biological Bulletin}, 215(3), 216--242.
+  \item Tononi, G., Boly, M., Massimini, M., \& Koch, C.\ (2016). Integrated information theory: an updated account. \textit{Archives Italiennes de Biologie}, 154, 1--18.
+  \item Koch, C.\ (2019). \textit{The Feeling of Life Itself: Why Consciousness Is Widespread but Can't Be Computed}. MIT Press.
+  \item Seth, A.\ K.\ \& Bayne, T.\ (2022). Theories of consciousness. \textit{Nature Reviews Neuroscience}, 23, 439--452.
+\end{enumerate}
+
+\section*{The Hard Problem and General Philosophy of Mind}
+\begin{enumerate}[label={[\arabic*]}, leftmargin=2.5em, start=25]
+  \item Chalmers, D.\ J.\ (1996). \textit{The Conscious Mind: In Search of a Fundamental Theory}. Oxford University Press.
+  \item Nagel, T.\ (1974). What is it like to be a bat? \textit{Philosophical Review}, 83(4), 435--450.
+  \item Nagel, T.\ (2012). \textit{Mind and Cosmos: Why the Materialist Neo-Darwinian Conception of Nature Is Almost Certainly False}. Oxford University Press.
+  \item Levine, J.\ (1983). Materialism and qualia: the explanatory gap. \textit{Pacific Philosophical Quarterly}, 64(4), 354--361.
+  \item Br\"untrup, G.\ \& Jaskolla, L.\ (Eds.) (2016). \textit{Panpsychism: Contemporary Perspectives}. Oxford University Press.
+  \item Seager, W.\ (Ed.) (2020). \textit{The Routledge Handbook of Panpsychism}. Routledge.
+\end{enumerate}
+
+\vfill
+\begin{center}
+  {\color{gray}\rule{0.4\textwidth}{0.5pt}}\\[8pt]
+  {\small\color{gray}\itshape End of Document}
+\end{center}
+
+\end{document}

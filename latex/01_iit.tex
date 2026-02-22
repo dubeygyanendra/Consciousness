@@ -1,0 +1,1069 @@
+\documentclass[11pt,a4paper]{report}
+
+% ─── Packages ───
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+% Font configuration
+\usepackage[margin=1in, top=1.2in, bottom=1.2in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{titletoc}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{cleveref}
+\usepackage{tikz}
+\usepackage{setspace}
+\usepackage{parskip}
+\usepackage{caption}
+\usepackage{etoolbox}
+
+\tcbuselibrary{skins,breakable,theorems}
+
+% ─── Colors ───
+\definecolor{darkblue}{HTML}{0f3460}
+\definecolor{accentred}{HTML}{e94560}
+\definecolor{deepteal}{HTML}{16213e}
+\definecolor{softgold}{HTML}{c8a951}
+\definecolor{darkbg}{HTML}{1a1a2e}
+\definecolor{sectionblue}{HTML}{1a3a5c}
+\definecolor{subsecblue}{HTML}{2c5f8a}
+\definecolor{defgreen}{HTML}{1b5e20}
+\definecolor{defbg}{HTML}{e8f4e8}
+\definecolor{axiomorange}{HTML}{e65100}
+\definecolor{axiombg}{HTML}{fff3e0}
+\definecolor{postblue}{HTML}{0d47a1}
+\definecolor{postbg}{HTML}{e3f2fd}
+\definecolor{mathbg}{HTML}{f8f5ee}
+\definecolor{notepurple}{HTML}{7b1fa2}
+\definecolor{notebg}{HTML}{f3e5f5}
+\definecolor{lightgray}{HTML}{f0f0f0}
+\definecolor{darkgray}{HTML}{333333}
+
+% ─── Hyperref Setup ───
+\hypersetup{
+    colorlinks=true,
+    linkcolor=darkblue,
+    citecolor=darkblue,
+    urlcolor=subsecblue,
+    bookmarks=true,
+    bookmarksnumbered=true,
+    pdfauthor={Comprehensive Guide},
+    pdftitle={Integrated Information Theory (IIT)},
+    pdfsubject={Consciousness, Information Theory, Neuroscience},
+}
+
+% ─── Header/Footer ───
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\color{gray} Integrated Information Theory (IIT)}
+\fancyhead[R]{\small\color{gray} Comprehensive Reading Material}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{%
+  \fancyhf{}
+  \fancyfoot[C]{\thepage}
+  \renewcommand{\headrulewidth}{0pt}
+}
+
+% ─── Chapter/Section Formatting ───
+\titleformat{\chapter}[display]
+  {\normalfont\huge\bfseries\color{darkblue}}
+  {\chaptertitlename\ \thechapter}{20pt}{\Huge}
+\titlespacing*{\chapter}{0pt}{-20pt}{30pt}
+
+\titleformat{\section}
+  {\normalfont\Large\bfseries\color{sectionblue}}
+  {\thesection}{1em}{}
+\titleformat{\subsection}
+  {\normalfont\large\bfseries\color{subsecblue}}
+  {\thesubsection}{1em}{}
+\titleformat{\subsubsection}
+  {\normalfont\normalsize\bfseries\color{darkgray}}
+  {\thesubsubsection}{1em}{}
+
+% ─── Theorem-like environments via tcolorbox ───
+\newtcolorbox{axiombox}[1][]{
+  enhanced, breakable,
+  colback=axiombg, colframe=axiomorange,
+  coltitle=white, fonttitle=\bfseries,
+  title=#1,
+  left=8pt, right=8pt, top=6pt, bottom=6pt,
+  boxrule=0.5pt, arc=3pt,
+  borderline west={3pt}{0pt}{axiomorange},
+  before skip=10pt, after skip=10pt,
+}
+
+\newtcolorbox{postulatebox}[1][]{
+  enhanced, breakable,
+  colback=postbg, colframe=postblue,
+  coltitle=white, fonttitle=\bfseries,
+  title=#1,
+  left=8pt, right=8pt, top=6pt, bottom=6pt,
+  boxrule=0.5pt, arc=3pt,
+  borderline west={3pt}{0pt}{postblue},
+  before skip=10pt, after skip=10pt,
+}
+
+\newtcolorbox{definitionbox}[1][]{
+  enhanced, breakable,
+  colback=defbg, colframe=defgreen,
+  coltitle=white, fonttitle=\bfseries,
+  title=#1,
+  left=8pt, right=8pt, top=6pt, bottom=6pt,
+  boxrule=0.5pt, arc=3pt,
+  borderline west={3pt}{0pt}{defgreen},
+  before skip=10pt, after skip=10pt,
+}
+
+\newtcolorbox{mathbox}{
+  enhanced,
+  colback=mathbg, colframe=mathbg!70!black,
+  left=8pt, right=8pt, top=6pt, bottom=6pt,
+  boxrule=0.3pt, arc=2pt,
+  before skip=8pt, after skip=8pt,
+}
+
+\newtcolorbox{notebox}[1][Note]{
+  enhanced, breakable,
+  colback=notebg, colframe=notepurple,
+  coltitle=white, fonttitle=\bfseries,
+  title=#1,
+  left=8pt, right=8pt, top=6pt, bottom=6pt,
+  boxrule=0.5pt, arc=3pt,
+  borderline west={3pt}{0pt}{notepurple},
+  before skip=10pt, after skip=10pt,
+}
+
+\newtcolorbox{examplebox}[1][Example]{
+  enhanced, breakable,
+  colback=lightgray, colframe=darkblue!60,
+  coltitle=white, fonttitle=\bfseries,
+  title=#1,
+  left=8pt, right=8pt, top=6pt, bottom=6pt,
+  boxrule=0.5pt, arc=3pt,
+  before skip=10pt, after skip=10pt,
+}
+
+% ─── Custom commands ───
+\newcommand{\Phi}{\varPhi}
+\newcommand{\phimax}{\varphi^{\mathrm{max}}}
+\newcommand{\phicause}{\varphi_{\mathrm{cause}}}
+\newcommand{\phieffect}{\varphi_{\mathrm{effect}}}
+\newcommand{\EMD}{\mathrm{EMD}}
+\newcommand{\DKL}{D_{\mathrm{KL}}}
+\newcommand{\MIP}{\mathrm{MIP}}
+\newcommand{\MICE}{\mathrm{MICE}}
+\newcommand{\MICS}{\mathrm{MICS}}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+
+% ══════════════════════════════════════════════════════════════
+\begin{document}
+
+% ─── COVER PAGE ───
+\begin{titlepage}
+\begin{tikzpicture}[remember picture, overlay]
+  % Background
+  \fill[darkbg] (current page.south west) rectangle (current page.north east);
+  % Accent line
+  \fill[accentred] ([yshift=-11cm]current page.north west) rectangle ([yshift=-10.85cm]current page.north east);
+  % Decorative circles
+  \foreach \i/\op in {1/0.15, 2/0.12, 3/0.10, 4/0.08, 5/0.06} {
+    \fill[darkblue, opacity=\op] ({1.5+\i*1.3}, -15) circle ({0.4+\i*0.15});
+  }
+  % Phi symbol
+  \node[text=softgold, opacity=0.08, scale=20] at ([yshift=-4cm, xshift=5cm]current page.center) {$\Phi$};
+\end{tikzpicture}
+
+\vspace*{4cm}
+\begin{center}
+  {\fontsize{36}{44}\selectfont\bfseries\color{white} Integrated Information\\[8pt] Theory (IIT)}\\[24pt]
+  {\Large\color{gray!70} A Comprehensive Mathematical \& Conceptual Guide}\\[20pt]
+  {\color{accentred}\rule{6cm}{1pt}}\\[20pt]
+  {\large\color{gray!60} From Axioms of Consciousness to the\\[4pt] Computation of Integrated Information ($\Phi$)}\\[40pt]
+  {\color{softgold}\large Version 3.0\,/\,4.0 Unified Treatment}\\[8pt]
+  {\color{gray!50}\normalsize Covering Prerequisites $\bullet$ Axioms $\bullet$ Postulates $\bullet$ Full Mathematical Formalism}\\[60pt]
+  {\color{gray!40}\small Comprehensive Study Material \quad$\vert$\quad February 2026}
+\end{center}
+\end{titlepage}
+
+% ─── TABLE OF CONTENTS ───
+\tableofcontents
+\thispagestyle{plain}
+\newpage
+
+% ══════════════════════════════════════════════════════════════
+\chapter{Introduction to Integrated Information Theory}
+% ══════════════════════════════════════════════════════════════
+
+\section{What is IIT?}
+
+Integrated Information Theory (IIT) is a theoretical framework developed primarily by neuroscientist and psychiatrist \textbf{Giulio Tononi}, beginning in 2004 and refined over subsequent decades (IIT 1.0 through 4.0). IIT attempts to provide a fundamental, mathematically rigorous account of \textbf{consciousness}---what it is, what determines its quality, and what determines its quantity.
+
+Unlike most theories that try to explain consciousness by identifying neural correlates or functional roles, IIT takes a radically different approach: it starts from the \textbf{phenomenology of experience itself} (i.e., what consciousness is like from the inside) and derives the physical properties that a system must have in order to be conscious. In this sense, IIT is an \emph{axiom-based} theory: it begins with self-evident truths about experience and translates them into mathematical postulates about physical systems.
+
+\begin{definitionbox}[Central Quantity: $\Phi$]
+The central quantity in IIT is $\Phi$ (capital phi, pronounced ``fee''), which measures the amount of \textbf{integrated information} generated by a system above and beyond its parts. According to IIT:
+\begin{itemize}[leftmargin=1.5em]
+  \item A system is conscious if and only if $\Phi > 0$
+  \item The \emph{degree} of consciousness corresponds to the value of $\Phi$
+  \item The \emph{quality} of consciousness corresponds to the \emph{cause--effect structure} (constellation)
+\end{itemize}
+\end{definitionbox}
+
+\section{Historical Context and Motivation}
+
+The study of consciousness has been one of the deepest challenges in science and philosophy. In the 20th century, two dominant approaches emerged:
+\begin{enumerate}[leftmargin=2em]
+  \item The search for \textbf{Neural Correlates of Consciousness (NCC)}, which identifies brain regions and processes associated with conscious experience.
+  \item \textbf{Functionalist} theories, which equate consciousness with certain functional roles.
+\end{enumerate}
+
+Tononi recognized limitations in both approaches. NCC research is correlational---it identifies \emph{where} consciousness occurs but not \emph{why}. Functionalism struggles with thought experiments like the Chinese Room and philosophical zombies. IIT was conceived to overcome these limitations by building a theory from \textbf{first principles}.
+
+Key intellectual predecessors include Claude Shannon's information theory (providing mathematical tools for quantifying information), the work of Tononi and Gerald Edelman on the Dynamic Core hypothesis, and philosophical traditions from phenomenology (Husserl, Merleau-Ponty) that emphasized the primacy of subjective experience.
+
+\section{The Hard Problem of Consciousness}
+
+Philosopher David Chalmers famously distinguished between the ``easy problems'' of consciousness (explaining behavior, neural correlates, reportability) and the ``\textbf{Hard Problem}'': why and how does physical processing give rise to subjective experience at all? Why is there ``something it is like'' to see red or feel pain?
+
+IIT directly addresses the Hard Problem by proposing an \textbf{identity} between consciousness and integrated information. It does not claim that integrated information ``causes'' or ``gives rise to'' consciousness; rather, IIT asserts that consciousness \emph{is} integrated information, specified by a particular physical substrate. This is a form of \textbf{dual-aspect monism}: the intrinsic causal powers of a physical system, measured by $\Phi$, \emph{are} experience.
+
+\section{Overview of the IIT Framework}
+
+The IIT framework proceeds in a structured manner:
+
+\begin{enumerate}[leftmargin=2em, itemsep=4pt]
+  \item \textbf{Axioms:} IIT identifies five essential, self-evident properties of every conscious experience: intrinsic existence, composition, information, integration, and exclusion.
+  \item \textbf{Postulates:} Each axiom is translated into a corresponding postulate---a requirement that any physical system must satisfy in order to support consciousness.
+  \item \textbf{Mathematical formalism:} The postulates are expressed mathematically, defining quantities like cause--effect repertoires, integrated information ($\varphi$), and the system-level integrated information ($\Phi$).
+  \item \textbf{Analysis:} Given a system's causal structure (its transition probability matrix), one computes $\Phi$ and identifies the ``maximally irreducible cause--effect structure'' (MICS), which corresponds to the quality and quantity of consciousness.
+\end{enumerate}
+
+
+% ══════════════════════════════════════════════════════════════
+\chapter{Mathematical Prerequisites}
+% ══════════════════════════════════════════════════════════════
+
+This chapter reviews the mathematical concepts essential for understanding IIT's formalism. Readers comfortable with probability theory, information theory, graph theory, and linear algebra may skim or skip the relevant sections.
+
+% ─── 2.1 ───
+\section{Probability Theory Essentials}
+
+\subsection{Sample Spaces and Events}
+
+A \textbf{sample space} $\Omega$ is the set of all possible outcomes of an experiment. An \textbf{event} $A$ is a subset of $\Omega$. A \textbf{probability measure} $P$ assigns to each event $A$ a number $P(A) \in [0, 1]$ satisfying the Kolmogorov axioms.
+
+\begin{definitionbox}[Probability Measure]
+A function $P : \mathcal{F} \to [0,1]$ on a $\sigma$-algebra $\mathcal{F}$ of subsets of $\Omega$ is a probability measure if:
+\begin{enumerate}[label=(\roman*), leftmargin=2em]
+  \item $P(\Omega) = 1$
+  \item $P(\varnothing) = 0$
+  \item For any countable collection of mutually exclusive events $A_1, A_2, \ldots$\,:
+    \[
+      P\!\left(\bigcup_{i=1}^{\infty} A_i\right) = \sum_{i=1}^{\infty} P(A_i)
+    \]
+\end{enumerate}
+\end{definitionbox}
+
+\subsection{Conditional Probability and Bayes' Theorem}
+
+The \textbf{conditional probability} of $A$ given $B$ is defined as:
+\begin{mathbox}
+\vspace{-8pt}
+\[
+  P(A \mid B) \;=\; \frac{P(A \cap B)}{P(B)}, \qquad \text{provided } P(B) > 0.
+\]
+\vspace{-10pt}
+\end{mathbox}
+
+\textbf{Bayes' Theorem} relates the conditional probabilities in the reverse direction:
+\begin{mathbox}
+\vspace{-8pt}
+\[
+  P(A \mid B) \;=\; \frac{P(B \mid A)\, P(A)}{P(B)}
+\]
+\vspace{-10pt}
+\end{mathbox}
+
+In IIT, conditional probabilities are fundamental: the cause--effect repertoires are probability distributions over past and future states of a system, conditioned on the current state of a mechanism.
+
+\subsection{Joint and Marginal Distributions}
+
+For discrete random variables $X$ and $Y$, the \textbf{joint distribution} is $p(x, y) = P(X{=}x, Y{=}y)$. The \textbf{marginal distribution} of $X$ is obtained by summing over all values of $Y$:
+\begin{mathbox}
+\vspace{-8pt}
+\[
+  p(x) = \sum_{y} p(x, y)
+\]
+\vspace{-10pt}
+\end{mathbox}
+
+Two random variables are \textbf{independent} if $p(x, y) = p(x) \cdot p(y)$ for all $x, y$. This concept is crucial in IIT for defining what happens when a system is ``partitioned''---partitioning severs causal connections and forces statistical independence between the parts.
+
+% ─── 2.2 ───
+\section{Information Theory Foundations}
+
+\subsection{Shannon Entropy}
+
+The \textbf{Shannon entropy} of a discrete random variable $X$ with probability mass function $p(x)$ measures the average ``surprise'' or uncertainty:
+
+\begin{mathbox}
+\vspace{-8pt}
+\[
+  H(X) = -\sum_{x \in \mathcal{X}} p(x)\, \log_2 p(x)
+\]
+\vspace{-10pt}
+\end{mathbox}
+
+\begin{definitionbox}[Key Properties of Entropy]
+\begin{enumerate}[label=(\roman*), leftmargin=2em, itemsep=2pt]
+  \item $H(X) \geq 0$ for all $X$
+  \item $H(X) = 0$ if and only if $X$ is deterministic (one outcome has probability 1)
+  \item $H(X)$ is maximized when all outcomes are equally likely: $H(X) = \log_2 n$ where $n = |\mathcal{X}|$
+  \item $H(X, Y) \leq H(X) + H(Y)$, with equality if and only if $X$ and $Y$ are independent
+  \item \textbf{Conditional entropy:}\; $H(X \mid Y) = -\sum_{x,y} p(x,y)\, \log_2 p(x \mid y)$
+\end{enumerate}
+\end{definitionbox}
+
+\subsection{Kullback--Leibler Divergence}
+
+The \textbf{Kullback--Leibler (KL) divergence} measures the ``distance'' between two probability distributions $p$ and $q$ (note: it is not a true metric as it is asymmetric):
+
+\begin{mathbox}
+\vspace{-8pt}
+\[
+  D_{\mathrm{KL}}(p \;\|\; q) = \sum_{x} p(x)\, \log_2 \frac{p(x)}{q(x)}
+\]
+\vspace{-10pt}
+\end{mathbox}
+
+KL divergence satisfies $D_{\mathrm{KL}}(p \| q) \geq 0$ with equality iff $p = q$ (Gibbs' inequality). In earlier versions of IIT, KL divergence was used to quantify the difference between the cause--effect repertoire of the whole system and the repertoire of the partitioned system. IIT 3.0+ moved to the Earth Mover's Distance for reasons discussed in Chapter~7.
+
+\subsection{Mutual Information}
+
+\textbf{Mutual information} quantifies how much information one random variable provides about another:
+
+\begin{mathbox}
+\vspace{-8pt}
+\[
+  I(X; Y) = \sum_{x, y} p(x, y)\, \log_2 \frac{p(x, y)}{p(x)\, p(y)}
+\]
+\vspace{-10pt}
+\end{mathbox}
+
+Equivalently:
+\[
+  I(X; Y) = H(X) + H(Y) - H(X, Y) = H(X) - H(X \mid Y) = D_{\mathrm{KL}}\bigl(p(x,y) \;\|\; p(x)\,p(y)\bigr)
+\]
+
+Mutual information is symmetric and non-negative. It was the basis for the first version of $\Phi$ (IIT 1.0), where integrated information was defined as the mutual information across the minimum information partition of a system.
+
+% ─── 2.3 ───
+\section{Graph Theory and Networks}
+
+IIT models physical systems as \textbf{directed graphs} (or networks), where nodes represent elements (e.g., neurons, logic gates) and directed edges represent causal connections.
+
+\begin{definitionbox}[Directed Graph]
+A directed graph $G = (V, E)$ consists of a set of vertices (nodes) $V$ and a set of directed edges $E \subseteq V \times V$. An edge $(u, v)$ indicates a causal influence from node $u$ to node $v$.
+\end{definitionbox}
+
+A \textbf{partition} of a set $S$ divides it into non-overlapping subsets whose union is $S$. When we ``partition'' a system in IIT, we conceptually cut the causal connections between two groups of elements. A \textbf{bipartition} divides the system into exactly two non-empty groups.
+
+The number of possible bipartitions of a set of $n$ elements grows exponentially: there are $2^{n-1} - 1$ non-trivial bipartitions. This combinatorial explosion is one reason why computing $\Phi$ is so computationally expensive.
+
+% ─── 2.4 ───
+\section{Linear Algebra Refresher}
+
+Transition Probability Matrices (TPMs) are central to IIT. A TPM is a matrix $T$ where entry $T_{ij}$ gives the probability of transitioning from state $i$ to state $j$.
+
+\begin{definitionbox}[Stochastic Matrix]
+A matrix $T \in \mathbb{R}^{N \times N}$ is \textbf{row-stochastic} if all entries are non-negative and each row sums to one:
+\[
+  T_{ij} \geq 0 \quad\text{and}\quad \sum_{j=1}^{N} T_{ij} = 1 \qquad \forall\; i.
+\]
+In IIT, the TPM of a system describes the conditional probability of the next state given the current state.
+\end{definitionbox}
+
+Important operations include: \textbf{matrix multiplication} (for composing multi-step transitions), \textbf{marginalization} (summing over subsets of variables to obtain reduced distributions), and \textbf{conditioning} (fixing certain variables to specific values and renormalizing).
+
+The \textbf{Kronecker product} $A \otimes B$ is used when combining independent subsystems: if subsystem 1 has TPM $T_1$ and subsystem 2 has TPM $T_2$, and they are independent, the combined TPM is $T_1 \otimes T_2$.
+
+% ─── 2.5 ───
+\section{Markov Chains and Transition Probability Matrices}
+
+A \textbf{Markov chain} is a stochastic process where the probability of the next state depends only on the current state (the \textbf{Markov property}):
+
+\begin{mathbox}
+\vspace{-8pt}
+\[
+  P(X_{t+1} = j \mid X_t = i,\; X_{t-1} = i_{t-1},\; \ldots) = P(X_{t+1} = j \mid X_t = i) = T_{ij}
+\]
+\vspace{-10pt}
+\end{mathbox}
+
+In IIT, the system is typically modeled as a discrete-time Markov chain. The TPM fully specifies the causal structure: it tells us how the current state of the system (all elements together) determines the probability distribution over the next state. For a system of $n$ binary elements, the TPM is a $2^n \times 2^n$ matrix.
+
+The \textbf{stationary distribution} $\pi$ satisfies $\pi = \pi T$, representing the long-run probability of being in each state. While not directly used in computing $\Phi$, it provides the ``unconstrained'' or ``maximum entropy'' baseline distribution in certain formulations.
+
+\begin{notebox}[Key Assumption: Conditional Independence]
+IIT assumes that, given the current state of the entire system, each element's next state depends only on the current state of its \emph{inputs}. Formally, for element $s_k$ with input set $I_k$:
+\[
+  P(s_k^{t+1} \mid S_t) = P(s_k^{t+1} \mid I_k^t)
+\]
+This allows the full TPM to factorize: $P(S_{t+1} \mid S_t) = \prod_{k=1}^{n} P(s_k^{t+1} \mid I_k^t)$.
+\end{notebox}
+
+
+% ══════════════════════════════════════════════════════════════
+\chapter{The Five Axioms of IIT}
+% ══════════════════════════════════════════════════════════════
+
+IIT begins with \textbf{axioms}---properties of experience that are taken to be self-evidently true. These are not empirical claims but rather properties that any experience, by the very fact of being an experience, must possess. Just as Euclidean geometry begins with axioms about points and lines, IIT begins with axioms about consciousness. The axioms characterize the \textbf{essential structure of phenomenology}.
+
+Importantly, IIT's axioms are meant to be \textbf{irrefutable from the first-person perspective}. To doubt any of them is to presuppose the very experience they describe. They are formulated at the most general level, applying to any conceivable experience.
+
+% ─── Axiom 1 ───
+\section{Axiom 1: Intrinsic Existence}
+
+\begin{axiombox}[Axiom 1 --- Intrinsic Existence]
+Experience \emph{exists}: each experience is actual---indeed, that my experience here and now exists is the only fact I can be absolutely certain of. Moreover, my experience exists \textbf{from its own intrinsic perspective}, independent of external observers.
+\end{axiombox}
+
+This axiom captures the Cartesian insight: \emph{cogito ergo sum}. Even if I doubt everything about the external world, I cannot doubt that I am having an experience right now. The experience is not merely a representation for someone else---it exists in and of itself. This is the most fundamental axiom: \textbf{experience exists, intrinsically}.
+
+The word ``intrinsic'' is critical. A system's consciousness is not something attributed to it by an external observer (the way we might say a thermostat ``senses'' temperature). It must exist from the system's own perspective, in terms of its own causal powers. An external observer's description of a system (however detailed) is extrinsic information and is irrelevant to whether the system is conscious.
+
+% ─── Axiom 2 ───
+\section{Axiom 2: Composition}
+
+\begin{axiombox}[Axiom 2 --- Composition]
+Experience is \textbf{structured}: each experience is composed of multiple phenomenological distinctions, existing in various combinations and relationships. For example, in a visual scene, I experience colors, shapes, locations, movements, and relationships among objects---all simultaneously within a single experience.
+\end{axiombox}
+
+Consider your experience right now. It is not a single undifferentiated blob. It has structure: you see this text, feel the device in your hands, hear ambient sounds. Within vision alone, there are colors, edges, spatial relationships. These ``distinctions'' combine: you see a \emph{red circle}---redness and circularity are composed together.
+
+The axiom of composition states that experience includes not only individual elements but all combinations of those elements. If I experience features $A$, $B$, and $C$, my experience also includes the combinations $AB$, $AC$, $BC$, and $ABC$ as structured components. Formally, the structure of experience is that of a \textbf{power set}: from $n$ basic distinctions, there are $2^n - 1$ possible combinations.
+
+% ─── Axiom 3 ───
+\section{Axiom 3: Information}
+
+\begin{axiombox}[Axiom 3 --- Information]
+Experience is \textbf{specific}: each experience is the particular way it is---a particular set of specific phenomenal distinctions---thereby differing from other possible experiences. Seeing a red triangle is different from seeing a blue square; each experience specifies a particular ``shape'' in phenomenal space.
+\end{axiombox}
+
+This is the axiom of \textbf{information} in the original sense of the word: to ``inform'' is to give form, to specify, to distinguish. Each experience is informative precisely because it is \emph{this} experience and not any other. Seeing pure darkness is as informative as seeing a complex scene---it rules out all experiences that are not pure darkness.
+
+Note that ``information'' here is \textbf{intrinsic information}---it is information from the system's own perspective, not information \emph{for} an external observer (as in Shannon's communication theory). This distinction is fundamental to IIT. Shannon information measures the reduction in an observer's uncertainty; intrinsic information measures the specificity of a system's state from its own causal perspective.
+
+% ─── Axiom 4 ───
+\section{Axiom 4: Integration}
+
+\begin{axiombox}[Axiom 4 --- Integration]
+Experience is \textbf{unified}: each experience is irreducible to non-interdependent components. I cannot separate my visual experience from my auditory experience in a given moment---they are bound together in a single, integrated experience. The whole of my experience is more than the sum of its parts.
+\end{axiombox}
+
+This is arguably the most important axiom for the mathematical development of IIT. Consider an attempt to divide your current experience into a ``left half'' and a ``right half'' of your visual field. These are not two separate experiences glued together---your experience is intrinsically unified across the entire field.
+
+Formally, integration means that the experience cannot be reduced to a collection of independent sub-experiences. If it could be, there would be two (or more) separate consciousnesses, not one. The unity of consciousness is a basic phenomenological fact that any adequate theory must account for.
+
+\begin{notebox}[The Binding Problem]
+The axiom of integration is closely related to the classical ``binding problem'' in neuroscience: how do separate neural processes (processing color, shape, motion, etc.) give rise to a unified percept? IIT's answer is that binding \emph{is} integration---the neural substrate must generate irreducible cause--effect power.
+\end{notebox}
+
+Mathematically, integration will be captured by the requirement that the system's cause--effect structure must be \textbf{irreducible}---it must generate more information as a whole than any partition into independent parts.
+
+% ─── Axiom 5 ───
+\section{Axiom 5: Exclusion}
+
+\begin{axiombox}[Axiom 5 --- Exclusion]
+Experience is \textbf{definite}: each experience has a definite set of phenomenal distinctions---a definite ``border''---and flows at a definite speed. It includes what it includes, with a specific spatial and temporal grain, neither less nor more.
+\end{axiombox}
+
+Your experience right now has a specific content. It contains certain elements and not others. It does not simultaneously include the experience of a micro-level description (individual neurons) and a macro-level description (brain regions)---it is experienced at one particular ``grain.'' Similarly, it is not simultaneously an experience at one time scale and another.
+
+The exclusion axiom implies that for any physical substrate, there is a single ``maximal'' level of description (set of elements, spatial and temporal grain) that corresponds to the actual experience. This is determined by which description yields the maximum value of $\Phi$.
+
+Exclusion also prevents ``double counting'': if a set of neurons forms a conscious complex (with maximal $\Phi$), those same neurons cannot simultaneously be part of another overlapping conscious complex---unless the larger set has even higher $\Phi$, in which case the smaller is excluded.
+
+
+% ══════════════════════════════════════════════════════════════
+\chapter{From Axioms to Postulates}
+% ══════════════════════════════════════════════════════════════
+
+Each axiom of experience is translated into a corresponding \textbf{postulate} about the physical substrate. The axioms tell us what experience is like; the postulates tell us what physical properties a system must have to support that experience. The bridge principle is:
+
+\begin{quote}
+\emph{The physical substrate of consciousness must have causal properties that mirror the essential properties of experience.}
+\end{quote}
+
+% ─── Postulate 1 ───
+\section{Postulate 1: Intrinsic Existence}
+
+\begin{postulatebox}[Postulate 1 --- Intrinsic Existence (Cause--Effect Power)]
+A system of elements exists intrinsically if it has \textbf{cause--effect power} upon itself---that is, it must be able to make a difference to its own future state and be constrained by its own past state. The system must have causal power that is intrinsic: it must constrain itself, not merely be described by an external observer.
+\end{postulatebox}
+
+Formally, each element $s_i$ of the system must have both \emph{causes} (it is affected by other elements) and \emph{effects} (it affects other elements). The system must have at least one state that has both a non-trivial cause repertoire and a non-trivial effect repertoire.
+
+This postulate rules out purely feedforward systems and systems with no internal causal structure. A system that only receives input but never feeds back has no intrinsic cause--effect power.
+
+% ─── Postulate 2 ───
+\section{Postulate 2: Composition}
+
+\begin{postulatebox}[Postulate 2 --- Composition]
+The system must be structured by specifying the cause--effect repertoires for all possible \textbf{mechanisms}---not just individual elements, but all subsets of elements. The cause--effect structure of the system is the set of all cause--effect repertoires specified by all mechanisms.
+\end{postulatebox}
+
+For a system of $n$ elements, there are $2^n - 1$ possible non-empty subsets (mechanisms). Each mechanism specifies a probability distribution over the past states of the system (its \textbf{cause repertoire}) and over the future states (its \textbf{effect repertoire}). The full set of all these repertoires constitutes the system's \textbf{cause--effect structure} (or \textbf{constellation} in concept space).
+
+% ─── Postulate 3 ───
+\section{Postulate 3: Information}
+
+\begin{postulatebox}[Postulate 3 --- Information (Specificity)]
+Each mechanism in its current state must specify a cause--effect repertoire that is \textbf{specific}---different from the unconstrained (maximum entropy) repertoire. The mechanism, in its current state, must ``make a difference'' by constraining past and future states in a particular way.
+\end{postulatebox}
+
+The amount of information a mechanism specifies is quantified by comparing its cause--effect repertoire to the \textbf{unconstrained repertoire} (what the distribution would be if the mechanism had no causal power):
+\[
+  \text{cause information:}\quad ci(M, P) = d\!\left(p_{\text{cause}}(P_{t-1} \mid m_t),\;\; p_{\text{uc}}(P_{t-1})\right)
+\]
+where $d$ is a suitable distance measure (EMD in IIT 3.0) and $p_{\text{uc}}$ is the uniform distribution.
+
+% ─── Postulate 4 ───
+\section{Postulate 4: Integration}
+
+\begin{postulatebox}[Postulate 4 --- Integration ($\varphi$)]
+The cause--effect repertoire specified by a mechanism must be \textbf{irreducible}: it must specify more information as a whole than any partition of the mechanism into independent parts. The integrated information $\varphi$ (small phi) is the minimum information lost when the mechanism is partitioned.
+\end{postulatebox}
+
+Formally, for a mechanism $M$ over purview $P$, we consider all possible unidirectional partitions. Each partition divides both $M$ and $P$ into two parts $(M_1, M_2)$ and $(P_1, P_2)$, severing the cross-connections. The integrated information is:
+
+\begin{mathbox}
+\vspace{-8pt}
+\[
+  \varphi(M, P) = \min_{\text{partition}} \EMD\!\left(\, p_{\text{whole}}(P \mid m),\;\; p_{M_1}(P_1 \mid m_1) \times p_{M_2}(P_2 \mid m_2)\,\right)
+\]
+\vspace{-10pt}
+\end{mathbox}
+
+The partition that achieves this minimum is called the \textbf{Minimum Information Partition (MIP)}. If $\varphi > 0$, the mechanism is irreducible; if $\varphi = 0$, the mechanism can be fully explained by its parts and does not exist as a unified entity.
+
+% ─── Postulate 5 ───
+\section{Postulate 5: Exclusion}
+
+\begin{postulatebox}[Postulate 5 --- Exclusion (Maximal Irreducibility)]
+Among all overlapping mechanisms and all possible spatial/temporal grains, only the one that is \textbf{maximally irreducible} (has the highest $\varphi$ value) actually exists. At the system level, the set of elements and the spatio-temporal grain that maximizes $\Phi$ is the one that constitutes the actual conscious experience.
+\end{postulatebox}
+
+The exclusion postulate operates at two levels:
+\begin{enumerate}[leftmargin=2em]
+  \item \textbf{Mechanism level:} Each concept (cause--effect repertoire with $\varphi > 0$) is specified by the mechanism over the set of purview elements that maximizes $\varphi$. This is called the \emph{maximally irreducible cause--effect repertoire} (MICE) or simply the \textbf{concept}.
+  \item \textbf{System level:} The complex of elements that maximizes $\Phi$ is the one that exists as a conscious entity, and overlapping complexes with lower $\Phi$ are ``excluded.''
+\end{enumerate}
+
+
+% ══════════════════════════════════════════════════════════════
+\chapter{The Mathematical Framework of IIT}
+% ══════════════════════════════════════════════════════════════
+
+This chapter provides the detailed mathematical formalism underlying IIT 3.0, with notes on IIT 4.0 refinements. We define each quantity precisely and show how they compose into the full $\Phi$ computation.
+
+\section{System Definition and State Space}
+
+Consider a system $S$ consisting of $n$ elements $\{s_1, s_2, \ldots, s_n\}$. In the canonical IIT formulation, each element $s_i$ is binary---it can be in state 0 (\textsc{off}) or 1 (\textsc{on}) at each discrete time step. The state of the system at time $t$ is a binary vector:
+
+\begin{mathbox}
+\vspace{-8pt}
+\[
+  S_t = \bigl(s_1^{(t)},\; s_2^{(t)},\; \ldots,\; s_n^{(t)}\bigr) \in \{0, 1\}^n
+\]
+\vspace{-10pt}
+\end{mathbox}
+
+The \textbf{state space} $\Omega = \{0, 1\}^n$ has $2^n$ possible states. The dynamics of the system are fully specified by the Transition Probability Matrix (TPM).
+
+\section{Transition Probability Matrices (TPM)}
+
+The TPM is a $2^n \times 2^n$ matrix $T$, where:
+\[
+  T_{ij} = P(S_{t+1} = j \mid S_t = i)
+\]
+
+IIT works with two representations of the TPM:
+
+\begin{definitionbox}[State-by-State vs.\ State-by-Node TPM]
+\begin{itemize}[leftmargin=1.5em]
+  \item \textbf{State-by-state:} A $2^n \times 2^n$ matrix where each row gives the full probability distribution over next states.
+  \item \textbf{State-by-node:} A $2^n \times n$ matrix where column $k$ gives the probability that element $s_k$ will be \textsc{on} at $t+1$ for each possible current state.
+\end{itemize}
+The state-by-node format is more compact and leverages the conditional independence assumption.
+\end{definitionbox}
+
+By the conditional independence assumption, the full transition factorizes as:
+\[
+  P(S_{t+1} \mid S_t) = \prod_{k=1}^{n} P\!\left(s_k^{(t+1)} \;\middle|\; I_k^{(t)}\right)
+\]
+where $I_k$ denotes the input set of element $s_k$.
+
+\section{Cause--Effect Repertoires}
+
+The core objects in IIT are \textbf{cause repertoires} and \textbf{effect repertoires}. Given a mechanism $M$ (a subset of elements in their current state $m_t$) and a purview $P$ (the subset of elements being considered as causes or effects):
+
+\subsection{Effect Repertoire}
+
+The \textbf{effect repertoire} is the probability distribution over future states of the purview $P$, given that the mechanism $M$ is in its current state $m_t$, with all other elements set to their unconstrained (maximum entropy) distribution:
+
+\begin{mathbox}
+\vspace{-8pt}
+\[
+  p_{\text{effect}}(P_{t+1} \mid m_t) = P(P_{t+1} \mid \mathrm{do}(M = m_t))
+\]
+\vspace{-10pt}
+\end{mathbox}
+
+The ``$\mathrm{do}$'' operator indicates a causal intervention: we fix $M$ to its current state and observe the resulting distribution over $P$. Elements not in $M$ are set to their unconstrained distribution (maximum entropy, i.e., 50/50 \textsc{on}/\textsc{off} for each binary element).
+
+\textbf{Computation:} Under the conditional independence assumption, the effect repertoire over purview $P = \{p_1, \ldots, p_k\}$ factorizes over individual purview elements. For each purview element $p_j$:
+\[
+  P(p_j^{(t+1)} \mid m_t) = \sum_{\bar{M}} P(p_j^{(t+1)} \mid I_{p_j}^{(t)})\, P_{\text{uc}}(\bar{M})
+\]
+where the sum is over unconstrained elements $\bar{M} = S \setminus M$.
+
+\subsection{Cause Repertoire}
+
+The \textbf{cause repertoire} is the probability distribution over past states of the purview $P$, given the mechanism $M$ in its current state. It is computed using Bayes' rule:
+
+\begin{mathbox}
+\vspace{-8pt}
+\[
+  p_{\text{cause}}(P_{t-1} \mid m_t) = \frac{P(m_t \mid P_{t-1})\; p_{\text{uc}}(P_{t-1})}{\sum_{P'_{t-1}} P(m_t \mid P'_{t-1})\; p_{\text{uc}}(P'_{t-1})}
+\]
+\vspace{-10pt}
+\end{mathbox}
+
+where $p_{\text{uc}}(P_{t-1})$ is the uniform prior over past states of the purview. The cause repertoire answers: ``Given that $M$ is in state $m$ now, what were the most likely past states of $P$?''
+
+\subsection{Unconstrained Repertoire}
+
+The \textbf{unconstrained repertoire} (or \emph{null repertoire}) is the distribution over past or future states when no mechanism constrains them---i.e., the maximum entropy distribution. For binary elements:
+\[
+  p_{\text{uc}}(x) = \frac{1}{2^{|P|}} \qquad \forall\; x \in \{0,1\}^{|P|}
+\]
+
+\section{Partitioning and the Minimum Information Partition}
+
+A central operation in IIT is \textbf{partitioning}---conceptually ``cutting'' the causal connections within a mechanism or between parts of a system.
+
+\begin{definitionbox}[Unidirectional Partition]
+A unidirectional partition of mechanism $M$ over purview $P$ divides both into two parts:
+\[
+  (M_1, M_2) \quad\text{and}\quad (P_1, P_2)
+\]
+In the partitioned system, $M_1$ only constrains $P_1$, and $M_2$ only constrains $P_2$---the cross-connections are severed. The partitioned repertoire becomes:
+\[
+  p_{\text{partitioned}}(P \mid m) = p(P_1 \mid m_1) \times p(P_2 \mid m_2)
+\]
+where $\times$ denotes the product distribution (statistical independence).
+\end{definitionbox}
+
+The number of possible unidirectional partitions of $M$ and $P$ is substantial. For mechanism of size $|M|$ and purview of size $|P|$, the number of partitions is $(2^{|M|} - 1)(2^{|P|} - 1)$, since we must exclude the trivial partition (everything in one group).
+
+\section{Computing Integrated Information ($\varphi$)}
+
+For a mechanism $M$ in state $m$, the computation of $\varphi$ proceeds as follows:
+
+\textbf{Step 1:} For each possible purview $P \subseteq S$, compute the cause repertoire $p_{\text{cause}}(P_{t-1} \mid m)$ and effect repertoire $p_{\text{effect}}(P_{t+1} \mid m)$.
+
+\textbf{Step 2:} For each purview, find the MIP and compute $\phicause$ and $\phieffect$:
+\begin{align}
+  \phicause(M, P) &= \min_{\text{partition}} \EMD\!\left(p_{\text{cause}}^{\text{whole}},\; p_{\text{cause}}^{\text{partitioned}}\right) \label{eq:phi_cause} \\[6pt]
+  \phieffect(M, P) &= \min_{\text{partition}} \EMD\!\left(p_{\text{effect}}^{\text{whole}},\; p_{\text{effect}}^{\text{partitioned}}\right) \label{eq:phi_effect}
+\end{align}
+
+\textbf{Step 3:} The \textbf{core cause} is the purview $P^*_{\text{cause}}$ that maximizes $\phicause$:
+\[
+  P^*_{\text{cause}} = \arg\max_{P \subseteq S} \phicause(M, P)
+\]
+Similarly for effects:
+\[
+  P^*_{\text{effect}} = \arg\max_{P \subseteq S} \phieffect(M, P)
+\]
+
+Together, the core cause and core effect form the mechanism's \textbf{maximally irreducible cause--effect repertoire} (\MICE) or \textbf{concept}.
+
+\textbf{Step 4:} The integrated information of the concept is:
+\begin{mathbox}
+\vspace{-8pt}
+\[
+  \phimax(M) = \min\!\left(\, \phicause(M, P^*_{\text{cause}}),\;\; \phieffect(M, P^*_{\text{effect}})\,\right)
+\]
+\vspace{-10pt}
+\end{mathbox}
+
+This ensures the mechanism must be irreducible on \emph{both} the cause and effect side. A concept exists (is part of the cause--effect structure) only if $\phimax > 0$.
+
+\section{Cause--Effect Structures and Constellations}
+
+The \textbf{cause--effect structure} (also called the \textbf{conceptual structure} or \textbf{constellation}) of a system $S$ in state $s$ is the set of all concepts specified by all possible mechanisms within $S$:
+
+\begin{mathbox}
+\vspace{-8pt}
+\[
+  \mathcal{C}(S, s) = \left\{\, \left(\MICE_M,\; \phimax_M\right) \;\middle|\; M \subseteq S,\;\; \phimax_M > 0 \,\right\}
+\]
+\vspace{-10pt}
+\end{mathbox}
+
+This constellation lives in a high-dimensional space called \textbf{concept space} (or \textbf{$Q$-space}), where each axis corresponds to a possible state of a possible purview. Each concept is a ``star'' in this space, positioned by its cause--effect repertoire and weighted by its $\phimax$ value. The constellation represents the full structure of the experience---the \emph{quality} of consciousness.
+
+\section{System-Level Integrated Information ($\Phi$)}
+
+Finally, $\Phi$ (capital phi) quantifies the irreducibility of the \emph{entire} cause--effect structure. Just as $\varphi$ tests whether a single mechanism is irreducible, $\Phi$ tests whether the entire system's cause--effect structure is irreducible.
+
+To compute $\Phi$, we consider all possible \textbf{system-level bipartitions}---dividing the system's elements into two groups and cutting all causal connections between them. For each bipartition $\mathcal{P}$:
+\begin{enumerate}[leftmargin=2em]
+  \item Compute the cause--effect structure $\mathcal{C}^{\mathcal{P}}$ of the partitioned system.
+  \item Measure the distance between the original and partitioned structures.
+\end{enumerate}
+
+\begin{mathbox}
+\vspace{-8pt}
+\[
+  \boxed{\;\Phi(S, s) = \min_{\text{bipartition}\;\mathcal{P}} D\!\left(\, \mathcal{C}_{\text{whole}}(S, s),\;\; \mathcal{C}_{\text{partitioned}}^{\mathcal{P}}(S, s)\,\right)\;}
+\]
+\vspace{-10pt}
+\end{mathbox}
+
+The distance $D$ between two cause--effect structures (constellations) is measured using the \textbf{extended Earth Mover's Distance} in concept space. The bipartition achieving the minimum is the system's \textbf{MIP}.
+
+A system with $\Phi > 0$ is called a \textbf{complex} and is a candidate substrate of consciousness. The maximum over all subsets of elements---the subset achieving the highest $\Phi$---is the \textbf{main complex}, and (by the exclusion postulate) is the sole conscious entity.
+
+\begin{notebox}[Computational Complexity]
+Computing $\Phi$ exactly is extraordinarily expensive. For a system of $n$ binary elements:
+\begin{itemize}[leftmargin=1.5em]
+  \item $2^n - 1$ possible mechanisms must be evaluated
+  \item Each mechanism must be checked against up to $2^n - 1$ possible purviews
+  \item Each mechanism--purview pair requires checking $(2^{|M|} - 1)(2^{|P|} - 1)$ partitions
+  \item The system-level computation requires checking $2^{n-1} - 1$ bipartitions
+\end{itemize}
+The overall complexity is \textbf{super-exponential} in $n$. Current exact computations are limited to systems of roughly $n \leq 12$--$14$ elements. The problem of computing $\Phi$ has been shown to be at least NP-hard.
+\end{notebox}
+
+
+% ══════════════════════════════════════════════════════════════
+\chapter{Detailed Computation of $\Phi$: A Worked Example}
+% ══════════════════════════════════════════════════════════════
+
+\section{A Simple 3-Node Network}
+
+Consider the canonical IIT example: a system of three binary elements $A$, $B$, $C$ with the following logic gates:
+\begin{itemize}[leftmargin=1.5em]
+  \item $A$: \textsc{majority} gate (outputs 1 if the majority of its inputs are 1)
+  \item $B$: \textsc{or} gate (outputs 1 if at least one input is 1)
+  \item $C$: \textsc{and} gate (outputs 1 only if all inputs are 1)
+\end{itemize}
+
+The network is \textbf{fully connected}: each element receives input from the other two. The current state is $\mathbf{s} = (A, B, C) = (1, 0, 0)$.
+
+\section{Step-by-Step Computation}
+
+\subsection{Step 1: Construct the State-by-Node TPM}
+
+For each of the $2^3 = 8$ possible current states, we compute the probability that each element is \textsc{on} at the next time step. Since the gates are deterministic, each probability is either 0 or 1:
+
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{ccc|ccc}
+  \toprule
+  $A_t$ & $B_t$ & $C_t$ & $P(A_{t+1}{=}1)$ & $P(B_{t+1}{=}1)$ & $P(C_{t+1}{=}1)$ \\
+  \midrule
+  0 & 0 & 0 & 0 & 0 & 0 \\
+  0 & 0 & 1 & 0 & 1 & 0 \\
+  0 & 1 & 0 & 0 & 1 & 0 \\
+  0 & 1 & 1 & 1 & 1 & 0 \\
+  1 & 0 & 0 & 0 & 1 & 0 \\
+  1 & 0 & 1 & 1 & 1 & 0 \\
+  1 & 1 & 0 & 1 & 1 & 0 \\
+  1 & 1 & 1 & 1 & 1 & 1 \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\textit{Reading row $(1,0,0)$:} $A$ receives inputs $B{=}0, C{=}0$, so majority $= 0$. $B$ receives $A{=}1, C{=}0$, so OR $= 1$. $C$ receives $A{=}1, B{=}0$, so AND $= 0$.
+
+\subsection{Step 2: Compute Cause--Effect Repertoires}
+
+\begin{examplebox}[Example: Mechanism $\{A\}$ in state $A{=}1$, Purview $\{B, C\}$]
+\textbf{Cause repertoire} --- We ask: ``Given $A{=}1$ now, what were the likely past states of $(B, C)$?''
+
+$A$ is a majority gate of $\{B, C\}$. For $A{=}1$, we need the majority of $B, C$ to be 1, meaning at least two of $A$'s inputs are 1. Under the maximum entropy prior over $\{B, C\}$:
+\begin{align*}
+  P\bigl((B,C)_{t-1} = (0,0) \mid A_t = 1\bigr) &\propto P(A{=}1 \mid B{=}0, C{=}0) = 0 \\
+  P\bigl((B,C)_{t-1} = (0,1) \mid A_t = 1\bigr) &\propto P(A{=}1 \mid B{=}0, C{=}1) = 0 \\
+  P\bigl((B,C)_{t-1} = (1,0) \mid A_t = 1\bigr) &\propto P(A{=}1 \mid B{=}1, C{=}0) = 0 \\
+  P\bigl((B,C)_{t-1} = (1,1) \mid A_t = 1\bigr) &\propto P(A{=}1 \mid B{=}1, C{=}1) = 1
+\end{align*}
+After normalization: $p_{\text{cause}} = (0,\; 0,\; 0,\; 1)$, i.e., both $B$ and $C$ were certainly \textsc{on}.
+
+\textbf{Unconstrained repertoire:} $p_{\text{uc}} = (\tfrac{1}{4},\; \tfrac{1}{4},\; \tfrac{1}{4},\; \tfrac{1}{4})$.
+
+The cause information is $\EMD(p_{\text{cause}}, p_{\text{uc}})$, which is non-zero since the cause repertoire is very different from uniform.
+\end{examplebox}
+
+\subsection{Step 3: Partition and Compute $\varphi$}
+
+For mechanism $\{A\}$ over purview $\{B, C\}$, possible partitions include:
+\begin{align*}
+  &\text{Partition 1:}\quad \{A\} \to \{B\},\;\; \{\,\} \to \{C\} \\
+  &\text{Partition 2:}\quad \{A\} \to \{C\},\;\; \{\,\} \to \{B\} \\
+  &\text{Partition 3:}\quad \{\,\} \to \{B,C\},\;\; \{A\} \to \{\,\}
+\end{align*}
+
+For each, compute the partitioned repertoire (product of independent parts) and measure the EMD from the whole repertoire. The minimum EMD gives $\varphi$ for this mechanism--purview pair.
+
+\subsection{Step 4: Identify Concepts and Build the Constellation}
+
+Repeat the above for all 7 non-empty mechanisms ($\{A\}, \{B\}, \{C\}, \{A,B\}, \{A,C\}, \{B,C\}, \{A,B,C\}$) and all possible purviews. For each mechanism, find the core cause and core effect (the purviews maximizing $\phicause$ and $\phieffect$). Mechanisms with $\phimax > 0$ are concepts in the constellation.
+
+\subsection{Step 5: Compute System-Level $\Phi$}
+
+Compute the full constellation $\mathcal{C}$. Then consider the three possible bipartitions:
+\[
+  \{A\} \mid \{B,C\}, \qquad \{B\} \mid \{A,C\}, \qquad \{C\} \mid \{A,B\}
+\]
+For each, sever connections across the cut and recompute the constellation. The EMD in concept space between the original and each partitioned constellation gives $\Phi$ for that partition. The minimum is the system's $\Phi$.
+
+\section{Interpreting the Results}
+
+For the fully connected 3-node system described above, $\Phi$ is typically positive (around 0.5--1.5 bits depending on the exact gate configuration and current state), meaning the system is a conscious ``complex'' according to IIT.
+
+The constellation tells us the \emph{quality} of the system's experience: which concepts it contains, the specific shape of each cause and effect repertoire, and how they are arranged in concept space. Two systems with the same $\Phi$ but different constellations have different experiences.
+
+
+% ══════════════════════════════════════════════════════════════
+\chapter{Earth Mover's Distance and Conceptual Information}
+% ══════════════════════════════════════════════════════════════
+
+\section{Why EMD?}
+
+Earlier versions of IIT (1.0, 2.0) used KL divergence to measure the distance between probability distributions. IIT 3.0 switched to the \textbf{Earth Mover's Distance} (also known as the Wasserstein-1 distance or Kantorovich--Rubinstein distance) for several reasons:
+
+\begin{enumerate}[leftmargin=2em]
+  \item KL divergence is \textbf{undefined} when one distribution assigns zero probability to a state that the other does not ($\log(p/0) = \infty$).
+  \item KL divergence does not respect the \textbf{metric structure} of the state space---it treats all states as equally different from each other.
+  \item EMD naturally accounts for the \textbf{Hamming distance} between binary states, treating states that differ by one bit as ``closer'' than states that differ by many bits.
+  \item EMD is a \textbf{true metric} (symmetric, satisfies the triangle inequality), unlike KL divergence.
+\end{enumerate}
+
+\section{Mathematical Definition}
+
+The EMD between two probability distributions $p$ and $q$ over a finite set $\mathcal{X}$, with a ground distance $d : \mathcal{X} \times \mathcal{X} \to \mathbb{R}_{\geq 0}$, is the solution to the following \textbf{optimal transport problem}:
+
+\begin{mathbox}
+\vspace{-8pt}
+\[
+  \EMD(p, q) = \min_{\gamma \in \Gamma(p,q)} \sum_{x, y \in \mathcal{X}} \gamma(x, y) \cdot d(x, y)
+\]
+\vspace{-10pt}
+\end{mathbox}
+
+subject to the \textbf{marginal constraints}:
+\begin{align}
+  \gamma(x, y) &\geq 0 \qquad \forall\; x, y \\
+  \sum_{y} \gamma(x, y) &= p(x) \qquad \forall\; x \\
+  \sum_{x} \gamma(x, y) &= q(y) \qquad \forall\; y
+\end{align}
+
+Here, $\gamma(x, y)$ represents the ``amount of probability mass'' transported from state $x$ to state $y$, and $\Gamma(p, q)$ is the set of all valid transport plans.
+
+Intuitively, imagine the probability distributions as piles of earth. The EMD is the minimum ``work'' needed to reshape one pile into the other, where $\text{work} = \text{amount of earth moved} \times \text{distance moved}$.
+
+\section{Application in IIT}
+
+In IIT, the ground distance $d$ is typically the \textbf{Hamming distance} between binary state vectors:
+\[
+  d(\mathbf{x}, \mathbf{y}) = \sum_{i=1}^{n} |x_i - y_i|
+\]
+
+This means moving probability mass from state $000$ to state $001$ (Hamming distance 1) costs less than moving it to state $111$ (Hamming distance 3). This respects the structure of the state space and ensures that $\varphi$ properly reflects the ``geometry'' of the system's causal structure.
+
+The EMD is computed via \textbf{linear programming}. For distributions over $N = 2^{|P|}$ states, this involves solving an LP with $N^2$ variables and $2N$ constraints. While polynomial in $N$, note that $N$ itself is exponential in the number of purview elements.
+
+For the system-level $\Phi$, the EMD is extended to concept space: it measures the distance between two \textbf{constellations} (weighted sets of points in concept space). This requires computing an EMD over a space whose dimensionality grows as $\sum_{k=1}^{n} \binom{n}{k} \cdot 2^k$, which is very high-dimensional.
+
+
+% ══════════════════════════════════════════════════════════════
+\chapter{IIT 4.0: Recent Developments}
+% ══════════════════════════════════════════════════════════════
+
+\section{Key Changes from IIT 3.0}
+
+IIT 4.0, published in 2023 by Albantakis, Barbosa, et al., represents a major update to the mathematical formalism while preserving the core axioms and postulates. Key changes include:
+
+\textbf{(a) Intrinsic information:} IIT 4.0 introduces a new measure of intrinsic information ($ii$) that replaces the cause--effect repertoire distance used in IIT 3.0. The new measure is based on the system's intrinsic perspective, not an extrinsic observer's.
+
+\textbf{(b) State-based approach:} IIT 4.0 works with specific states rather than probability distributions. The ``intrinsic difference'' is defined in terms of how a system in a specific state differs from the same system in a different state, from the system's own perspective.
+
+\textbf{(c) Refined partitioning:} The partitioning procedure has been updated. IIT 4.0 uses ``system cuts'' that \emph{noize} connections (replace them with unconstrained noise) rather than simply removing them.
+
+\textbf{(d) $\Phi$-structure:} IIT 4.0 formalizes the idea that the full cause--effect structure (now called the \textbf{$\Phi$-structure}) is the mathematical object that corresponds to the quality of consciousness, with $\Phi$ quantifying its irreducibility.
+
+\section{Intrinsic Information}
+
+In IIT 4.0, intrinsic information ($ii$) is defined using a new quantity called \textbf{intrinsic difference} ($id$). For a mechanism $m$ in state $m_s$ over a purview $p$:
+
+\begin{mathbox}
+\vspace{-8pt}
+\[
+  ii(m_s, p) = \min_{p_s^* \neq p_s} \; id(p_s \;||\; p_s^*)
+\]
+\vspace{-10pt}
+\end{mathbox}
+
+where $p_s$ is the state of the purview selected by the mechanism (the ``selected state'') and $p_s^*$ ranges over all alternative purview states. The intrinsic difference uses a \textbf{ratio-based measure}:
+\[
+  id(p_s \;||\; p_s^*) = \log_2 \frac{P(m_s \mid p_s)}{P(m_s \mid p_s^*)}
+\]
+
+This captures how much the mechanism ``distinguishes'' the selected purview state from the closest alternative. The minimum ensures we find the weakest distinction, measuring the mechanism's intrinsic selectivity.
+
+\section{Updated Formalism}
+
+The updated IIT 4.0 formalism introduces several refinements:
+
+\begin{enumerate}[leftmargin=2em]
+  \item \textbf{Causal marginalization:} A more rigorous treatment of how to handle ``background'' elements not in the mechanism or purview, using a uniform (maximum entropy) intervention rather than simply ignoring them.
+  \item \textbf{Hierarchy of integration:} A clearer hierarchy from individual distinctions (mechanism-level $\varphi$) to the full $\Phi$-structure, with integration assessed at each level.
+  \item \textbf{Relations:} IIT 4.0 introduces \textbf{relations} between concepts, capturing how pairs (or higher-order tuples) of concepts are bound together. Relations add structure beyond what individual concepts provide.
+  \item \textbf{Intrinsic cause--effect power:} Defined as the minimum of cause information and effect information, ensuring mechanisms must be informative about both past and future.
+\end{enumerate}
+
+\begin{notebox}[Continuity with IIT 3.0]
+IIT 4.0 is designed to be more internally consistent and better aligned with the axioms. However, the core ideas---axioms, postulates, $\Phi$ as irreducibility, cause--effect structures---remain fundamentally the same. The changes are primarily in the mathematical realization of these principles. Practitioners using PyPhi (based on IIT 3.0) should be aware of the differences but can still gain valuable intuition from the 3.0 framework.
+\end{notebox}
+
+
+% ══════════════════════════════════════════════════════════════
+\chapter{Implications, Predictions, and Critiques}
+% ══════════════════════════════════════════════════════════════
+
+\section{Predictions of IIT}
+
+IIT makes several bold and testable predictions that distinguish it from other theories of consciousness:
+
+\textbf{1.\ The cerebellum is not conscious.} Despite having far more neurons ($\sim$69 billion) than the cerebral cortex ($\sim$16 billion), the cerebellum's architecture is largely feedforward with minimal recurrence. IIT predicts it generates very little integrated information and does not contribute to consciousness. This is consistent with clinical evidence that cerebellar lesions do not abolish consciousness.
+
+\textbf{2.\ The posterior cortex is the ``hot zone.''} IIT predicts that the posterior cortex (parietal, temporal, occipital)---which is richly recurrent---is the primary substrate of consciousness, rather than the prefrontal cortex. This prediction contrasts with some theories that emphasize prefrontal involvement.
+
+\textbf{3.\ Feedforward networks are not conscious.} No matter how complex, a purely feedforward network (like a deep neural network processing an image in one pass) has $\Phi = 0$ because it can be trivially partitioned into independent layers. This is a striking prediction: a perfect brain simulation running on a feedforward architecture would not be conscious, even if it produces identical outputs.
+
+\textbf{4.\ Panpsychism.} IIT implies that any system with $\Phi > 0$ is conscious to some degree. This includes potentially very simple systems (e.g., a photodiode, a thermostat), though their $\Phi$ would be extremely small. This is a form of \textbf{panpsychism}, though Tononi prefers the term ``pan-experientialism.''
+
+\textbf{5.\ Consciousness during sleep and anesthesia.} IIT predicts that consciousness is reduced (lower $\Phi$) during dreamless sleep and general anesthesia, when cortical connectivity patterns become less integrated. During dreaming, $\Phi$ may remain relatively high, consistent with vivid dream experiences.
+
+\section{Empirical Tests: PCI and Beyond}
+
+Since computing $\Phi$ directly in the brain is currently intractable, researchers have developed \textbf{proxy measures}. The most successful is the \textbf{Perturbational Complexity Index (PCI)}, developed by Massimini and colleagues.
+
+PCI works by:
+\begin{enumerate}[leftmargin=2em]
+  \item Delivering a magnetic pulse to the cortex via Transcranial Magnetic Stimulation (TMS).
+  \item Recording the brain's electrical response via high-density EEG.
+  \item Measuring the ``complexity'' of the spatiotemporal response pattern using Lempel--Ziv complexity after source modeling and binarization.
+\end{enumerate}
+
+A response that is both \emph{integrated} (spreads across cortex) and \emph{differentiated} (has complex, non-repetitive patterns) yields high PCI. PCI has shown remarkable clinical utility: it can distinguish conscious from unconscious patients at the bedside, including patients with disorders of consciousness (vegetative state vs.\ minimally conscious state), with accuracy exceeding 90\% in several studies.
+
+More recently, the \textbf{Adversarial Collaboration} framework has pitted IIT directly against Global Workspace Theory (GWT) in carefully designed experiments (Melloni et al., 2021). Preliminary results from this ongoing collaboration are helping to identify the unique, distinguishing predictions of each theory.
+
+\section{Philosophical Implications}
+
+IIT has several profound philosophical implications:
+
+\begin{enumerate}[label=(\alph*), leftmargin=2em]
+  \item Consciousness is a \textbf{fundamental} property of certain physical systems, not an emergent one.
+  \item Consciousness is \textbf{graded}---it exists in degrees proportional to $\Phi$.
+  \item Two systems with identical $\Phi$-structures have \textbf{identical experiences}, regardless of their physical substrate (substrate independence).
+  \item The ``binding problem'' (how separate features are unified in one experience) is resolved by integration: binding \emph{is} the irreducibility of the cause--effect structure.
+  \item IIT takes a position close to \textbf{dual-aspect monism} or \textbf{property dualism}: physical and experiential are two aspects of the same underlying reality.
+\end{enumerate}
+
+\section{Common Critiques and Responses}
+
+\textbf{Critique 1: Computational intractability.} Computing $\Phi$ exactly is at least NP-hard, making it impossible for systems of realistic size.
+
+\emph{Response:} This is a practical limitation, not a theoretical one. Approximation methods and proxy measures (like PCI) can be used. The theory's value lies in its principled framework, not just in exact computation. Many physical theories involve quantities that are difficult to compute exactly (e.g., the partition function in statistical mechanics).
+
+\textbf{Critique 2: Panpsychism.} Many find it counterintuitive that a thermostat or a photodiode could be conscious, even minimally.
+
+\emph{Response:} IIT accepts this consequence and argues that our intuitions about consciousness are unreliable guides. A principled theory should follow its axioms to their logical conclusions. The ``consciousness'' of a thermostat would be unimaginably impoverished compared to human experience.
+
+\textbf{Critique 3: The unfolding argument (Scott Aaronson).} Aaronson showed that simple systems like a 2D grid of logic gates can have very high $\Phi$, seemingly attributing rich consciousness to ``stupid'' systems.
+
+\emph{Response:} Tononi and colleagues responded that such systems, while having high $\Phi$, would have very specific cause--effect structures (constellations) that need not correspond to rich, flexible consciousness. $\Phi$ measures the \emph{quantity} of consciousness; the constellation determines its \emph{quality}. A grid may have high $\Phi$ but an extremely repetitive, low-information constellation.
+
+\textbf{Critique 4: Unfalsifiability.} Some argue IIT cannot be falsified because its central quantity cannot be measured in real biological systems.
+
+\emph{Response:} IIT makes specific, testable predictions (posterior hot zone, cerebellum prediction, feedforward systems) that can be tested with proxy measures. The adversarial collaboration framework is an explicit attempt to design crucial experiments.
+
+
+% ══════════════════════════════════════════════════════════════
+\chapter{Further Reading and References}
+% ══════════════════════════════════════════════════════════════
+
+\section*{Core IIT Publications}
+\begin{enumerate}[label={[\arabic*]}, leftmargin=2.5em]
+  \item Tononi, G.\ (2004). An information integration theory of consciousness. \textit{BMC Neuroscience}, 5(42).
+  \item Tononi, G.\ (2008). Consciousness as integrated information: a provisional manifesto. \textit{Biological Bulletin}, 215(3), 216--242.
+  \item Oizumi, M., Albantakis, L., \& Tononi, G.\ (2014). From the phenomenology to the mechanisms of consciousness: Integrated Information Theory 3.0. \textit{PLoS Computational Biology}, 10(5), e1003588.
+  \item Albantakis, L., Barbosa, L., et al.\ (2023). Integrated Information Theory (IIT) 4.0: Formulating the properties of phenomenal existence in physical terms. \textit{PLoS Computational Biology}, 19(10), e1011465.
+  \item Tononi, G., Boly, M., Massimini, M., \& Koch, C.\ (2016). Integrated information theory: an updated account. \textit{Archives Italiennes de Biologie}, 154, 1--18.
+\end{enumerate}
+
+\section*{Mathematical and Computational Aspects}
+\begin{enumerate}[label={[\arabic*]}, leftmargin=2.5em, start=6]
+  \item Barrett, A.\ B., \& Seth, A.\ K.\ (2011). Practical measures of integrated information for time-series data. \textit{PLoS Computational Biology}, 7(1), e1001052.
+  \item Mayner, W.\ G.\ P., et al.\ (2018). PyPhi: A toolbox for integrated information theory. \textit{PLoS Computational Biology}, 14(7), e1006343.
+  \item Tegmark, M.\ (2016). Improved measures of integrated information. \textit{PLoS Computational Biology}, 12(11), e1005123.
+  \item Kitazono, J., et al.\ (2022). Efficient algorithms for searching the minimum information partition in integrated information theory. \textit{Entropy}, 20(3), 173.
+\end{enumerate}
+
+\section*{Empirical and Clinical Applications}
+\begin{enumerate}[label={[\arabic*]}, leftmargin=2.5em, start=10]
+  \item Casali, A.\ G., et al.\ (2013). A theoretically based index of consciousness independent of sensory processing and behavior. \textit{Science Translational Medicine}, 5(198), 198ra105.
+  \item Massimini, M., et al.\ (2005). Breakdown of cortical effective connectivity during sleep. \textit{Science}, 309(5744), 2228--2232.
+  \item Koch, C., Massimini, M., Boly, M., \& Tononi, G.\ (2016). Neural correlates of consciousness: progress and problems. \textit{Nature Reviews Neuroscience}, 17(5), 307--321.
+\end{enumerate}
+
+\section*{Critiques and Debates}
+\begin{enumerate}[label={[\arabic*]}, leftmargin=2.5em, start=13]
+  \item Aaronson, S.\ (2014). Why I am not an integrated information theorist. Blog post, \textit{Shtetl-Optimized}.
+  \item Cerullo, M.\ A.\ (2015). The problem with Phi: a critique of integrated information theory. \textit{Journal of Consciousness Studies}, 22(11--12), 36--53.
+  \item Melloni, L., et al.\ (2021). Making the hard problem of consciousness easier. \textit{Science}, 372(6545), 911--912.
+  \item Negro, N.\ (2020). Integrated Information Theory of Consciousness: a revised and updated account. \textit{Synthese}.
+\end{enumerate}
+
+\section*{Software and Tools}
+
+\textbf{PyPhi} --- The official Python library for computing integrated information.\\
+Repository: \url{https://github.com/wmayner/pyphi}\\
+Documentation: \url{https://pyphi.readthedocs.io/}
+
+\textbf{IIT Website} --- Tononi's lab maintains a resource site at: \url{https://iit.wisc.edu/}
+
+\vfill
+\begin{center}
+  {\color{gray}\rule{0.4\textwidth}{0.5pt}}\\[8pt]
+  {\small\color{gray}\itshape End of Document}
+\end{center}
+
+\end{document}

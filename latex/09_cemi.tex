@@ -1,0 +1,787 @@
+\documentclass[11pt,a4paper]{report}
+
+% ─── Packages ───
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[margin=1in, top=1.2in, bottom=1.2in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{titletoc}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{cleveref}
+\usepackage{tikz}
+\usepackage{setspace}
+\usepackage{parskip}
+\usepackage{caption}
+\usepackage{etoolbox}
+\usepackage{array}
+\usepackage{multirow}
+
+\usetikzlibrary{arrows.meta, positioning, shapes.geometric, calc, decorations.pathmorphing, fit, backgrounds, chains, patterns}
+\tcbuselibrary{skins,breakable,theorems}
+
+% ─── Colors ───
+\definecolor{darkelectric}{HTML}{0a1929}
+\definecolor{accentcyan}{HTML}{00e5ff}
+\definecolor{deepblue}{HTML}{0d47a1}
+\definecolor{softgold}{HTML}{c8a951}
+\definecolor{darkbg}{HTML}{060e1a}
+\definecolor{sectionblue}{HTML}{1a3a5c}
+\definecolor{subsecblue}{HTML}{2c5f8a}
+\definecolor{defcolor}{HTML}{1565c0}
+\definecolor{defbg}{HTML}{e3f2fd}
+\definecolor{principlecolor}{HTML}{0277bd}
+\definecolor{principlebg}{HTML}{e1f5fe}
+\definecolor{mechcolor}{HTML}{00695c}
+\definecolor{mechbg}{HTML}{e0f2f1}
+\definecolor{mathbg}{HTML}{f8f5ee}
+\definecolor{notepurple}{HTML}{7b1fa2}
+\definecolor{notebg}{HTML}{f3e5f5}
+\definecolor{lightgray}{HTML}{f0f0f0}
+\definecolor{darkgray}{HTML}{333333}
+\definecolor{predcolor}{HTML}{e65100}
+\definecolor{predbg}{HTML}{fff3e0}
+\definecolor{compcolor}{HTML}{4a148c}
+\definecolor{compbg}{HTML}{f3e5f5}
+\definecolor{fieldcolor}{HTML}{01579b}
+\definecolor{fieldbg}{HTML}{e1f5fe}
+\definecolor{objcolor}{HTML}{b71c1c}
+\definecolor{objbg}{HTML}{ffebee}
+\definecolor{evidcolor}{HTML}{1b5e20}
+\definecolor{evidbg}{HTML}{e8f5e9}
+
+% ─── Hyperref Setup ───
+\hypersetup{
+    colorlinks=true,
+    linkcolor=deepblue,
+    citecolor=deepblue,
+    urlcolor=deepblue,
+    bookmarks=true,
+    bookmarksnumbered=true,
+    pdfauthor={Comprehensive Guide},
+    pdftitle={Electromagnetic Field Theories of Consciousness (CEMI)},
+    pdfsubject={Consciousness, Electromagnetic Fields, Neural Synchrony, Field Integration},
+}
+
+% ─── Header/Footer ───
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\color{gray} EM Field Theories of Consciousness (CEMI)}
+\fancyhead[R]{\small\color{gray} Comprehensive Reading Material}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancypagestyle{plain}{\fancyhf{}\fancyfoot[C]{\thepage}\renewcommand{\headrulewidth}{0pt}}
+
+% ─── Chapter/Section Formatting ───
+\titleformat{\chapter}[display]
+  {\normalfont\huge\bfseries\color{deepblue}}
+  {\chaptertitlename\ \thechapter}{20pt}{\Huge}
+\titlespacing*{\chapter}{0pt}{-20pt}{30pt}
+\titleformat{\section}{\normalfont\Large\bfseries\color{sectionblue}}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalfont\large\bfseries\color{subsecblue}}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}{\normalfont\normalsize\bfseries\color{darkgray}}{\thesubsubsection}{1em}{}
+
+% ─── Tcolorbox environments ───
+\newtcolorbox{principlebox}[1][]{enhanced, breakable, colback=principlebg, colframe=principlecolor, coltitle=white, fonttitle=\bfseries, title=#1, left=8pt, right=8pt, top=6pt, bottom=6pt, boxrule=0.5pt, arc=3pt, borderline west={3pt}{0pt}{principlecolor}, before skip=10pt, after skip=10pt}
+\newtcolorbox{mechbox}[1][]{enhanced, breakable, colback=mechbg, colframe=mechcolor, coltitle=white, fonttitle=\bfseries, title=#1, left=8pt, right=8pt, top=6pt, bottom=6pt, boxrule=0.5pt, arc=3pt, borderline west={3pt}{0pt}{mechcolor}, before skip=10pt, after skip=10pt}
+\newtcolorbox{definitionbox}[1][]{enhanced, breakable, colback=defbg, colframe=defcolor, coltitle=white, fonttitle=\bfseries, title=#1, left=8pt, right=8pt, top=6pt, bottom=6pt, boxrule=0.5pt, arc=3pt, borderline west={3pt}{0pt}{defcolor}, before skip=10pt, after skip=10pt}
+\newtcolorbox{mathbox}{enhanced, colback=mathbg, colframe=mathbg!70!black, left=8pt, right=8pt, top=6pt, bottom=6pt, boxrule=0.3pt, arc=2pt, before skip=8pt, after skip=8pt}
+\newtcolorbox{notebox}[1][Note]{enhanced, breakable, colback=notebg, colframe=notepurple, coltitle=white, fonttitle=\bfseries, title=#1, left=8pt, right=8pt, top=6pt, bottom=6pt, boxrule=0.5pt, arc=3pt, borderline west={3pt}{0pt}{notepurple}, before skip=10pt, after skip=10pt}
+\newtcolorbox{predbox}[1][]{enhanced, breakable, colback=predbg, colframe=predcolor, coltitle=white, fonttitle=\bfseries, title=#1, left=8pt, right=8pt, top=6pt, bottom=6pt, boxrule=0.5pt, arc=3pt, borderline west={3pt}{0pt}{predcolor}, before skip=10pt, after skip=10pt}
+\newtcolorbox{compbox}[1][]{enhanced, breakable, colback=compbg, colframe=compcolor, coltitle=white, fonttitle=\bfseries, title=#1, left=8pt, right=8pt, top=6pt, bottom=6pt, boxrule=0.5pt, arc=3pt, borderline west={3pt}{0pt}{compcolor}, before skip=10pt, after skip=10pt}
+\newtcolorbox{fieldbox}[1][]{enhanced, breakable, colback=fieldbg, colframe=fieldcolor, coltitle=white, fonttitle=\bfseries, title=#1, left=8pt, right=8pt, top=6pt, bottom=6pt, boxrule=0.5pt, arc=3pt, borderline west={3pt}{0pt}{fieldcolor}, before skip=10pt, after skip=10pt}
+\newtcolorbox{objbox}[1][]{enhanced, breakable, colback=objbg, colframe=objcolor, coltitle=white, fonttitle=\bfseries, title=#1, left=8pt, right=8pt, top=6pt, bottom=6pt, boxrule=0.5pt, arc=3pt, borderline west={3pt}{0pt}{objcolor}, before skip=10pt, after skip=10pt}
+\newtcolorbox{evidbox}[1][]{enhanced, breakable, colback=evidbg, colframe=evidcolor, coltitle=white, fonttitle=\bfseries, title=#1, left=8pt, right=8pt, top=6pt, bottom=6pt, boxrule=0.5pt, arc=3pt, borderline west={3pt}{0pt}{evidcolor}, before skip=10pt, after skip=10pt}
+\newtcolorbox{examplebox}[1][Example]{enhanced, breakable, colback=lightgray, colframe=deepblue!60, coltitle=white, fonttitle=\bfseries, title=#1, left=8pt, right=8pt, top=6pt, bottom=6pt, boxrule=0.5pt, arc=3pt, before skip=10pt, after skip=10pt}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+
+% ══════════════════════════════════════════════════════════════
+\begin{document}
+
+% ─── COVER PAGE ───
+\begin{titlepage}
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[darkbg] (current page.south west) rectangle (current page.north east);
+  \fill[accentcyan] ([yshift=-11cm]current page.north west) rectangle ([yshift=-10.85cm]current page.north east);
+  % Decorative: electromagnetic field lines
+  \foreach \y in {-12.5,-13.5,-14.5,-15.5,-16.5} {
+    \draw[accentcyan, opacity=0.06, line width=0.4pt, decorate, decoration={snake, amplitude=1.5pt, segment length=10pt}] (2.5, \y) -- (9.5, \y);
+  }
+  % Concentric wavefronts
+  \foreach \r/\op in {1.0/0.08, 1.8/0.06, 2.6/0.04, 3.4/0.03} {
+    \draw[accentcyan, opacity=\op, line width=0.4pt] (6, -14.5) circle (\r);
+  }
+  % Central neuron dot
+  \fill[accentcyan, opacity=0.10] (6, -14.5) circle (0.12);
+  \node[text=accentcyan, opacity=0.04, scale=14] at ([yshift=-3.5cm, xshift=5cm]current page.center) {\textbf{EM}};
+\end{tikzpicture}
+
+\vspace*{4cm}
+\begin{center}
+  {\fontsize{30}{38}\selectfont\bfseries\color{white} Electromagnetic Field\\[8pt] Theories of Consciousness}\\[24pt]
+  {\Large\color{gray!70} A Comprehensive Mathematical \& Conceptual Guide}\\[20pt]
+  {\color{accentcyan}\rule{6cm}{1pt}}\\[20pt]
+  {\large\color{gray!60} The CEMI Field Theory, Conscious Electromagnetic\\[4pt] Information, and the Brain's Endogenous EM Field}\\[40pt]
+  {\color{softgold}\large McFadden $\bullet$ Pockett $\bullet$ Jones $\bullet$ Fingelkurts $\bullet$ John}\\[8pt]
+  {\color{gray!50}\normalsize Maxwell's Equations $\bullet$ LFP $\bullet$ EEG $\bullet$ Ephaptic Coupling $\bullet$ Field Integration}\\[60pt]
+  {\color{gray!40}\small Comprehensive Study Material \quad$\vert$\quad February 2026}
+\end{center}
+\end{titlepage}
+
+% ─── TABLE OF CONTENTS ───
+\tableofcontents
+\thispagestyle{plain}
+\newpage
+
+
+% ══════════════════════════════════════════════════════════════
+\chapter{Introduction to EM Field Theories}
+% ══════════════════════════════════════════════════════════════
+
+\section{The Central Idea}
+
+Electromagnetic (EM) field theories of consciousness propose that subjective awareness is not a property of neural firing patterns \emph{per se} but of the \textbf{electromagnetic field} generated by those firing patterns. The brain's endogenous EM field---produced by the collective electrical activity of billions of neurons---integrates information from across the brain into a single, unified field, and \emph{this field} is what we experience as consciousness.
+
+\begin{definitionbox}[Core Claim of EM Field Theories]
+\textbf{Consciousness is identical to} (or generated by) \textbf{certain spatiotemporal patterns in the brain's endogenous electromagnetic field.} The EM field provides a natural solution to the \textbf{binding problem}: it is a single, unified, spatially continuous entity that integrates information from millions of neurons simultaneously. Neural firing generates the field; the field \emph{is} (or encodes) the conscious experience.
+\end{definitionbox}
+
+\section{The Binding Problem}
+
+EM field theories are motivated centrally by the \textbf{binding problem}:
+
+\begin{definitionbox}[The Binding Problem]
+Conscious experience is \textbf{unified}: we see a single visual scene with color, shape, motion, and depth bound together into coherent objects. But the brain processes these features in separate, anatomically distinct regions (V4 for color, V5/MT for motion, etc.). How are these separately processed features combined into a single, unified experience?
+
+Standard neural theories invoke synchrony (temporal binding via gamma oscillations) but face the question: synchrony between neurons is still a property of \emph{discrete, separate} neurons. What provides the \emph{physical unity} of conscious experience?
+\end{definitionbox}
+
+The EM field provides a natural answer: it is a single, continuous physical entity that exists in the same space as all the contributing neurons. When neurons fire synchronously, their individual EM contributions superpose into a single, integrated field pattern. This field pattern is the physical basis of the unified conscious experience.
+
+\section{Historical Context}
+
+\begin{itemize}[leftmargin=1.5em]
+  \item \textbf{Hans Berger (1929):} Discovered the electroencephalogram (EEG), showing that the brain generates detectable electrical fields. Berger himself speculated that brain electrical activity might be related to consciousness.
+  \item \textbf{Wilder Penfield (1950s):} Electrical stimulation of cortex produced specific conscious experiences (memories, sensations), suggesting a direct link between electrical activity and consciousness.
+  \item \textbf{E.\ Roy John (2001):} Proposed that consciousness resides in the EM field rather than in discrete neural circuits.
+  \item \textbf{Susan Pockett (2000):} Published \textit{The Nature of Consciousness: A Hypothesis}, arguing that consciousness \emph{is} the brain's EM field.
+  \item \textbf{Johnjoe McFadden (2002a, 2002b, 2020):} Developed the \textbf{CEMI} (Conscious ElectroMagnetic Information) field theory, the most detailed and influential version.
+  \item \textbf{Andrew and Alexander Fingelkurts (2001--):} Developed the operational architectonics framework linking EM field patterns to conscious states.
+\end{itemize}
+
+\section{Key Proponents and Variants}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{>{\raggedright}p{3cm} >{\raggedright}p{4cm} >{\raggedright\arraybackslash}p{6cm}}
+  \toprule
+  \textbf{Proponent} & \textbf{Theory Name} & \textbf{Key Claim} \\
+  \midrule
+  McFadden & CEMI field theory & Consciousness = EM information that is downloaded to motor neurons \\
+  Pockett & EM field consciousness & Consciousness \emph{is} spatial EM field patterns \\
+  E.\ Roy John & EM field resonance & Consciousness is a resonant EM field \\
+  Jones & EM field binding & EM field binds disparate neural processes \\
+  Fingelkurts & Operational architectonics & EM field operational modules form consciousness \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+
+% ══════════════════════════════════════════════════════════════
+\chapter{Electrophysics Prerequisites}
+% ══════════════════════════════════════════════════════════════
+
+\section{Maxwell's Equations}
+
+The EM field is governed by \textbf{Maxwell's equations}. In their differential form:
+
+\begin{mathbox}
+\vspace{-6pt}
+\begin{align}
+  \nabla \cdot \mathbf{E} &= \frac{\rho}{\varepsilon_0} \quad &&\text{(Gauss's law: charges create electric fields)} \label{eq:gauss}\\[4pt]
+  \nabla \cdot \mathbf{B} &= 0 \quad &&\text{(No magnetic monopoles)} \label{eq:gauss_b}\\[4pt]
+  \nabla \times \mathbf{E} &= -\frac{\partial \mathbf{B}}{\partial t} \quad &&\text{(Faraday's law: changing } \mathbf{B} \text{ induces } \mathbf{E}\text{)} \label{eq:faraday}\\[4pt]
+  \nabla \times \mathbf{B} &= \mu_0 \mathbf{J} + \mu_0 \varepsilon_0 \frac{\partial \mathbf{E}}{\partial t} \quad &&\text{(Amp\`ere--Maxwell law)} \label{eq:ampere}
+\end{align}
+where $\mathbf{E}$ is the electric field, $\mathbf{B}$ is the magnetic field, $\rho$ is charge density, $\mathbf{J}$ is current density, $\varepsilon_0$ is the permittivity of free space, and $\mu_0$ is the permeability of free space.
+\vspace{-4pt}
+\end{mathbox}
+
+In the brain, the relevant sources are the \textbf{ionic currents} flowing through neuronal membranes. Each neuron, when it fires an action potential or generates postsynaptic potentials, creates local currents ($\mathbf{J}$) and charge distributions ($\rho$) that produce electric and magnetic fields.
+
+\section{Neural Sources of the EM Field}
+
+\subsection{The Extracellular Electric Field}
+
+The brain's EM field arises primarily from two sources:
+
+\begin{mechbox}[Neural Sources of the Brain's EM Field]
+\begin{enumerate}[leftmargin=1.5em]
+  \item \textbf{Postsynaptic potentials (PSPs):} When a neuron receives synaptic input, ions flow through ligand-gated channels, creating transmembrane currents. These currents produce \textbf{local field potentials} (LFPs)---extracellular electric fields measurable with microelectrodes. Because PSPs are relatively slow ($\sim$10--100 ms) and spatially extended (along dendrites), they produce strong, sustained fields.
+  \item \textbf{Action potentials (APs):} Rapid ($\sim$1 ms), large-amplitude voltage changes that propagate along axons. APs produce brief, strong local fields but are less effective at generating the large-scale field because their brevity causes cancellation.
+  \item \textbf{Dendritic currents:} Current flow along dendrites (from synapses to soma) creates electric dipoles. Cortical pyramidal neurons, with their long, parallel dendrites oriented perpendicular to the cortical surface, are particularly effective at generating detectable fields.
+\end{enumerate}
+\end{mechbox}
+
+\subsection{The Electric Dipole Model}
+
+A single neuron can be modeled as a \textbf{current dipole}:
+
+\begin{mathbox}
+\vspace{-6pt}
+The electric field of a current dipole $\mathbf{p}$ at distance $\mathbf{r}$ (in a homogeneous conductive medium with conductivity $\sigma$):
+\[
+  \mathbf{E}(\mathbf{r}) = \frac{1}{4\pi\sigma} \left[\frac{3(\mathbf{p} \cdot \hat{\mathbf{r}})\hat{\mathbf{r}} - \mathbf{p}}{|\mathbf{r}|^3}\right]
+\]
+For a population of $N$ synchronously active neurons, the dipoles superpose:
+\[
+  \mathbf{E}_{\text{total}}(\mathbf{r}) = \sum_{i=1}^{N} \mathbf{E}_i(\mathbf{r}) = \frac{1}{4\pi\sigma}\sum_{i=1}^{N} \frac{3(\mathbf{p}_i \cdot \hat{\mathbf{r}}_i)\hat{\mathbf{r}}_i - \mathbf{p}_i}{|\mathbf{r}_i|^3}
+\]
+When dipoles are aligned (as in cortical pyramidal neurons) and synchronous, their fields \textbf{constructively superpose}, producing a strong macroscopic field. This is why EEG detects cortical activity: the aligned pyramidal cells produce a coherent field.
+\vspace{-4pt}
+\end{mathbox}
+
+\subsection{Field Magnitudes in the Brain}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{>{\raggedright}p{4cm} >{\raggedright}p{3cm} >{\raggedright\arraybackslash}p{5.5cm}}
+  \toprule
+  \textbf{Measurement} & \textbf{Magnitude} & \textbf{Source} \\
+  \midrule
+  Intracellular potential & $\sim$70 mV & Resting membrane potential \\
+  Action potential & $\sim$100 mV & Voltage-gated ion channels \\
+  Local field potential (LFP) & $\sim$0.1--5 mV & Postsynaptic currents in local population \\
+  EEG at scalp & $\sim$10--100 $\mu$V & Summation across $\sim$10$^4$--$10^5$ neurons \\
+  Endogenous electric field (cortex) & $\sim$1--10 mV/mm & Transmembrane and extracellular currents \\
+  Endogenous magnetic field & $\sim$10--1000 fT & Intracellular currents (MEG) \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+The endogenous field of $\sim$1--10 mV/mm is the key quantity for CEMI: this is the EM field that the theory identifies with consciousness.
+
+\section{Ephaptic Coupling}
+
+A crucial mechanism for EM field theories is \textbf{ephaptic coupling}---the influence of the extracellular electric field on neighboring neurons:
+
+\begin{definitionbox}[Ephaptic Coupling]
+\textbf{Ephaptic coupling} is the direct influence of one neuron's extracellular electric field on the membrane potential of adjacent neurons, \emph{without} a synapse. The field acts as a ``volume conductor'' signal that modulates the excitability of nearby neurons:
+\begin{itemize}[leftmargin=1.5em]
+  \item A depolarizing extracellular field lowers the threshold for firing.
+  \item A hyperpolarizing field raises the threshold.
+\end{itemize}
+This means the EM field is not merely an epiphenomenon of neural activity---it can \textbf{causally influence} neural firing, creating a feedback loop: neurons $\to$ EM field $\to$ neurons.
+\end{definitionbox}
+
+\begin{mathbox}
+\vspace{-6pt}
+The effect of an extracellular field $E_{\text{ext}}$ on a neuron's membrane potential $V_m$:
+\[
+  \Delta V_m \approx -\lambda \cdot E_{\text{ext}} \cdot \cos\theta
+\]
+where $\lambda$ is the electrotonic length constant of the dendrite ($\sim$0.1--1 mm), $E_{\text{ext}}$ is the extracellular field strength (mV/mm), and $\theta$ is the angle between the field and the dendritic axis. For typical cortical fields ($\sim$1--5 mV/mm) and pyramidal neuron dendrites ($\lambda \sim 0.5$ mm):
+\[
+  \Delta V_m \sim 0.5\text{--}2.5\;\text{mV}
+\]
+This is small compared to the $\sim$20 mV threshold for an action potential, but it is sufficient to modulate the timing and probability of firing in neurons that are near threshold. For a neuron receiving many small inputs and fluctuating near threshold (as in the high-conductance state in vivo), a 1--2 mV shift can have a significant effect on spike timing.
+\vspace{-4pt}
+\end{mathbox}
+
+
+% ══════════════════════════════════════════════════════════════
+\chapter{McFadden's CEMI Field Theory}
+% ══════════════════════════════════════════════════════════════
+
+\section{Overview}
+
+\textbf{Johnjoe McFadden} (University of Surrey) developed the CEMI (\textbf{C}onscious \textbf{E}lectro\textbf{M}agnetic \textbf{I}nformation) field theory in a series of papers (2002a, 2002b, 2013, 2020). It is the most fully developed EM field theory of consciousness.
+
+\begin{principlebox}[The CEMI Field Theory]
+\begin{enumerate}[leftmargin=1.5em]
+  \item Every firing neuron generates an EM field. The brain's \textbf{endogenous EM field} is the superposition of all individual neural EM contributions.
+  \item This EM field encodes \textbf{information} about the patterns of neural firing that generated it---specifically, information about the \emph{spatiotemporal pattern} of neural activity across the brain.
+  \item The EM field is a single, unified, spatially continuous physical entity. It naturally \textbf{integrates} information from millions of neurons into one structure, solving the binding problem.
+  \item \textbf{Conscious information} is the subset of neural information that is encoded in the EM field in a way that can influence motor output. Specifically, consciousness corresponds to the EM field information that is ``downloaded'' back into neurons (via ephaptic coupling) and thereby influences behavior.
+  \item The EM field is not epiphenomenal: it causally influences neural activity through ephaptic coupling, creating a \textbf{feedback loop} between neurons and their collective field.
+\end{enumerate}
+\end{principlebox}
+
+\section{The Distinction: EM-Information vs.\ Neuronal Information}
+
+CEMI makes a critical distinction between two kinds of information in the brain:
+
+\begin{fieldbox}[Two Information Channels]
+\begin{enumerate}[leftmargin=1.5em]
+  \item \textbf{Neuronal (wired) information:} Carried by action potentials along axons and across synapses. This is the information processed by conventional neural computation. It is \textbf{serial} (travels along specific pathways) and \textbf{private} (confined to synaptic connections between specific neurons).
+  \item \textbf{EM field (wireless) information:} Carried by the endogenous EM field. This information is the superposition of all neural contributions and is \textbf{global} (fills the extracellular space), \textbf{unified} (a single field), and \textbf{integrated} (simultaneously reflects the activity of millions of neurons).
+\end{enumerate}
+CEMI's key claim: \textbf{only EM field information is conscious}. Neuronal information that does \emph{not} contribute to the EM field (e.g., because neurons fire asynchronously and their fields cancel) is unconscious.
+\end{fieldbox}
+
+This leads to a crucial prediction:
+
+\begin{predbox}[Synchrony $\to$ Consciousness]
+\textbf{Synchronous} neural firing produces coherent EM field contributions that constructively superpose, generating strong EM field information $\to$ \textbf{conscious}.
+
+\textbf{Asynchronous} neural firing produces incoherent EM field contributions that destructively cancel, generating weak or no EM field information $\to$ \textbf{unconscious}.
+
+This aligns with the empirical observation that neural synchrony (particularly gamma-band synchrony) correlates with conscious perception, while desynchronized activity is associated with unconsciousness.
+\end{predbox}
+
+\section{The Information Content of the EM Field}
+
+\subsection{Superposition as Integration}
+
+The EM field naturally integrates information through \textbf{linear superposition}:
+
+\begin{mathbox}
+\vspace{-6pt}
+If neuron $i$ generates electric field $\mathbf{E}_i(\mathbf{r}, t)$, the total field is:
+\[
+  \mathbf{E}_{\text{total}}(\mathbf{r}, t) = \sum_{i=1}^{N} \mathbf{E}_i(\mathbf{r}, t)
+\]
+At any point $\mathbf{r}$, the field $\mathbf{E}_{\text{total}}(\mathbf{r}, t)$ encodes information about the activity of \emph{all} neurons that contribute to the field at that point. The field is a natural ``common workspace'' where information from different neural populations is combined.
+\vspace{-4pt}
+\end{mathbox}
+
+McFadden argues this is a physical realization of IIT's integration: the EM field intrinsically integrates information because it is a single, continuous entity whose state at any point depends on the activity of many neurons.
+
+\subsection{Information-Theoretic Characterization}
+
+The information content of the EM field can be quantified:
+
+\begin{mathbox}
+\vspace{-6pt}
+\textbf{Field entropy:}
+\[
+  H[\mathbf{E}] = -\int p(\mathbf{E})\, \ln p(\mathbf{E})\, d\mathbf{E}
+\]
+where $p(\mathbf{E})$ is the probability distribution over field configurations.
+
+\textbf{Mutual information between field and neural state:}
+\[
+  I(\mathbf{E}; \mathbf{S}) = H[\mathbf{E}] - H[\mathbf{E} \mid \mathbf{S}]
+\]
+where $\mathbf{S}$ is the state of the neural population. High $I(\mathbf{E}; \mathbf{S})$ means the EM field carries much information about neural activity. Synchronous activity maximizes $I(\mathbf{E}; \mathbf{S})$ because it produces a strong, structured field.
+
+\textbf{Integrated field information:}
+\[
+  \Phi_{\text{EM}} = I(\mathbf{E}_{\text{total}}; \mathbf{S}) - \sum_k I(\mathbf{E}_k; \mathbf{S}_k)
+\]
+where $\mathbf{E}_k$ and $\mathbf{S}_k$ are the field and neural state of partition $k$. This measures the \emph{additional} information in the integrated field beyond what is in the separate parts---analogous to IIT's $\Phi$.
+\vspace{-4pt}
+\end{mathbox}
+
+\section{The Download Mechanism}
+
+A distinctive feature of CEMI is the ``download'' concept:
+
+\begin{principlebox}[The Download Principle]
+Consciousness is not \emph{all} EM field information. It is specifically the EM field information that is \textbf{downloaded} back into neural activity via ephaptic coupling and thereby influences behavior. This creates a causal loop:
+\[
+  \text{Neurons} \xrightarrow{\text{generate}} \text{EM field} \xrightarrow{\text{ephaptic coupling}} \text{Neurons} \xrightarrow{\text{motor output}} \text{Behavior}
+\]
+Only the field information that completes this loop---that ``makes a difference'' to motor output---is conscious. Field information that exists but doesn't influence downstream processing is unconscious.
+\end{principlebox}
+
+This addresses a common objection (``Why should the EM field be conscious?'') by tying consciousness to a \emph{functional} role: the EM field is conscious because it participates in a causal loop that influences behavior and can be reported.
+
+\section{McFadden's 2020 Reformulation}
+
+In his 2020 paper, McFadden strengthened CEMI by connecting it explicitly to \textbf{integrated information}:
+
+\begin{fieldbox}[CEMI 2020: Key Updates]
+\begin{enumerate}[leftmargin=1.5em]
+  \item \textbf{EM field as integration substrate:} The EM field is the physical substrate of information integration. It provides a natural physical implementation of IIT's $\Phi$: the field inherently integrates information through superposition.
+  \item \textbf{Free will and volitional action:} The field's causal influence on neurons (via ephaptic coupling) provides a mechanism for ``top-down'' causation: the integrated field state drives behavior in ways that cannot be predicted from individual neural states alone.
+  \item \textbf{Connection to anesthesia:} General anesthetics disrupt neural synchrony, which disrupts the coherent EM field, which abolishes consciousness. The field theory predicts that desynchronizing agents should abolish consciousness (confirmed).
+  \item \textbf{Connection to oscillations:} Specific oscillatory states (gamma band, thalamocortical resonance) generate strong, coherent EM fields. The theory predicts these are the ``carrier waves'' of consciousness.
+\end{enumerate}
+\end{fieldbox}
+
+
+% ══════════════════════════════════════════════════════════════
+\chapter{Pockett's EM Field Hypothesis}
+% ══════════════════════════════════════════════════════════════
+
+\section{Overview}
+
+\textbf{Susan Pockett} (University of Auckland) independently proposed (2000, 2012) that consciousness \emph{is} spatial patterns in the brain's EM field---a more direct identity claim than McFadden's:
+
+\begin{principlebox}[Pockett's EM Field Identity]
+Consciousness is \textbf{identical to} certain spatiotemporal patterns of the electromagnetic field generated by the brain. Not ``correlated with,'' not ``caused by,'' but \emph{is}. Specific patterns of the field correspond to specific conscious experiences.
+\end{principlebox}
+
+\subsection{Key Differences from CEMI}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{>{\raggedright}p{3.5cm} >{\raggedright}p{5cm} >{\raggedright\arraybackslash}p{5cm}}
+  \toprule
+  & \textbf{McFadden (CEMI)} & \textbf{Pockett} \\
+  \midrule
+  Consciousness is\ldots & EM field information that is downloaded to motor neurons & Spatial EM field patterns (identity claim) \\
+  Causal role & Essential (download to neurons) & Not required (field itself \emph{is} experience) \\
+  Epiphenomenalism? & No (field causally affects neurons) & Possible (field may be causally inert as field) \\
+  Motor output & Required for consciousness & Not required \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+Pockett's version is more metaphysically radical: she makes a strict identity claim (the field \emph{is} consciousness). McFadden's version is more functionally oriented: consciousness is the field information that makes a causal difference.
+
+
+% ══════════════════════════════════════════════════════════════
+\chapter{Empirical Evidence}
+% ══════════════════════════════════════════════════════════════
+
+\section{Neural Synchrony and Consciousness}
+
+The strongest evidence for EM field theories comes from the established correlation between \textbf{neural synchrony} and consciousness:
+
+\begin{evidbox}[Synchrony--Consciousness Correlations]
+\begin{enumerate}[leftmargin=1.5em]
+  \item \textbf{Gamma oscillations ($\sim$30--100 Hz):} Consistently associated with conscious perception, attention, and binding across modalities. EM field theory explains this: gamma synchrony produces a strong, coherent EM field that carries integrated conscious information.
+  \item \textbf{Desynchronization under anesthesia:} General anesthetics disrupt long-range synchrony, particularly in the gamma and beta bands. The EM field collapses into an incoherent state $\to$ loss of consciousness.
+  \item \textbf{Phase-amplitude coupling:} Conscious states are associated with specific cross-frequency coupling patterns (e.g., gamma nested in theta). These produce complex but coherent EM field dynamics.
+  \item \textbf{The perturbational complexity index (PCI):} High PCI (a measure of the complexity and integration of the brain's response to a TMS pulse) correlates with consciousness. EM field theory: PCI measures the complexity and integration of the EM field response.
+\end{enumerate}
+\end{evidbox}
+
+\section{Ephaptic Effects: The Field Influences Neurons}
+
+Critical for CEMI's claim that the field is not epiphenomenal:
+
+\begin{evidbox}[Evidence for Functional Ephaptic Coupling]
+\begin{enumerate}[leftmargin=1.5em]
+  \item \textbf{Anastassiou et al.\ (2011):} Demonstrated that endogenous extracellular fields ($\sim$1--5 mV/mm) in cortex can entrain neural spiking in vitro. Applied fields matching endogenous field strengths shifted spike timing by several milliseconds.
+  \item \textbf{Fr\"ohlich \& McCormick (2010):} Showed that weak electric fields ($< 1$ mV/mm) can modulate ongoing cortical oscillations, synchronizing neural activity across populations.
+  \item \textbf{Radman et al.\ (2007):} Measured the sensitivity of cortical neurons to extracellular fields and found that fields as weak as 0.2--0.5 mV/mm could modulate firing probability.
+  \item \textbf{Transcranial electrical stimulation:} tDCS and tACS (which apply weak external fields) can modulate consciousness, perception, and cognition, demonstrating that exogenous fields affect neural processing.
+  \item \textbf{Chiang et al.\ (2019):} Demonstrated that endogenous EM fields in hippocampal slices can propagate neural activity at speeds consistent with field effects rather than synaptic transmission---suggesting that the field itself carries functional signals.
+\end{enumerate}
+\end{evidbox}
+
+\section{Endogenous Field Patterns and Conscious Content}
+
+Several studies have linked specific EM field patterns to specific conscious contents:
+
+\begin{itemize}[leftmargin=1.5em]
+  \item \textbf{Binocular rivalry:} The dominant percept (which is consciously seen) is associated with stronger gamma-band synchrony (and thus a stronger coherent EM field) than the suppressed percept.
+  \item \textbf{Visual masking:} Stimuli that reach consciousness produce stronger, more widespread LFP patterns than masked (unconscious) stimuli.
+  \item \textbf{Change blindness:} Detected changes produce stronger field perturbations than undetected changes.
+  \item \textbf{Working memory:} Items maintained in conscious awareness are associated with sustained, coherent field oscillations.
+\end{itemize}
+
+\section{The EEG, MEG, and LFP as Windows on the Conscious Field}
+
+If consciousness is the EM field, then EEG, MEG, and LFP recordings are \emph{direct measures of the substrate of consciousness}:
+
+\begin{fieldbox}[Measuring the Conscious Field]
+\begin{itemize}[leftmargin=1.5em]
+  \item \textbf{EEG:} Measures the electric field at the scalp. Dominated by the field from synchronous cortical pyramidal neurons. Low spatial resolution but direct access to the field.
+  \item \textbf{MEG:} Measures the magnetic field produced by intracellular currents. Complementary to EEG (sensitive to tangential sources). Higher spatial resolution.
+  \item \textbf{LFP:} Measures the electric field with intracranial electrodes. High spatial and temporal resolution. Closest to the actual ``conscious field.''
+  \item \textbf{ECoG:} Electrocorticography---LFP measured from the cortical surface. Rich in gamma-band information.
+\end{itemize}
+EM field theories predict that these signals are not merely \emph{correlates} of consciousness but are measurements of the \emph{physical substrate} of consciousness itself.
+\end{fieldbox}
+
+
+% ══════════════════════════════════════════════════════════════
+\chapter{Formal Models}
+% ══════════════════════════════════════════════════════════════
+
+\section{The Volume Conductor Model}
+
+The brain's EM field can be modeled using the \textbf{volume conductor} formalism:
+
+\begin{mathbox}
+\vspace{-6pt}
+For a set of current sources $\mathbf{J}_s(\mathbf{r}, t)$ (representing neural transmembrane currents) in a conductive medium with conductivity tensor $\boldsymbol{\sigma}(\mathbf{r})$, the electric potential $\phi(\mathbf{r}, t)$ satisfies:
+\[
+  \nabla \cdot \left[\boldsymbol{\sigma}(\mathbf{r})\, \nabla\phi(\mathbf{r}, t)\right] = \nabla \cdot \mathbf{J}_s(\mathbf{r}, t)
+\]
+The electric field is:
+\[
+  \mathbf{E}(\mathbf{r}, t) = -\nabla\phi(\mathbf{r}, t)
+\]
+For a homogeneous medium ($\boldsymbol{\sigma} = \sigma \mathbf{I}$), this simplifies to:
+\[
+  \sigma\, \nabla^2\phi = \nabla \cdot \mathbf{J}_s \quad\implies\quad \phi(\mathbf{r}, t) = \frac{1}{4\pi\sigma}\int \frac{\nabla' \cdot \mathbf{J}_s(\mathbf{r}', t)}{|\mathbf{r} - \mathbf{r}'|}\, d^3\mathbf{r}'
+\]
+This is the \textbf{forward problem}: given neural sources, compute the field.
+\vspace{-4pt}
+\end{mathbox}
+
+\section{Field Energy and Consciousness}
+
+McFadden suggests the \textbf{electromagnetic energy density} as a potential measure of the ``amount'' of consciousness:
+
+\begin{mathbox}
+\vspace{-6pt}
+\textbf{EM energy density:}
+\[
+  u(\mathbf{r}, t) = \frac{1}{2}\left(\varepsilon_0 |\mathbf{E}(\mathbf{r}, t)|^2 + \frac{1}{\mu_0}|\mathbf{B}(\mathbf{r}, t)|^2\right)
+\]
+\textbf{Total field energy:}
+\[
+  U(t) = \int_V u(\mathbf{r}, t)\, d^3\mathbf{r}
+\]
+In the brain, the electric field dominates (magnetic fields are extremely weak at the relevant frequencies), so:
+\[
+  U(t) \approx \frac{\varepsilon_0}{2} \int_V |\mathbf{E}(\mathbf{r}, t)|^2\, d^3\mathbf{r}
+\]
+The theory predicts that $U(t)$ (or related measures) should correlate with the ``level'' of consciousness.
+\vspace{-4pt}
+\end{mathbox}
+
+\section{Coherence and Synchrony Measures}
+
+The degree to which the EM field is ``integrated'' (and therefore conscious) depends on the coherence of neural activity:
+
+\begin{mathbox}
+\vspace{-6pt}
+\textbf{Phase-locking value (PLV)} between two field signals $x(t)$ and $y(t)$:
+\[
+  \text{PLV} = \left|\frac{1}{T}\sum_{t=1}^{T} e^{i[\phi_x(t) - \phi_y(t)]}\right|
+\]
+where $\phi_x(t)$ and $\phi_y(t)$ are the instantaneous phases (from Hilbert transform). PLV $= 1$ means perfect phase locking (fully coherent field); PLV $= 0$ means no phase relationship.
+
+\textbf{Spectral coherence:}
+\[
+  C_{xy}(f) = \frac{|S_{xy}(f)|^2}{S_{xx}(f)\, S_{yy}(f)}
+\]
+where $S_{xy}$ is the cross-spectral density. High coherence at consciousness-relevant frequencies (gamma, beta) indicates a strong, integrated EM field.
+
+EM field theories predict: $\text{consciousness level} \propto \int_{\text{gamma}} C_{xy}(f)\, df$ (integrated gamma coherence).
+\vspace{-4pt}
+\end{mathbox}
+
+\section{Neural Mass Models with Field Feedback}
+
+To model the neuron $\leftrightarrow$ field feedback loop, we can extend standard neural mass models:
+
+\begin{mathbox}
+\vspace{-6pt}
+\textbf{Standard neural mass model} (Jansen--Rit):
+\[
+  \ddot{V}_{\text{psp}} + 2a\,\dot{V}_{\text{psp}} + a^2 V_{\text{psp}} = a A\, S(V_{\text{in}})
+\]
+where $V_{\text{psp}}$ is the postsynaptic potential, $a$ is the synaptic rate constant, $A$ is the synaptic gain, and $S(\cdot)$ is a sigmoidal firing rate function.
+
+\textbf{With ephaptic field feedback:}
+\[
+  \ddot{V}_{\text{psp}} + 2a\,\dot{V}_{\text{psp}} + a^2 V_{\text{psp}} = a A\, S\!\left(V_{\text{in}} + \underbrace{\kappa\, E_{\text{ext}}(t)}_{\text{ephaptic coupling}}\right)
+\]
+where $\kappa$ is the ephaptic coupling coefficient and $E_{\text{ext}}(t) = \sum_j \alpha_j V_j(t)$ is the local extracellular field (weighted sum of contributions from neighboring populations).
+
+This creates a feedback loop that can:
+\begin{itemize}[leftmargin=1.5em]
+  \item Enhance synchrony (the field promotes phase alignment)
+  \item Produce emergent field-level dynamics not predictable from individual neurons
+  \item Provide a substrate for ``top-down'' field-mediated integration
+\end{itemize}
+\vspace{-4pt}
+\end{mathbox}
+
+
+% ══════════════════════════════════════════════════════════════
+\chapter{EM Field Theories vs.\ Other Theories}
+% ══════════════════════════════════════════════════════════════
+
+\section{CEMI vs.\ Global Workspace Theory}
+
+\begin{compbox}[Key Relationships: CEMI vs.\ GWT]
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{>{\raggedright}p{3cm} >{\raggedright}p{5.2cm} >{\raggedright\arraybackslash}p{4.8cm}}
+  \toprule
+  \textbf{Dimension} & \textbf{CEMI} & \textbf{GWT / GNWT} \\
+  \midrule
+  Consciousness is\ldots & EM field information & Globally broadcast information \\
+  Binding mechanism & EM field superposition & Global workspace ignition \\
+  Integration substrate & EM field (continuous) & Neural network (discrete) \\
+  Key neural feature & Synchrony (field coherence) & Ignition + broadcast \\
+  Compatibility & The EM field may \emph{be} the physical substrate of global broadcast \\
+  \bottomrule
+\end{tabular}
+\end{compbox}
+
+CEMI and GWT are potentially complementary: the ``global broadcast'' in GWT may be physically implemented by the coherent EM field. Synchronous neural ignition creates a strong, coherent field that reaches across the brain---this could be the physical mechanism of broadcast.
+
+\section{CEMI vs.\ IIT}
+
+\begin{compbox}[Key Relationships: CEMI vs.\ IIT]
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{>{\raggedright}p{3cm} >{\raggedright}p{5.2cm} >{\raggedright\arraybackslash}p{4.8cm}}
+  \toprule
+  \textbf{Dimension} & \textbf{CEMI} & \textbf{IIT} \\
+  \midrule
+  Integration mechanism & EM field superposition & Causal structure ($\Phi$) \\
+  Physical substrate & Continuous EM field & Discrete causal network \\
+  Panpsychism? & Possible (any EM field?) & Yes ($\Phi > 0$) \\
+  Overlap & $\Phi_{\text{EM}}$ may measure field integration \\
+  Key difference & Field is the substrate & Network is the substrate \\
+  \bottomrule
+\end{tabular}
+\end{compbox}
+
+McFadden (2020) argues that the EM field provides a natural physical implementation of IIT's integration: the field inherently integrates information through superposition, and $\Phi$ of the field may be computable.
+
+\section{CEMI vs.\ HOT, RPT, AST, PP}
+
+\begin{compbox}[CEMI vs.\ Other Theories]
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{>{\raggedright}p{3cm} >{\raggedright}p{5.2cm} >{\raggedright\arraybackslash}p{4.8cm}}
+  \toprule
+  \textbf{Dimension} & \textbf{CEMI} & \textbf{HOT / RPT / AST / PP} \\
+  \midrule
+  Level of description & Biophysical (field) & Computational / cognitive \\
+  Substrate & EM field & Neural circuits \\
+  Binding & Physical (superposition) & Functional (synchrony, recurrence) \\
+  Compatibility & CEMI provides the \emph{physical mechanism} for what other theories describe computationally \\
+  \bottomrule
+\end{tabular}
+\end{compbox}
+
+CEMI occupies a different level of description than most other theories. It is compatible with GWT, RPT, and PP as the physical implementation layer: recurrent processing (RPT) generates the coherent EM field; the EM field implements the global broadcast (GWT); predictive coding operates through field dynamics.
+
+\section{CEMI vs.\ Orch OR}
+
+\begin{compbox}[Key Differences: CEMI vs.\ Orch OR]
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{>{\raggedright}p{3cm} >{\raggedright}p{5.2cm} >{\raggedright\arraybackslash}p{4.8cm}}
+  \toprule
+  \textbf{Dimension} & \textbf{CEMI} & \textbf{Orch OR} \\
+  \midrule
+  Physics & Classical electromagnetism & Quantum mechanics + gravity \\
+  Substrate & EM field (macroscopic) & Microtubules (nanoscale) \\
+  Computability & Computable (classical field) & Non-computable (OR) \\
+  Testability & Directly measurable (EEG/MEG) & Extremely difficult to test \\
+  AI consciousness & Possible (with EM field) & Impossible (for classical AI) \\
+  \bottomrule
+\end{tabular}
+\end{compbox}
+
+
+% ══════════════════════════════════════════════════════════════
+\chapter{Criticisms and Open Questions}
+% ══════════════════════════════════════════════════════════════
+
+\section{Major Criticisms}
+
+\textbf{Critique 1: The EM field is too weak to matter.}
+
+\begin{objbox}[Objection: Ephaptic Effects Are Too Small]
+Endogenous brain EM fields ($\sim$1--5 mV/mm) produce membrane potential changes of only $\sim$0.5--2.5 mV. This is small compared to the $\sim$20 mV threshold for action potentials. How can such a weak effect be the substrate of consciousness?
+\end{objbox}
+
+\textbf{Response:} In vivo, neurons operate in a ``high-conductance state'' where they are constantly fluctuating near threshold. In this regime, a 1--2 mV shift can significantly alter spike probability and timing. Furthermore, the field affects \emph{millions} of neurons simultaneously, and the collective effect is much larger than the effect on any single neuron. Anastassiou et al.\ (2011) demonstrated that endogenous-strength fields can entrain neural spiking.
+
+\textbf{Critique 2: The Hard Problem persists.}
+
+\begin{objbox}[Objection: Why Should an EM Field Be Conscious?]
+Even if the EM field integrates information, why should it ``feel like'' anything? An EM field in a radio transmitter also integrates information but presumably isn't conscious. The theory replaces ``why should neural computation be conscious?'' with ``why should an EM field be conscious?''---the Hard Problem is merely relocated.
+\end{objbox}
+
+\textbf{Response:} McFadden acknowledges this and argues that CEMI addresses the ``easy problems'' (binding, integration, causal role) while the Hard Problem remains open for all theories. The EM field provides a \emph{better candidate} for the substrate of consciousness than discrete neural firing because it has the properties we associate with consciousness: unity, continuity, integration.
+
+\textbf{Critique 3: The field is epiphenomenal (or nearly so).}
+
+\begin{objbox}[Objection: Ephaptic Coupling Is Negligible In Vivo]
+While ephaptic effects exist in vitro, their significance in the intact brain (where synaptic transmission dominates) is debated. If the field doesn't causally matter, it's epiphenomenal.
+\end{objbox}
+
+\textbf{Response:} Recent evidence (Chiang et al., 2019; Anastassiou et al., 2011; Fr\"ohlich \& McCormick, 2010) increasingly supports functional ephaptic coupling. The field modulates timing, synchrony, and oscillatory coherence---subtle but important effects. McFadden's download principle specifically requires that the field influences motor output, making it non-epiphenomenal by design.
+
+\textbf{Critique 4: The theory is unfalsifiable.}
+
+\begin{objbox}[Objection: Any EM Field Pattern Could Be ``Conscious'']
+Without a precise specification of which EM field patterns correspond to consciousness, the theory cannot be falsified. What distinguishes a ``conscious'' field pattern from an ``unconscious'' one?
+\end{objbox}
+
+\textbf{Response:} CEMI makes specific predictions: consciousness corresponds to the \emph{coherent, synchronous} component of the field that is downloaded to motor neurons. Desynchronizing the field (e.g., with anesthetics or TMS) should abolish consciousness. Disrupting ephaptic coupling specifically (without disrupting synaptic transmission) should also affect consciousness. These are testable.
+
+\textbf{Critique 5: Scalp EEG/MEG may not reflect the ``conscious field.''}
+
+The EM field measured at the scalp (EEG) is heavily filtered by the skull and is dominated by large-scale, low-frequency activity. The ``conscious field'' may be a local, high-frequency phenomenon not well captured by scalp recordings.
+
+\textbf{Response:} Intracranial recordings (LFP, ECoG) provide much better access to the relevant field. EM field theories predict that the critical dynamics are in the local field, not necessarily the scalp-recorded signal.
+
+\section{Open Questions}
+
+\begin{enumerate}[leftmargin=2em]
+  \item \textbf{Which EM field patterns correspond to which conscious contents?} A ``field code''---a mapping from field patterns to conscious experiences---has not been established. This is the EM field analogue of the ``neural code.''
+  \item \textbf{How does the field support temporal structure?} Conscious experience has rich temporal structure (succession, duration, simultaneity). How is this encoded in the field dynamics?
+  \item \textbf{What is the spatial extent of the conscious field?} Is consciousness carried by the global brain field, or by local field regions? What determines the spatial boundary?
+  \item \textbf{Can the field theory account for the specific content of consciousness?} Can it explain why \emph{this} field pattern corresponds to ``seeing red'' rather than ``hearing C\#''?
+  \item \textbf{How does CEMI interact with synaptic plasticity?} If the field influences learning and memory (via ephaptic modulation of spike-timing-dependent plasticity), this could link consciousness to learning.
+  \item \textbf{Artificial consciousness:} Could an artificial system with the right EM field be conscious? What about a silicon chip designed to produce brain-like EM fields?
+  \item \textbf{Does the magnetic field matter?} CEMI focuses on the electric field; the magnetic component is typically ignored as too weak. But recent work on magnetoreception suggests biological sensitivity to magnetic fields.
+\end{enumerate}
+
+
+% ══════════════════════════════════════════════════════════════
+\chapter{Further Reading and References}
+% ══════════════════════════════════════════════════════════════
+
+\section*{Core EM Field Theory Publications}
+\begin{enumerate}[label={[\arabic*]}, leftmargin=2.5em]
+  \item McFadden, J.\ (2002a). Synchronous firing and its influence on the brain's electromagnetic field: evidence for an electromagnetic field theory of consciousness. \textit{Journal of Consciousness Studies}, 9(4), 23--50.
+  \item McFadden, J.\ (2002b). The conscious electromagnetic information (CEMI) field theory: the hard problem made easy? \textit{Journal of Consciousness Studies}, 9(8), 45--60.
+  \item McFadden, J.\ (2013). The CEMI field theory: closing the loop. \textit{Journal of Consciousness Studies}, 20(1--2), 153--168.
+  \item McFadden, J.\ (2020). Integrating information in the brain's EM field: the cemi field theory of consciousness. \textit{Neuroscience of Consciousness}, 2020(1), niaa016.
+  \item Pockett, S.\ (2000). \textit{The Nature of Consciousness: A Hypothesis}. iUniverse.
+  \item Pockett, S.\ (2012). The electromagnetic field theory of consciousness: a testable hypothesis about the characteristics of conscious as opposed to non-conscious fields. \textit{Journal of Consciousness Studies}, 19(11--12), 191--223.
+  \item John, E.\ R.\ (2001). A field theory of consciousness. \textit{Consciousness and Cognition}, 10(2), 184--213.
+\end{enumerate}
+
+\section*{Ephaptic Coupling and Field Effects}
+\begin{enumerate}[label={[\arabic*]}, leftmargin=2.5em, start=8]
+  \item Anastassiou, C.\ A., Perin, R., Markram, H., \& Koch, C.\ (2011). Ephaptic coupling of cortical neurons. \textit{Nature Neuroscience}, 14(2), 217--223.
+  \item Fr\"ohlich, F.\ \& McCormick, D.\ A.\ (2010). Endogenous electric fields may guide neocortical network activity. \textit{Neuron}, 67(1), 129--143.
+  \item Radman, T., Su, Y., An, J.\ H., Parra, L.\ C., \& Bhikoo, A.\ M.\ (2007). Spike timing amplifies the effect of electric fields on neurons. \textit{Journal of Neuroscience}, 27(11), 3030--3036.
+  \item Chiang, C.\ C., Shivacharan, R.\ S., Wei, X., Gonzalez-Reyes, L.\ E., \& Bhikoo, A.\ M.\ (2019). Slow periodic activity in the longitudinal hippocampal slice can self-propagate non-synaptically by a mechanism consistent with ephaptic coupling. \textit{Journal of Physiology}, 597(1), 249--269.
+\end{enumerate}
+
+\section*{Neural Field Theory and Computational Models}
+\begin{enumerate}[label={[\arabic*]}, leftmargin=2.5em, start=12]
+  \item N\'u\~nez, P.\ L.\ \& Srinivasan, R.\ (2006). \textit{Electric Fields of the Brain: The Neurophysics of EEG} (2nd ed.). Oxford University Press.
+  \item Jansen, B.\ H.\ \& Rit, V.\ G.\ (1995). Electroencephalogram and visual evoked potential generation in a mathematical model of coupled cortical columns. \textit{Biological Cybernetics}, 73(4), 357--366.
+  \item Buzsaki, G., Anastassiou, C.\ A., \& Koch, C.\ (2012). The origin of extracellular fields and currents---EEG, ECoG, LFP and spikes. \textit{Nature Reviews Neuroscience}, 13(6), 407--420.
+  \item Riera, J.\ J., et al.\ (2012). Pitfalls in the dipolar model for the neocortical EEG sources. \textit{Journal of Neurophysiology}, 108(4), 956--975.
+\end{enumerate}
+
+\section*{Neural Synchrony and Consciousness}
+\begin{enumerate}[label={[\arabic*]}, leftmargin=2.5em, start=16]
+  \item Engel, A.\ K., Fries, P., \& Singer, W.\ (2001). Dynamic predictions: oscillations and synchrony in top-down processing. \textit{Nature Reviews Neuroscience}, 2(10), 704--716.
+  \item Fries, P.\ (2005). A mechanism for cognitive dynamics: neuronal communication through neuronal coherence. \textit{Trends in Cognitive Sciences}, 9(10), 474--480.
+  \item Casali, A.\ G., et al.\ (2013). A theoretically based index of consciousness independent of sensory processing and behavior. \textit{Science Translational Medicine}, 5(198), 198ra105.
+  \item Mashour, G.\ A., Roelfsema, P., Changeux, J.-P., \& Dehaene, S.\ (2020). Conscious processing and the global neuronal workspace hypothesis. \textit{Neuron}, 105(5), 776--798.
+\end{enumerate}
+
+\section*{Theory Comparisons and Reviews}
+\begin{enumerate}[label={[\arabic*]}, leftmargin=2.5em, start=20]
+  \item Seth, A.\ K.\ \& Bayne, T.\ (2022). Theories of consciousness. \textit{Nature Reviews Neuroscience}, 23, 439--452.
+  \item Melloni, L., et al.\ (2021). Making the hard problem of consciousness easier. \textit{Science}, 372(6545), 911--912.
+  \item Fingelkurts, A.\ A.\ \& Fingelkurts, A.\ A.\ (2001). Operational architectonics of the human brain biopotential field: towards solving the mind-brain problem. \textit{Brain and Mind}, 2(3), 261--296.
+  \item Jones, M.\ W.\ (2017). Electromagnetic field theories of consciousness. In \textit{The Blackwell Companion to Consciousness}, S.\ Schneider \& M.\ Velmans (Eds.), Chapter 28.
+\end{enumerate}
+
+\vfill
+\begin{center}
+  {\color{gray}\rule{0.4\textwidth}{0.5pt}}\\[8pt]
+  {\small\color{gray}\itshape End of Document}
+\end{center}
+
+\end{document}

@@ -1,0 +1,571 @@
+\documentclass[11pt,a4paper]{report}
+
+% ─── Packages ───
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[margin=0.85in, top=1.1in, bottom=1.1in]{geometry}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usepackage{parskip}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{longtable}
+\usepackage{makecell}
+\usepackage{rotating}
+\usepackage{lscape}
+
+\usetikzlibrary{arrows.meta, positioning, shapes.geometric, calc, fit, backgrounds}
+\tcbuselibrary{skins,breakable,theorems}
+
+% ─── Colors ───
+\definecolor{darkbg}{HTML}{0a0a14}
+\definecolor{accentgold}{HTML}{ffd54f}
+\definecolor{deepindigo}{HTML}{1a237e}
+\definecolor{softgold}{HTML}{c8a951}
+\definecolor{sectionblue}{HTML}{283593}
+\definecolor{subsecblue}{HTML}{3f51b5}
+\definecolor{defcolor}{HTML}{1565c0}
+\definecolor{defbg}{HTML}{e3f2fd}
+\definecolor{synthcolor}{HTML}{2e7d32}
+\definecolor{synthbg}{HTML}{e8f5e9}
+\definecolor{divergecolor}{HTML}{c62828}
+\definecolor{divergebg}{HTML}{ffebee}
+\definecolor{convergecolor}{HTML}{00695c}
+\definecolor{convergebg}{HTML}{e0f2f1}
+\definecolor{futurecolor}{HTML}{e65100}
+\definecolor{futurebg}{HTML}{fff3e0}
+\definecolor{lightgray}{HTML}{f0f0f0}
+\definecolor{darkgray}{HTML}{333333}
+\definecolor{mathbg}{HTML}{f8f5ee}
+\definecolor{notepurple}{HTML}{6a1b9a}
+\definecolor{notebg}{HTML}{f3e5f5}
+\definecolor{evidcolor}{HTML}{1b5e20}
+\definecolor{evidbg}{HTML}{e8f5e9}
+\definecolor{iitcol}{HTML}{c62828}
+\definecolor{gwtcol}{HTML}{1565c0}
+\definecolor{rptcol}{HTML}{2e7d32}
+\definecolor{hotcol}{HTML}{e65100}
+\definecolor{astcol}{HTML}{6a1b9a}
+\definecolor{ppcol}{HTML}{00838f}
+\definecolor{orchcol}{HTML}{4a148c}
+\definecolor{pancol}{HTML}{4e342e}
+\definecolor{cemicol}{HTML}{0d47a1}
+
+% ─── Hyperref Setup ───
+\hypersetup{
+    colorlinks=true,
+    linkcolor=deepindigo,
+    citecolor=deepindigo,
+    urlcolor=sectionblue,
+    bookmarks=true,
+    bookmarksnumbered=true,
+    pdftitle={Master Comparison and Synthesis of Consciousness Theories},
+}
+
+% ─── Header/Footer ───
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\color{gray} Master Comparison \& Synthesis}
+\fancyhead[R]{\small\color{gray} Consciousness Theory Series}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancypagestyle{plain}{\fancyhf{}\fancyfoot[C]{\thepage}\renewcommand{\headrulewidth}{0pt}}
+
+% ─── Chapter/Section Formatting ───
+\titleformat{\chapter}[display]
+  {\normalfont\huge\bfseries\color{deepindigo}}
+  {\chaptertitlename\ \thechapter}{20pt}{\Huge}
+\titlespacing*{\chapter}{0pt}{-20pt}{30pt}
+\titleformat{\section}{\normalfont\Large\bfseries\color{sectionblue}}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalfont\large\bfseries\color{subsecblue}}{\thesubsection}{1em}{}
+
+% ─── Tcolorbox environments ───
+\newtcolorbox{synthbox}[1][]{enhanced, breakable, colback=synthbg, colframe=synthcolor, coltitle=white, fonttitle=\bfseries, title=#1, left=8pt, right=8pt, top=6pt, bottom=6pt, boxrule=0.5pt, arc=3pt, borderline west={3pt}{0pt}{synthcolor}, before skip=10pt, after skip=10pt}
+\newtcolorbox{divergebox}[1][]{enhanced, breakable, colback=divergebg, colframe=divergecolor, coltitle=white, fonttitle=\bfseries, title=#1, left=8pt, right=8pt, top=6pt, bottom=6pt, boxrule=0.5pt, arc=3pt, borderline west={3pt}{0pt}{divergecolor}, before skip=10pt, after skip=10pt}
+\newtcolorbox{convergebox}[1][]{enhanced, breakable, colback=convergebg, colframe=convergecolor, coltitle=white, fonttitle=\bfseries, title=#1, left=8pt, right=8pt, top=6pt, bottom=6pt, boxrule=0.5pt, arc=3pt, borderline west={3pt}{0pt}{convergecolor}, before skip=10pt, after skip=10pt}
+\newtcolorbox{futurebox}[1][]{enhanced, breakable, colback=futurebg, colframe=futurecolor, coltitle=white, fonttitle=\bfseries, title=#1, left=8pt, right=8pt, top=6pt, bottom=6pt, boxrule=0.5pt, arc=3pt, borderline west={3pt}{0pt}{futurecolor}, before skip=10pt, after skip=10pt}
+\newtcolorbox{definitionbox}[1][]{enhanced, breakable, colback=defbg, colframe=defcolor, coltitle=white, fonttitle=\bfseries, title=#1, left=8pt, right=8pt, top=6pt, bottom=6pt, boxrule=0.5pt, arc=3pt, borderline west={3pt}{0pt}{defcolor}, before skip=10pt, after skip=10pt}
+\newtcolorbox{notebox}[1][Note]{enhanced, breakable, colback=notebg, colframe=notepurple, coltitle=white, fonttitle=\bfseries, title=#1, left=8pt, right=8pt, top=6pt, bottom=6pt, boxrule=0.5pt, arc=3pt, borderline west={3pt}{0pt}{notepurple}, before skip=10pt, after skip=10pt}
+\newtcolorbox{evidbox}[1][]{enhanced, breakable, colback=evidbg, colframe=evidcolor, coltitle=white, fonttitle=\bfseries, title=#1, left=8pt, right=8pt, top=6pt, bottom=6pt, boxrule=0.5pt, arc=3pt, borderline west={3pt}{0pt}{evidcolor}, before skip=10pt, after skip=10pt}
+\newtcolorbox{mathbox}{enhanced, colback=mathbg, colframe=mathbg!70!black, left=8pt, right=8pt, top=6pt, bottom=6pt, boxrule=0.3pt, arc=2pt, before skip=8pt, after skip=8pt}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+
+% helper for small text in tables
+\newcommand{\ts}[1]{{\small #1}}
+
+% ══════════════════════════════════════════════════════════════
+\begin{document}
+
+% ─── COVER PAGE ───
+\begin{titlepage}
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[darkbg] (current page.south west) rectangle (current page.north east);
+  \fill[accentgold] ([yshift=-11cm]current page.north west) rectangle ([yshift=-10.85cm]current page.north east);
+  % 9 nodes for 9 theories, connected
+  \foreach \a/\label in {0/IIT,40/GWT,80/RPT,120/HOT,160/AST,200/PP,240/OR,280/Pan,320/EM} {
+    \fill[accentgold, opacity=0.08] ({6+2.5*cos(\a)}, {-14.5+2.5*sin(\a)}) circle (0.15);
+    \node[text=accentgold, opacity=0.06, font=\tiny] at ({6+3.0*cos(\a)}, {-14.5+3.0*sin(\a)}) {\label};
+  }
+  \foreach \a in {0,40,...,320} {
+    \foreach \b in {0,40,...,320} {
+      \draw[accentgold, opacity=0.02, line width=0.3pt] ({6+2.5*cos(\a)}, {-14.5+2.5*sin(\a)}) -- ({6+2.5*cos(\b)}, {-14.5+2.5*sin(\b)});
+    }
+  }
+  \fill[accentgold, opacity=0.06] (6, -14.5) circle (0.2);
+\end{tikzpicture}
+
+\vspace*{4cm}
+\begin{center}
+  {\fontsize{33}{41}\selectfont\bfseries\color{white} Master Comparison\\[8pt] \& Synthesis}\\[24pt]
+  {\Large\color{gray!70} Nine Theories of Consciousness in Dialogue}\\[20pt]
+  {\color{accentgold}\rule{6cm}{1pt}}\\[20pt]
+  {\large\color{gray!60} Convergences, Divergences, Empirical Evidence,\\[4pt] and the Road Ahead}\\[40pt]
+  {\color{softgold}\large Volume 10 of the Consciousness Theory Series}\\[8pt]
+  {\color{gray!50}\normalsize IIT $\bullet$ GWT $\bullet$ RPT $\bullet$ HOT $\bullet$ AST $\bullet$ PP $\bullet$ Orch OR $\bullet$ Panpsychism $\bullet$ CEMI}\\[60pt]
+  {\color{gray!40}\small Comprehensive Study Material \quad$\vert$\quad February 2026}
+\end{center}
+\end{titlepage}
+
+\tableofcontents
+\thispagestyle{plain}
+\newpage
+
+
+% ══════════════════════════════════════════════════════════════
+\chapter{One-Page Theory Summaries}
+% ══════════════════════════════════════════════════════════════
+
+\begin{center}
+\renewcommand{\arraystretch}{1.45}
+\small
+\begin{tabular}{>{\raggedright}p{1.6cm} >{\raggedright}p{2.4cm} >{\raggedright}p{4.2cm} >{\raggedright}p{2.3cm} >{\raggedright\arraybackslash}p{3cm}}
+  \toprule
+  \textbf{Theory} & \textbf{Proponents} & \textbf{Core Claim} & \textbf{Key Formalism} & \textbf{NCC Location} \\
+  \midrule
+  \textcolor{iitcol}{\textbf{IIT}} & Tononi, Koch & Consciousness \emph{is} integrated information ($\Phi$) & $\Phi$, cause-effect structure, EMD & Posterior cortex (hot zone) \\[4pt]
+  \textcolor{gwtcol}{\textbf{GWT}} & Baars, Dehaene, Changeux & Consciousness = global broadcast of information & Ignition dynamics, Wilson-Cowan & Prefrontal-parietal network \\[4pt]
+  \textcolor{rptcol}{\textbf{RPT}} & Lamme & Consciousness = recurrent processing in sensory cortex & Laminar circuit models & Sensory cortex (V1+) \\[4pt]
+  \textcolor{hotcol}{\textbf{HOT}} & Rosenthal, Lau, Brown & Consciousness = higher-order representation of first-order state & Signal detection ($d'$, meta-$d'$) & Prefrontal cortex \\[4pt]
+  \textcolor{astcol}{\textbf{AST}} & Graziano & Consciousness = brain's model of its own attention & Control theory, Kalman filter & TPJ, STS, mPFC \\[4pt]
+  \textcolor{ppcol}{\textbf{PP}} & Friston, Clark, Seth & Consciousness = best Bayesian guess (controlled hallucination) & Free energy, predictive coding & Hierarchical cortex \\[4pt]
+  \textcolor{orchcol}{\textbf{Orch OR}} & Penrose, Hameroff & Consciousness = quantum state reduction in microtubules & $\tau = \hbar/E_G$, OR & Microtubules (intraneuronal) \\[4pt]
+  \textcolor{pancol}{\textbf{Pan.}} & Goff, Strawson, Chalmers & Consciousness is fundamental to all matter & $\Phi > 0$ (via IIT), Russellian monism & Everywhere / cosmos \\[4pt]
+  \textcolor{cemicol}{\textbf{CEMI}} & McFadden, Pockett & Consciousness = brain's EM field & Maxwell's eqs., $\Phi_{\text{EM}}$ & EM field (global) \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+
+% ══════════════════════════════════════════════════════════════
+\chapter{The Master Comparison Tables}
+% ══════════════════════════════════════════════════════════════
+
+\section{Ontological Commitments}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.35}
+\small
+\begin{tabular}{>{\raggedright}p{1.4cm} >{\raggedright}p{2.2cm} >{\raggedright}p{2.5cm} >{\raggedright}p{2.2cm} >{\raggedright}p{2.0cm} >{\raggedright\arraybackslash}p{2.2cm}}
+  \toprule
+  \textbf{Theory} & \textbf{Metaphysics} & \textbf{Hard Problem} & \textbf{Qualia} & \textbf{Panpsychism?} & \textbf{Substrate Dep.?} \\
+  \midrule
+  IIT & Neutral monism & Addressed (identity) & Intrinsic to $\Phi$ & Yes ($\Phi > 0$) & Partially \\
+  GWT & Physicalism & Deferred & Functional & No & No \\
+  RPT & Physicalism & Deferred & Real (phenomenal) & No & Partially \\
+  HOT & Physicalism & Dissolved & Representational & No & No \\
+  AST & Physicalism & Dissolved (illusionist) & Illusory model & No & No \\
+  PP & Physicalism & ``Real problem'' & Model content & No (debated) & No \\
+  Orch OR & Proto-panpsychism & Addressed & In spacetime & Proto & Yes (quantum) \\
+  Pan. & Russellian monism & Dissolved & Fundamental & Yes (by def.) & Universal \\
+  CEMI & Physicalism & Relocated & Field patterns & No (debated) & Yes (EM field) \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\section{Neural Predictions}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.35}
+\small
+\begin{tabular}{>{\raggedright}p{1.4cm} >{\raggedright}p{2.3cm} >{\raggedright}p{2.0cm} >{\raggedright}p{2.3cm} >{\raggedright}p{2.0cm} >{\raggedright\arraybackslash}p{2.5cm}}
+  \toprule
+  \textbf{Theory} & \textbf{Key Brain Region} & \textbf{PFC Role} & \textbf{Key Signature} & \textbf{Attention Req.?} & \textbf{Phenomenal Overflow?} \\
+  \midrule
+  IIT & Posterior hot zone & Not required & Sustained posterior $\Phi$ & No & Yes \\
+  GWT & PFC-parietal & Essential & P3b, ignition, late ($>$300 ms) & Yes & No \\
+  RPT & Sensory cortex & Not required & Recurrent activity, VAN & No & Yes \\
+  HOT & PFC (dlPFC, vlPFC) & Essential & Late frontal activity & Not directly & No \\
+  AST & TPJ, STS, mPFC & Involved & Social cognition overlap & Indirectly & No \\
+  PP & Hierarchical cortex & Priors & Prediction error suppression & Via precision & Ambiguous \\
+  Orch OR & Microtubules & Irrelevant & Gamma ($\sim$40 Hz) & No & N/A \\
+  Pan. & All matter & N/A & N/A & N/A & N/A \\
+  CEMI & EM field (global) & Via field & Coherent gamma field & Via synchrony & Possible \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\section{Implications for AI, Animals, and Clinical States}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.35}
+\small
+\begin{tabular}{>{\raggedright}p{1.4cm} >{\raggedright}p{2.8cm} >{\raggedright}p{2.8cm} >{\raggedright}p{2.8cm} >{\raggedright\arraybackslash}p{2.8cm}}
+  \toprule
+  \textbf{Theory} & \textbf{AI Consciousness?} & \textbf{Animal Consciousness} & \textbf{Disorders (VS/MCS)} & \textbf{Anesthesia} \\
+  \midrule
+  IIT & Only if high $\Phi$ (unlikely for feedforward nets) & Graded by $\Phi$ & VS = low $\Phi$; MCS = intermediate & Disrupts integration \\
+  GWT & Yes (if has global workspace) & If has broadcast architecture & VS = no ignition; MCS = partial & Blocks broadcast \\
+  RPT & Yes (if has recurrence) & If has recurrent sensory processing & VS = no recurrence; MCS = partial & Blocks recurrence \\
+  HOT & Yes (if has higher-order reps) & Limited (needs meta-cognition) & VS = no HOR; MCS = degraded HOR & Blocks higher-order \\
+  AST & Yes (if models own attention) & If has attention schema & VS = no schema; MCS = degraded & Disrupts schema \\
+  PP & Yes (if has generative model) & Graded by model complexity & VS = no prediction; MCS = partial & Disrupts precision \\
+  Orch OR & No (classical AI cannot be conscious) & If has microtubule OR & VS = no OR; MCS = reduced OR & Disrupts tubulin \\
+  Pan. & Depends on variant & All organisms (graded) & All states have some $\Phi$ & Reduces $\Phi$ \\
+  CEMI & Only if has EM field feedback & If has coherent EM field & VS = incoherent field & Desynchronizes field \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+
+% ══════════════════════════════════════════════════════════════
+\chapter{Key Divergences}
+% ══════════════════════════════════════════════════════════════
+
+\section{The Front vs.\ Back Debate}
+
+The single most empirically tractable disagreement among theories:
+
+\begin{divergebox}[Front (PFC) vs.\ Back (Posterior Cortex)]
+\textbf{Front theories} (GWT, HOT, AST): Consciousness requires prefrontal cortex. The NCC includes frontal ignition, higher-order representations, or attention schemas in PFC.
+
+\textbf{Back theories} (IIT, RPT): Consciousness resides in posterior sensory cortex (the ``posterior hot zone''). PFC is involved in reporting and accessing conscious content but is not part of consciousness itself.
+
+\textbf{Empirical status:} The COGITATE adversarial collaboration (2023) found evidence for \emph{sustained posterior activity} (supporting IIT/RPT) but \emph{weaker evidence for prefrontal ignition} (challenging GWT). However, frontal involvement was not entirely absent. Neither camp won decisively.
+
+\textbf{Resolution possibility:} PFC may be required for \emph{access} consciousness (reporting, acting on) but not for \emph{phenomenal} consciousness (raw experience). If this distinction holds, both sides may be partially correct---but at different levels.
+\end{divergebox}
+
+\section{Phenomenal Overflow: Does it Exist?}
+
+\begin{divergebox}[Phenomenal Overflow]
+\textbf{Overflow theorists} (IIT, RPT): We experience more than we can report. Consciousness is richer than access---there is phenomenal experience of the entire visual field, even items we cannot report.
+
+\textbf{Anti-overflow theorists} (GWT, HOT): If you can't report it, you weren't conscious of it. Phenomenal consciousness without access consciousness is incoherent or undetectable.
+
+\textbf{Key experiments:} Sperling's partial report paradigm (1960) suggests subjects see the entire array but can only report a subset (supporting overflow). But critics argue this demonstrates iconic \emph{memory}, not phenomenal consciousness.
+\end{divergebox}
+
+\section{Is Consciousness Computable?}
+
+\begin{divergebox}[Computable vs.\ Non-Computable]
+\textbf{Computable} (GWT, HOT, AST, PP, CEMI, RPT): Consciousness arises from information processing that can, in principle, be simulated on a Turing machine. AI consciousness is possible.
+
+\textbf{Non-computable} (Orch OR): Consciousness requires non-algorithmic processes (objective reduction). No classical computer can be conscious, no matter how sophisticated.
+
+\textbf{Intermediate} (IIT): Consciousness depends on \emph{intrinsic causal structure}, not computation per se. A simulation of a brain on a classical computer would not be conscious (because the causal structure is in the computer hardware, not the simulation), but the right hardware \emph{could} be conscious.
+\end{divergebox}
+
+\section{Identity vs.\ Correlation vs.\ Illusion}
+
+\begin{divergebox}[What is the Relationship Between Brain and Consciousness?]
+\textbf{Identity:} Consciousness \emph{is} a specific physical process (IIT: $\Phi$; CEMI: the EM field; Panpsychism: intrinsic nature of matter).
+
+\textbf{Functional correlation:} Consciousness \emph{arises from} certain computational operations (GWT: global broadcast; RPT: recurrent processing; PP: predictive inference).
+
+\textbf{Illusion/model:} Consciousness as we conceive it doesn't exist as such; it is a model or representation (AST: attention schema; HOT: higher-order representation).
+\end{divergebox}
+
+
+% ══════════════════════════════════════════════════════════════
+\chapter{Key Convergences}
+% ══════════════════════════════════════════════════════════════
+
+Despite deep disagreements, the nine theories converge on several important points:
+
+\begin{convergebox}[Points of Agreement Across Theories]
+\begin{enumerate}[leftmargin=1.5em]
+  \item \textbf{Information integration is important.} IIT makes it central ($\Phi$). GWT achieves it through broadcast. RPT through recurrence. CEMI through field superposition. PP through hierarchical inference. Even Orch OR proposes integration across microtubule networks. No theory denies that consciousness involves some form of information integration.
+
+  \item \textbf{Neural synchrony correlates with consciousness.} Gamma oscillations, thalamocortical coherence, and long-range synchrony are universally accepted correlates. GWT explains this via broadcast. RPT via recurrent loops. CEMI via field coherence. IIT via integrated cause-effect structure. The mechanism differs but the correlation is agreed upon.
+
+  \item \textbf{Anesthesia disrupts something fundamental.} All theories account for anesthetic abolition of consciousness---whether by disrupting integration (IIT), broadcast (GWT), recurrence (RPT), higher-order states (HOT), precision weighting (PP), field coherence (CEMI), or microtubule dynamics (Orch OR).
+
+  \item \textbf{Consciousness is graded, not binary.} All theories (except possibly simple versions of HOT) allow for degrees of consciousness---from minimal ($\Phi \approx 0$, simple organisms) to rich (human waking experience).
+
+  \item \textbf{Feedback/recurrence matters.} GWT requires recurrent broadcast. RPT is built on recurrence. PP requires top-down predictions (feedback). IIT requires bidirectional causal connections. CEMI requires field-neuron feedback. Even HOT implicitly requires feedback from higher-order to first-order areas.
+
+  \item \textbf{The posterior cortex is important for visual consciousness.} Even front-of-brain theories (GWT, HOT) acknowledge that visual experience involves posterior cortex. The debate is whether PFC is additionally required.
+\end{enumerate}
+\end{convergebox}
+
+
+% ══════════════════════════════════════════════════════════════
+\chapter{The Adversarial Collaboration Results}
+% ══════════════════════════════════════════════════════════════
+
+\section{The COGITATE Study (2023)}
+
+The largest adversarial collaboration in consciousness science tested predictions of IIT and GWT using pre-registered experiments:
+
+\begin{evidbox}[COGITATE Results Summary]
+\textbf{Design:} Participants viewed visual stimuli while brain activity was recorded with fMRI, M/EEG, and ECoG across multiple sites. Theories pre-registered specific predictions.
+
+\textbf{IIT's predictions:}
+\begin{itemize}[leftmargin=1.5em]
+  \item Sustained activity in posterior cortex during conscious perception: \textbf{Partially supported.} Sustained posterior activity was observed, but the specific pattern did not perfectly match IIT's predictions.
+  \item Content-specific information in posterior hot zone: \textbf{Supported.} Decoding of conscious content was strongest in posterior regions.
+  \item PFC not necessary: \textbf{Partially supported.} PFC activity was less pronounced than GWT predicted, but was not entirely absent.
+\end{itemize}
+
+\textbf{GWT's predictions:}
+\begin{itemize}[leftmargin=1.5em]
+  \item Late ($>$300 ms) ``ignition'' with prefrontal involvement: \textbf{Weakly supported.} Some late frontal activity observed but less robust than predicted.
+  \item All-or-none (non-linear) transition: \textbf{Mixed.} Some evidence for non-linearity but not as sharp as predicted.
+  \item P3b wave as marker of consciousness: \textbf{Partially supported.}
+\end{itemize}
+
+\textbf{Overall verdict:} Neither theory was clearly vindicated or refuted. The posterior cortex was more important than GWT predicted, and the PFC was less important than GWT predicted---tilting slightly toward IIT/RPT. But the results were not decisive enough to reject either theory.
+\end{evidbox}
+
+\section{Implications for All Nine Theories}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.35}
+\small
+\begin{tabular}{>{\raggedright}p{1.6cm} >{\raggedright}p{4cm} >{\raggedright\arraybackslash}p{7.5cm}}
+  \toprule
+  \textbf{Theory} & \textbf{COGITATE Impact} & \textbf{Implications} \\
+  \midrule
+  IIT & Partially supported & Posterior hot zone confirmed; sustained activity observed; but specific $\Phi$-based predictions not directly tested \\
+  GWT & Partially challenged & Prefrontal ignition weaker than predicted; may need revision toward posterior emphasis \\
+  RPT & Indirectly supported & Posterior recurrence consistent with results; RPT not directly tested but compatible \\
+  HOT & Challenged & Frontal emphasis weakened; HOT may need to accommodate posterior consciousness \\
+  AST & Neutral & TPJ/STS not specifically tested; AST compatible with multiple outcomes \\
+  PP & Compatible & Hierarchical prediction error framework accommodates both frontal and posterior findings \\
+  Orch OR & Not tested & Microtubule-level phenomena not addressable by the experimental design \\
+  Pan. & Not tested & Metaphysical framework not empirically addressable \\
+  CEMI & Partially compatible & Coherent field patterns in posterior cortex consistent with predictions \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\section{Ongoing and Future Collaborations}
+
+The adversarial collaboration framework is expanding:
+\begin{itemize}[leftmargin=1.5em]
+  \item \textbf{Phase 2:} Testing RPT and HOT alongside IIT and GWT with refined predictions.
+  \item \textbf{Animal studies:} Extending the paradigms to non-human primates and potentially other species.
+  \item \textbf{Clinical applications:} Testing theory predictions against disorders of consciousness (vegetative state, minimally conscious state).
+  \item \textbf{No-report paradigms:} Experiments that detect consciousness without requiring subjects to report, addressing the access/phenomenal distinction directly.
+\end{itemize}
+
+
+% ══════════════════════════════════════════════════════════════
+\chapter{Compatibility and Complementarity}
+% ══════════════════════════════════════════════════════════════
+
+Many theories may be compatible because they operate at different levels of description:
+
+\section{A Multi-Level Framework}
+
+\begin{synthbox}[Theories as Layers]
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{>{\raggedright}p{3.5cm} >{\raggedright}p{4cm} >{\raggedright\arraybackslash}p{5cm}}
+  \toprule
+  \textbf{Level} & \textbf{Question} & \textbf{Theories} \\
+  \midrule
+  \textbf{Metaphysical} & What \emph{is} consciousness? & Panpsychism, IIT (identity claim) \\
+  \textbf{Mathematical} & What are the formal principles? & IIT ($\Phi$), PP (free energy), CEMI ($\Phi_{\text{EM}}$) \\
+  \textbf{Algorithmic} & What computation does consciousness perform? & PP (Bayesian inference), GWT (broadcast), HOT (meta-representation) \\
+  \textbf{Architectural} & What brain structure is needed? & GWT (workspace network), RPT (recurrent circuits) \\
+  \textbf{Biophysical} & What physical mechanism implements it? & CEMI (EM field), Orch OR (quantum biology) \\
+  \textbf{Cognitive/functional} & What role does consciousness play? & AST (attention control), HOT (metacognition) \\
+  \bottomrule
+\end{tabular}
+\end{center}
+A complete theory of consciousness may need elements from \emph{multiple} levels. The theories are not necessarily competitors but may be complementary descriptions of the same phenomenon at different scales.
+\end{synthbox}
+
+\section{Natural Pairings}
+
+\begin{convergebox}[Compatible Theory Pairs]
+\textbf{RPT + PP:} Recurrent processing \emph{is} the iterative prediction-error exchange in predictive coding. RPT describes the circuit architecture; PP describes the algorithm it implements.
+
+\textbf{GWT + CEMI:} Global broadcast may be physically realized as a coherent EM field. The EM field provides the physical substrate; GWT describes the computational function.
+
+\textbf{IIT + Panpsychism:} IIT's $\Phi > 0$ for simple systems provides a formal grounding for panpsychism. Panpsychism provides the metaphysical interpretation; IIT provides the math.
+
+\textbf{HOT + AST:} The attention schema is a specific kind of higher-order representation. AST can be viewed as a biologically concrete implementation of HOT.
+
+\textbf{PP + GWT:} Predictive processing describes the general algorithmic principle; global broadcast describes the specific architecture that makes some predictions conscious.
+
+\textbf{CEMI + IIT:} The EM field may be the physical substrate that maximizes $\Phi$ through superposition-based integration.
+\end{convergebox}
+
+
+% ══════════════════════════════════════════════════════════════
+\chapter{Scorecards}
+% ══════════════════════════════════════════════════════════════
+
+\section{Theoretical Virtues}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.35}
+\small
+\begin{tabular}{>{\raggedright}p{1.4cm} c c c c c c}
+  \toprule
+  \textbf{Theory} & \makecell{\textbf{Math.}\\\textbf{Precision}} & \makecell{\textbf{Empirical}\\\textbf{Support}} & \makecell{\textbf{Falsifi-}\\\textbf{ability}} & \makecell{\textbf{Hard}\\\textbf{Problem}} & \makecell{\textbf{Clinical}\\\textbf{Utility}} & \makecell{\textbf{Parsi-}\\\textbf{mony}} \\
+  \midrule
+  IIT       & $\bigstar\bigstar\bigstar$ & $\bigstar\bigstar$ & $\bigstar\bigstar$ & $\bigstar\bigstar\bigstar$ & $\bigstar\bigstar$ & $\bigstar$ \\
+  GWT       & $\bigstar\bigstar$ & $\bigstar\bigstar\bigstar$ & $\bigstar\bigstar\bigstar$ & $\bigstar$ & $\bigstar\bigstar\bigstar$ & $\bigstar\bigstar\bigstar$ \\
+  RPT       & $\bigstar\bigstar$ & $\bigstar\bigstar\bigstar$ & $\bigstar\bigstar\bigstar$ & $\bigstar$ & $\bigstar\bigstar$ & $\bigstar\bigstar\bigstar$ \\
+  HOT       & $\bigstar\bigstar$ & $\bigstar\bigstar$ & $\bigstar\bigstar$ & $\bigstar\bigstar$ & $\bigstar$ & $\bigstar\bigstar$ \\
+  AST       & $\bigstar$ & $\bigstar\bigstar$ & $\bigstar\bigstar$ & $\bigstar\bigstar$ & $\bigstar$ & $\bigstar\bigstar\bigstar$ \\
+  PP        & $\bigstar\bigstar\bigstar$ & $\bigstar\bigstar$ & $\bigstar\bigstar$ & $\bigstar\bigstar$ & $\bigstar\bigstar$ & $\bigstar\bigstar$ \\
+  Orch OR   & $\bigstar\bigstar$ & $\bigstar$ & $\bigstar\bigstar$ & $\bigstar\bigstar\bigstar$ & $\bigstar$ & $\bigstar$ \\
+  Pan.      & $\bigstar$ & $\bigstar$ & $\bigstar$ & $\bigstar\bigstar\bigstar$ & --- & $\bigstar\bigstar$ \\
+  CEMI      & $\bigstar\bigstar$ & $\bigstar\bigstar$ & $\bigstar\bigstar$ & $\bigstar$ & $\bigstar\bigstar$ & $\bigstar\bigstar$ \\
+  \bottomrule
+\end{tabular}
+
+\vspace{4pt}
+{\footnotesize $\bigstar$ = limited \quad $\bigstar\bigstar$ = moderate \quad $\bigstar\bigstar\bigstar$ = strong \quad --- = not applicable}
+\end{center}
+
+\section{Decisive Experiments}
+
+What experiment, if performed, would most strongly distinguish the theories?
+
+\begin{center}
+\renewcommand{\arraystretch}{1.35}
+\small
+\begin{tabular}{>{\raggedright}p{4.5cm} >{\raggedright}p{3.5cm} >{\raggedright\arraybackslash}p{5cm}}
+  \toprule
+  \textbf{Experiment} & \textbf{Would Support} & \textbf{Would Challenge} \\
+  \midrule
+  No-report paradigm: consciousness without frontal access & IIT, RPT & GWT, HOT \\
+  Full PFC lesion with preserved consciousness & IIT, RPT, AST & GWT, HOT \\
+  Specific $\Phi$ prediction confirmed & IIT & GWT (if posterior), HOT \\
+  AI with human-like consciousness & GWT, HOT, AST, PP & Orch OR (if classical) \\
+  Microtubule quantum coherence detected in vivo & Orch OR & All classical theories (mildly) \\
+  Disrupting EM field (not synapses) abolishes consciousness & CEMI & Circuit-only theories \\
+  Ephaptic-only communication supports consciousness & CEMI & Synaptic-only models \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+
+% ══════════════════════════════════════════════════════════════
+\chapter{Open Frontiers}
+% ══════════════════════════════════════════════════════════════
+
+\section{Unsolved Problems}
+
+\begin{futurebox}[The Big Open Questions]
+\begin{enumerate}[leftmargin=1.5em]
+  \item \textbf{The Hard Problem:} No theory has truly solved why physical processes feel like anything. IIT and panpsychism claim to address it (by identity or fundamentality), but skeptics remain unconvinced. The gap between physics and phenomenology persists.
+
+  \item \textbf{The NCC vs.\ the mechanism:} We have many correlations but few causal explanations. Knowing \emph{which} brain areas are involved doesn't explain \emph{why} their activity is conscious.
+
+  \item \textbf{Phenomenal overflow:} Can there be consciousness without access? The answer would reshape the entire theoretical landscape. No-report paradigms are the best hope for resolution.
+
+  \item \textbf{The unity of consciousness:} How is the multiplicity of brain processes unified into a single experience? The binding problem remains unsolved at a deep level. IIT (exclusion), CEMI (field unity), and GWT (workspace unity) offer different answers.
+
+  \item \textbf{Animal and AI consciousness:} How do we determine which systems are conscious? Without solving the measurement problem (detecting consciousness from the outside), this question may remain unanswerable.
+
+  \item \textbf{The temporal structure of consciousness:} Is experience continuous or discrete? Does it come in ``frames'' (Orch OR: $\sim$25 ms; some evidence from temporal integration) or flow continuously?
+
+  \item \textbf{The combination problem:} If panpsychism is true, how do micro-experiences combine? If physicalism is true, how does experience emerge from non-experience? Both have a ``combination problem.''
+\end{enumerate}
+\end{futurebox}
+
+\section{Emerging Approaches}
+
+\begin{futurebox}[New Directions]
+\begin{enumerate}[leftmargin=1.5em]
+  \item \textbf{No-report and within-state paradigms:} Experimental designs that detect consciousness without requiring behavioral report, directly testing the access/phenomenal distinction.
+
+  \item \textbf{Perturbational complexity (PCI):} Theory-neutral measures of consciousness level based on brain responses to TMS. Already clinically useful and may discriminate between theories.
+
+  \item \textbf{Adversarial collaborations Phase 2+:} Expanding to test RPT, HOT, and potentially PP and AST with pre-registered predictions.
+
+  \item \textbf{Computational modeling:} Large-scale brain simulations that implement different theories and test whether they produce the right neural signatures.
+
+  \item \textbf{AI consciousness:} As AI systems grow more sophisticated, the question of machine consciousness becomes urgent. Theories make sharply different predictions here.
+
+  \item \textbf{Psychedelics research:} The REBUS model (PP) and altered states provide a rich testing ground. Different theories make different predictions about why psychedelics alter consciousness.
+
+  \item \textbf{Cross-species neuroscience:} Testing theory predictions in diverse species (birds, cephalopods, insects) to determine the phylogenetic distribution of consciousness.
+
+  \item \textbf{Theory unification:} Attempts to combine compatible theories into multi-level frameworks that address multiple aspects of consciousness simultaneously.
+\end{enumerate}
+\end{futurebox}
+
+\section{Toward a Unified Theory?}
+
+\begin{synthbox}[A Speculative Synthesis]
+The nine theories may not be competing answers to the same question but rather answers to \emph{different} questions about consciousness:
+\begin{itemize}[leftmargin=1.5em]
+  \item \textbf{What is consciousness?} $\to$ Panpsychism / IIT (ontological question)
+  \item \textbf{What are its mathematical principles?} $\to$ IIT ($\Phi$) / PP (free energy)
+  \item \textbf{What algorithm does it implement?} $\to$ PP (Bayesian inference) / GWT (broadcast)
+  \item \textbf{What neural architecture does it need?} $\to$ GWT (workspace) / RPT (recurrence)
+  \item \textbf{What physical mechanism implements it?} $\to$ CEMI (EM field) / Orch OR (quantum)
+  \item \textbf{What is its cognitive function?} $\to$ AST (attention control) / HOT (metacognition)
+  \item \textbf{Why does it exist?} $\to$ Still unanswered.
+\end{itemize}
+
+A mature science of consciousness will likely draw from multiple theories, integrating formal mathematical frameworks (IIT, PP) with specific neural mechanisms (GWT, RPT, CEMI) and cognitive functions (HOT, AST), grounded in a metaphysics that takes the Hard Problem seriously (Panpsychism, or a successor). The field is moving from an era of \emph{theory proliferation} to one of \emph{theory testing and integration}.
+\end{synthbox}
+
+
+% ══════════════════════════════════════════════════════════════
+\chapter{Series Reference}
+% ══════════════════════════════════════════════════════════════
+
+\section*{The Complete Consciousness Theory Series}
+\begin{enumerate}[label={\textbf{Vol.\ \arabic*}}, leftmargin=3em, start=0]
+  \item \textbf{Introduction to Consciousness Studies} --- Foundations, problems, methods, and the landscape of theories.
+  \item \textbf{Integrated Information Theory (IIT)} --- Axioms, postulates, $\Phi$, qualia space, cause-effect structure, EMD, IIT 4.0.
+  \item \textbf{Global Workspace Theory (GWT)} --- Global broadcast, ignition dynamics, prefrontal-parietal workspace, Wilson-Cowan equations.
+  \item \textbf{Recurrent Processing Theory (RPT)} --- Three-stage framework, laminar circuitry, phenomenal overflow, VAN vs.\ DAN.
+  \item \textbf{Higher-Order Theories (HOT)} --- Rosenthal's HOT, perceptual reality monitoring, SDT, meta-$d'$, metacognitive efficiency.
+  \item \textbf{Attention Schema Theory (AST)} --- Attention modeling, schema dynamics, TPJ/STS, evolutionary stages, social cognition.
+  \item \textbf{Predictive Processing \& Active Inference (PP)} --- Free energy principle, variational inference, Markov blankets, hierarchical predictive coding.
+  \item \textbf{Orchestrated Objective Reduction (Orch OR)} --- Quantum mechanics, Di\'osi-Penrose criterion, microtubules, G\"odel's theorems, spin networks.
+  \item \textbf{Panpsychism \& Cosmopsychism} --- Russellian monism, combination problem, IIT as formal panpsychism, cosmopsychist dissolution.
+  \item \textbf{CEMI / EM Field Theories} --- Maxwell's equations, ephaptic coupling, field integration, CEMI download principle.
+  \item \textbf{Master Comparison \& Synthesis} (this document) --- Cross-theory comparison tables, adversarial collaboration results, convergences, divergences, open frontiers.
+\end{enumerate}
+
+\section*{Key Cross-Cutting References}
+\begin{enumerate}[label={[\arabic*]}, leftmargin=2.5em]
+  \item Seth, A.\ K.\ \& Bayne, T.\ (2022). Theories of consciousness. \textit{Nature Reviews Neuroscience}, 23, 439--452.
+  \item Melloni, L., et al.\ (2021). Making the hard problem of consciousness easier. \textit{Science}, 372(6545), 911--912.
+  \item Koch, C., et al.\ (2016). Neural correlates of consciousness: progress and problems. \textit{Nature Reviews Neuroscience}, 17, 307--321.
+  \item Doerig, A., et al.\ (2021). Hard criteria for empirical theories of consciousness. \textit{Cognitive Neuroscience}, 12(2), 41--62.
+  \item Yaron, I., et al.\ (2022). The ConTraSt database for analysing and comparing empirical studies of consciousness theories. \textit{Nature Human Behaviour}, 6, 593--604.
+  \item Chalmers, D.\ J.\ (1996). \textit{The Conscious Mind}. Oxford University Press.
+  \item Tononi, G., Boly, M., Massimini, M., \& Koch, C.\ (2016). Integrated information theory. \textit{Archives Italiennes de Biologie}, 154, 1--18.
+  \item Dehaene, S.\ \& Changeux, J.-P.\ (2011). Experimental and theoretical approaches to conscious processing. \textit{Neuron}, 70(2), 200--227.
+  \item Lamme, V.\ A.\ F.\ (2006). Towards a true neural stance on consciousness. \textit{Trends in Cognitive Sciences}, 10(11), 494--501.
+  \item Mashour, G.\ A., et al.\ (2020). Conscious processing and the global neuronal workspace hypothesis. \textit{Neuron}, 105(5), 776--798.
+\end{enumerate}
+
+\vfill
+\begin{center}
+  {\color{gray}\rule{0.4\textwidth}{0.5pt}}\\[8pt]
+  {\small\color{gray}\itshape End of Series}
+\end{center}
+
+\end{document}

@@ -46,17 +46,17 @@ All documents use consistent professional LaTeX formatting with:
 
 | Vol | Document | Pages | Key Focus |
 |-----|----------|-------|-----------|
-| 0 | **[Introduction to Consciousness Studies](./00_Introduction_to_Consciousness_Studies.pdf)** | 19 | Hard Problem, NCC, qualia, thought experiments, philosophical landscape, experimental methods, history, series overview |
-| 1 | **[Integrated Information Theory (IIT)](./IIT_Comprehensive_Guide.pdf)** | 31 | Axioms, postulates, Φ, cause-effect structure, EMD, TPMs, qualia space, IIT 4.0, exclusion postulate |
-| 2 | **[Global Workspace Theory (GWT)](./GWT_Comprehensive_Guide.pdf)** | 29 | Global broadcast, ignition dynamics, prefrontal-parietal workspace, Wilson-Cowan equations, P3b |
-| 3 | **[Recurrent Processing Theory (RPT)](./RPT_Comprehensive_Guide.pdf)** | 31 | Three-stage framework, laminar circuitry, feedforward vs. recurrent, phenomenal overflow, VAN vs. DAN |
-| 4 | **[Higher-Order Theories (HOT)](./HOT_Comprehensive_Guide.pdf)** | 29 | Rosenthal's HOT, perceptual reality monitoring, signal detection theory, meta-d', metacognitive efficiency |
-| 5 | **[Attention Schema Theory (AST)](./AST_Comprehensive_Guide.pdf)** | 28 | Attention modeling, schema dynamics, biased competition, control theory, Kalman filter, TPJ/STS, evolutionary stages |
-| 6 | **[Predictive Processing & Active Inference (PP)](./PP_Active_Inference_Comprehensive_Guide.pdf)** | 26 | Free energy principle, variational inference, Markov blankets, hierarchical predictive coding, REBUS model, interoception |
-| 7 | **[Orchestrated Objective Reduction (Orch OR)](./OrchOR_Comprehensive_Guide.pdf)** | 31 | Quantum mechanics, Diósi-Penrose criterion, microtubules, Gödel's theorems, spin networks, twistor theory |
-| 8 | **[Panpsychism & Cosmopsychism](./Panpsychism_Cosmopsychism_Comprehensive_Guide.pdf)** | 28 | Russellian monism, combination problem, Strawson's argument, category theory, cosmopsychist dissolution, IIT connection |
-| 9 | **[CEMI / EM Field Theories](./CEMI_EM_Field_Comprehensive_Guide.pdf)** | 24 | Maxwell's equations, ephaptic coupling, field integration, CEMI download principle, volume conductor model |
-| 10 | **[Master Comparison & Synthesis](./10_Master_Comparison_and_Synthesis.pdf)** | 18 | Cross-theory tables, COGITATE results, convergences/divergences, scorecards, decisive experiments, open frontiers |
+| 0 | **[Introduction to Consciousness Studies](./theories/00_Introduction_to_Consciousness_Studies.pdf)** | 19 | Hard Problem, NCC, qualia, thought experiments, philosophical landscape, experimental methods, history, series overview |
+| 1 | **[Integrated Information Theory (IIT)](./theories/01_IIT_Comprehensive_Guide.pdf)** | 31 | Axioms, postulates, Φ, cause-effect structure, EMD, TPMs, qualia space, IIT 4.0, exclusion postulate |
+| 2 | **[Global Workspace Theory (GWT)](./theories/02_GWT_Comprehensive_Guide.pdf)** | 29 | Global broadcast, ignition dynamics, prefrontal-parietal workspace, Wilson-Cowan equations, P3b |
+| 3 | **[Recurrent Processing Theory (RPT)](./theories/03_RPT_Comprehensive_Guide.pdf)** | 31 | Three-stage framework, laminar circuitry, feedforward vs. recurrent, phenomenal overflow, VAN vs. DAN |
+| 4 | **[Higher-Order Theories (HOT)](./theories/04_HOT_Comprehensive_Guide.pdf)** | 29 | Rosenthal's HOT, perceptual reality monitoring, signal detection theory, meta-d', metacognitive efficiency |
+| 5 | **[Attention Schema Theory (AST)](./theories/05_AST_Comprehensive_Guide.pdf)** | 28 | Attention modeling, schema dynamics, biased competition, control theory, Kalman filter, TPJ/STS, evolutionary stages |
+| 6 | **[Predictive Processing & Active Inference (PP)](./theories/06_PP_Active_Inference_Comprehensive_Guide.pdf)** | 26 | Free energy principle, variational inference, Markov blankets, hierarchical predictive coding, REBUS model, interoception |
+| 7 | **[Orchestrated Objective Reduction (Orch OR)](./theories/07_OrchOR_Comprehensive_Guide.pdf)** | 31 | Quantum mechanics, Diósi-Penrose criterion, microtubules, Gödel's theorems, spin networks, twistor theory |
+| 8 | **[Panpsychism & Cosmopsychism](./theories/08_Panpsychism_Cosmopsychism_Comprehensive_Guide.pdf)** | 28 | Russellian monism, combination problem, Strawson's argument, category theory, cosmopsychist dissolution, IIT connection |
+| 9 | **[CEMI / EM Field Theories](./theories/09_CEMI_EM_Field_Comprehensive_Guide.pdf)** | 24 | Maxwell's equations, ephaptic coupling, field integration, CEMI download principle, volume conductor model |
+| 10 | **[Master Comparison & Synthesis](./theories/10_Master_Comparison_and_Synthesis.pdf)** | 18 | Cross-theory tables, COGITATE results, convergences/divergences, scorecards, decisive experiments, open frontiers |
 
 ---
 
@@ -183,7 +183,7 @@ consciousness-studies/
 │
 ├── README.md
 │
-├── theories/                         # Core theory documents
+├── theories/                         # Core theory documents (PDF)
 │   ├── 00_Introduction_to_Consciousness_Studies.pdf
 │   ├── 01_IIT_Comprehensive_Guide.pdf
 │   ├── 02_GWT_Comprehensive_Guide.pdf
@@ -196,24 +196,24 @@ consciousness-studies/
 │   ├── 09_CEMI_EM_Field_Comprehensive_Guide.pdf
 │   └── 10_Master_Comparison_and_Synthesis.pdf
 │
+├── latex/                            # LaTeX source files
+│   ├── 00_intro.tex
+│   ├── 01_iit.tex
+│   ├── 02_gwt.tex
+│   ├── 03_rpt.tex
+│   ├── 04_hot.tex
+│   ├── 05_ast.tex
+│   ├── 06_pp.tex
+│   ├── 07_orchor.tex
+│   ├── 08_panpsychism.tex
+│   ├── 09_cemi.tex
+│   └── 10_synthesis.tex
+│
 ├── methods/                          # (planned) Experimental methods & measures
 │
 ├── foundations/                       # (planned) Math & philosophy foundations
 │
-├── supplementary/                     # (planned) Glossary, bibliography, etc.
-│
-└── latex/                            # LaTeX source files
-    ├── intro.tex
-    ├── iit.tex
-    ├── gwt.tex
-    ├── rpt.tex
-    ├── hot.tex
-    ├── ast.tex
-    ├── pp.tex
-    ├── orchor.tex
-    ├── panpsychism.tex
-    ├── cemi.tex
-    └── synthesis.tex
+└── supplementary/                    # (planned) Glossary, bibliography, etc.
 ```
 
 ---
